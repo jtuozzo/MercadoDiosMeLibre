@@ -1,0 +1,5 @@
+.htaccess
+/aplic/logs
+/aplic/tmp
+/aplic/vendor
+/aplic/include/diosmelibre_data.inc
