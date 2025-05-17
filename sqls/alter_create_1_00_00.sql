@@ -18,6 +18,7 @@ CREATE TABLE user (
 
 CREATE TABLE articulo (
   articulo_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_id INT UNSIGNED NOT NULL,
   titulo VARCHAR(256) NOT NULL,
   descripcion TEXT NULL,
   moneda ENUM("P","USS") DEFAULT "P" NOT NULL,
@@ -29,6 +30,7 @@ CREATE TABLE articulo (
   update_user INT UNSIGNED  NOT NULL,
   update_datetime datetime NOT NULL,
   PRIMARY KEY (articulo_id),
+  CONSTRAINT FOREIGN KEY (user_id) REFERENCES user (user_id),
   CONSTRAINT FOREIGN KEY (insert_user) REFERENCES user (user_id),
   CONSTRAINT FOREIGN KEY (update_user) REFERENCES user (user_id)
 ) ENGINE=InnoDB;
