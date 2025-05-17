@@ -1,13 +1,11 @@
 <?php
 /*
-    Nombre: index.php
+    Nombre: foot.inc
     Autor: Julio Tuozzo.
-    Función: index.
+    Función: Pie de página.
     Fecha de creación: 17/05/2025.
     Ultima modificación: 17/05/2025.
 */
-
-require("head.inc");
-require("foot.inc");
-
 ?>
+</body>
+</html>

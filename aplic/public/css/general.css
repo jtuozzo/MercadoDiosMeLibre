@@ -5,3 +5,15 @@
     Ultima modificación: 17/05/2025.
 */
 
+body {
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 14px;
+    color: black;
+    background-color: white;
+}
+
+header
+    {background-color: #2abe8b;
+     color: white;
+     padding: 5px;
+    }
