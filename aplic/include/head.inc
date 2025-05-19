@@ -19,7 +19,13 @@ else {$menu_bar = "<li><a href='usuario.php'>Crear usuario</a></li>
     
      }
 
-
+// Incluyo el CSS local si es que existe
+if (isset($css_local)) 
+    {$css_local = "<link rel='stylesheet' href='./css/$css_local'>";
+    } 
+else 
+    {$css_local = "";
+    }
 
 echo "
 <!DOCTYPE html>
@@ -33,6 +39,7 @@ echo "
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap' rel='stylesheet'>
     <link rel='stylesheet' href='./css/main.css'>
+    $css_local
     <script type='text/javascript' src='./js/jquery-3.7.1.min.js'></script>
     <script type='text/javascript' src='./js/main.js'></script>
     <title>Mercado Dios Me Libre</title>

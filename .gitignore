@@ -2,4 +2,4 @@
 /aplic/logs
 /aplic/tmp
 /aplic/vendor
-/aplic/include/diosmelibre_data.inc
+/aplic/include/config_data.inc

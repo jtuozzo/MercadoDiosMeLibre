@@ -9,6 +9,7 @@
 
 session_start();
 
+require("Utils.inc");
 require("head.inc");
 require("foot.inc");
 
