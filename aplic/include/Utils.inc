@@ -27,4 +27,8 @@ require("config_data.inc");
 // Seteo zona horaria
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
+// Conecto con la base de datos
+require("DBConecto.inc");
+$dbase = new DBConecto();
+
 ?>

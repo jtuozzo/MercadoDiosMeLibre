@@ -12,17 +12,25 @@ class DBConecto
 	{public $db;
 
 	 public function __construct()
-	 	{
-		 // Defino la conexión con la base de datos
+	 	{// Defino la conexión con la base de datos
 		 
 		 $ADODB_FETCH_MODE=ADODB_FETCH_ASSOC;
 
 		 $this->db = &ADONewConnection('mysqli');
 
-		 if (!$this->db->Connect(DB_HOST,DB_USER,DB_PASS,DB_BASE))
+		 if (!$this->db->connect(DB_HOST,DB_USER,DB_PASS,DB_BASE))
         		{$this->db_error($this->db->ErrorMsg(),__FILE__,__LINE__);
         		}
-		}
+		 else 
+			{
+			 $this->db->SetCharSet('utf8');
+			 $this->db->SetFetchMode(ADODB_FETCH_ASSOC);
+			 $this->db->Execute("SET NAMES 'utf8'");
+			 $this->db->Execute("SET CHARACTER SET 'utf8'");
+			 $this->db->Execute("SET SESSION collation_connection = 'utf8_general_ci'");
+			}
+		 }
+	
 
        public function db_error($mensaje,$programa,$linea,$query="")
       		{$fecha=date("d/m/Y H:i:s");
@@ -42,7 +50,14 @@ mensaje: $mensaje
 				
 				$css_local="DBConecto.css";
  	            require("head.inc");
-
+				
+				echo "<div class='conect_error'>
+						<h1>Error de conexión número {$linea}</h1> 
+						<h2>Disculpe las molestias ocasionadas, lo solucionaremos a la brevedad</h2>
+						<h2>Muchas gracias.</h2>
+					</div>
+				";
+				
 				require("foot.inc");
                 exit();
              }

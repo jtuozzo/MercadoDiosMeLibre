@@ -1,0 +1,14 @@
+/*  Nombre: DBConecto.css
+    Autor: Julio Tuozzo
+    Función: Hoja de estilos.
+    Fecha de creación: 19/05/2025.
+    Ultima modificación: 19/05/2025.
+*/
+
+
+.conect_error {
+    color: red;
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 20px;
+}
