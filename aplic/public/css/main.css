@@ -1,0 +1,55 @@
+/*  Nombre: main.css
+    Autor: Julio Tuozzo
+    Función: Hoja de estilos general
+    Fecha de creación: 17/05/2025.
+    Ultima modificación: 19/05/2025.
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 14px;
+    color: black;
+    background-color: white;
+}
+
+header {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background-color: #282828;
+    padding: 5px;
+    width: 100%
+}
+
+#logo {
+    width: 70%;
+    margin: auto;
+}
+
+#barraNavUl {
+    display: none;
+}
+
+#barraNavUl.mostrar {
+    z-index: 90;
+    display: flex;
+    flex-flow: column wrap;
+    position: absolute;
+    background-color: #D5D97A;
+    top: 124px;
+    width: 50vw;
+    text-align: right;
+    padding: 1em;
+    right: 0;
+}
+
+.burger-menu {
+    padding: 10px;
+    cursor: pointer;
+}
