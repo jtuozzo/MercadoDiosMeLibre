@@ -2,7 +2,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos general
     Fecha de creación: 17/05/2025.
-    Ultima modificación: 17/05/2025.
+    Ultima modificación: 19/05/2025.
 */
 
 body {
@@ -13,7 +13,12 @@ body {
 }
 
 header
-    {background-color: #2abe8b;
-     color: white;
+    {display:flex;
+     background-color: #282828;
      padding: 5px;
+    }
+
+#logo
+    {
+
     }
