@@ -6,8 +6,22 @@
     Fecha de creación: 17/05/2025.
     Ultima modificación: 19/05/2025.
 */
-?>
 
+
+// Verifica el nivel de acceso para mostrar el menú correspondiente
+
+if (isset($_SESSION['DML_NIVEL']) and $_SESSION['DML_NIVEL'] == 10) 
+    {$menu_bar = "<li><a href='articulo_nuevo.php'>Nuevo artículo</a></li>
+                  <li class='li_derecha'><a herf='login.php'>Salir</a></li>";
+     }
+else {$menu_bar = "<li><a href='usuario.php'>Crear usuario</a></li>
+                  <li class='li_derecha'><a href='login.php'>Ingresar</a></li>";
+    
+     }
+
+
+
+echo "
 <!DOCTYPE html>
 <html lang='es'>
 
@@ -27,33 +41,20 @@
 <body>
     <header>
         <div>
-            <a href='/'>
+            <a href='index.php'>
                 <img id='logo' src='./images/logo_455_175.png' alt='Mercado Dios Me Libre de las cosas que tengo en casa y no uso' title='Mercado Dios Me Libre de las cosas que tengo en casa y no uso'>
             </a>
         </div>
         <nav id='barraNav'>
-            <div class='burger-menu' onclick='toggleMenu()'>
+            <div id='burger-menu' onclick='toggleMenu()'>
                 <img src='./images/burger.png' alt='menu' />
             </div>
             <ul id='barraNavUl'>
                 <li>
-                    <a href='/'>Home</a>
+                    <a href='index.php'>Home</a>
                 </li>
-                <li>
-                    <a href='/products/create'>Crear producto</a>
-                </li>
-                <li>
-                    <a href='/products'>Tienda</a>
-                </li>
-                <li>
-                    <a href='/register'>Registro</a>
-                </li>
-                <li>
-                    <a href='/login'>Login</a>
-                </li>
-                <li>
-                    <a href='/perfil'>Hola,</a>
-                </li>
+                {$menu_bar}
             </ul>
         </nav>
     </header>
+";
