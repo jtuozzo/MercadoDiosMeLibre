@@ -36,17 +36,32 @@ header {
     display: none;
 }
 
+#barraNavUl li {
+    padding: 0.5em;
+    border-top: 1px solid gray;
+    margin: 0;
+    font-size:large;
+}
+
 #barraNavUl.mostrar {
     z-index: 90;
     display: flex;
     flex-flow: column wrap;
     position: absolute;
-    background-color: #D5D97A;
-    top: 124px;
-    width: 50vw;
-    text-align: right;
-    padding: 1em;
     right: 0;
+    background-color: #282828;
+    color: white;
+    top: 104px;
+    width: 140px;
+    text-align: center;
+    padding: 0.5em;
+    list-style-type: none;
+    
+}
+
+#barraNavUl a {
+    text-decoration: none;
+    color: white
 }
 
 .burger-menu {
