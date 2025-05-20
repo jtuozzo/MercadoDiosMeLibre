@@ -2,9 +2,9 @@
 /*
     Nombre: DBConecto.inc
     Autor: Julio Tuozzo
-    Funci髇: Definici髇 de la clase de conexi髇 con la base de datos.
-    Fecha de creaci髇: 19/05/2025.
-    Ultima modificaci髇: 19/05/2025.
+    Funci贸n: Definici贸n de la clase de conexi贸n con la base de datos.
+    Fecha de creaci贸n: 19/05/2025.
+    Ultima modificaci贸n: 20/05/2025.
 */
 require('adodb.inc.php');
 
@@ -12,30 +12,29 @@ class DBConecto
 	{public $db;
 
 	 public function __construct()
-	 	{// Defino la conexi髇 con la base de datos
+	 	{// Defino la conexi贸n con la base de datos
 		 
-		 $ADODB_FETCH_MODE=ADODB_FETCH_ASSOC;
-
 		 $this->db = &ADONewConnection('mysqli');
 
-		 if (!$this->db->connect(DB_HOST,DB_USER,DB_PASS,DB_BASE))
-        		{$this->db_error($this->db->ErrorMsg(),__FILE__,__LINE__);
-        		}
-		 else 
-			{
+		try 
+			{$this->db->Connect(DB_HOST,DB_USER,DB_PASS,DB_BASE);
 			 $this->db->SetCharSet('utf8');
 			 $this->db->SetFetchMode(ADODB_FETCH_ASSOC);
 			 $this->db->Execute("SET NAMES 'utf8'");
 			 $this->db->Execute("SET CHARACTER SET 'utf8'");
 			 $this->db->Execute("SET SESSION collation_connection = 'utf8_general_ci'");
+
+			} 
+		catch (Exception $e) 
+			{$this->db_error($e->getMessage(),__FILE__,__LINE__);			 
 			}
-		 }
-	
+
+		}
 
        public function db_error($mensaje,$programa,$linea,$query="")
       		{$fecha=date("d/m/Y H:i:s");
        	 	 $error_msg="
-$fecha Error acceso MySQL. programa: $programa, l韓ea $linea
+$fecha Error acceso MySQL. programa: $programa, l铆nea $linea
 mensaje: $mensaje
 ";
              if (strlen($query)>1)
@@ -52,7 +51,8 @@ mensaje: $mensaje
  	            require("head.inc");
 				
 				echo "<div class='conect_error'>
-						<h1>Error de conexi髇 n鷐ero {$linea}</h1> 
+				  		<img src='./images/el_grito.png' alt='Error de conexi贸n'/>
+						<h1>Error de conexi贸n n煤mero {$linea}</h1> 
 						<h2>Disculpe las molestias ocasionadas, lo solucionaremos a la brevedad</h2>
 						<h2>Muchas gracias.</h2>
 					</div>

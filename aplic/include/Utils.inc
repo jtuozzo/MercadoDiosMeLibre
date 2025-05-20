@@ -18,7 +18,7 @@ define('DB_BASE', '');
 
 # Carpeta de logs
 
-define('LOGS', './carpeta/');
+define('LOGS', '../carpeta/');
 
 */
 

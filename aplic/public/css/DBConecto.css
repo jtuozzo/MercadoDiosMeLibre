@@ -2,13 +2,52 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 19/05/2025.
+    Ultima modificación: 20/05/2025.
 */
 
 
 .conect_error {
-    color: red;
+    color: #CF2711;
     font-size: 1.2em;
     text-align: center;
     margin-top: 20px;
+    line-height: 40px;
+    padding: 15px;
+}
+
+.conect_error h1 {
+    font-size: 1.7em;
+    margin-top: 20px;
+}
+
+.conect_error h2 {
+    font-size: 1.5em;
+    margin-top: 15px;
+}
+
+.conect_error img {
+    height: 30vh;
+    vertical-align: middle;
+}
+
+/* -----------------  Tablet y Desktop  ----------------- */
+
+@media(min-width: 760px) {
+    .conect_error {
+        font-size: 1.5em;
+        line-height: 50px;
+        padding: 20px;
+    }
+
+    .conect_error h1 {
+        font-size: 2.0em;
+    }
+
+    .conect_error h2 {
+        font-size: 1.8em;
+    }
+
+    .conect_error img {
+        height: 35vh;
+    }
 }
