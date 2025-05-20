@@ -2,7 +2,7 @@
 /*
     Nombre: Utils.inc
     Autor: Julio Tuozzo.
-    Función: Inicialización de variables y utilidades generales.
+    Función: Definición de los atributos y métodos estáticos de uso global.
     Fecha de creación: 19/05/2025.
     Ultima modificación: 19/05/2025.
 */
@@ -27,8 +27,36 @@ require("config_data.inc");
 // Seteo zona horaria
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
-// Conecto con la base de datos
+
 require("DBConecto.inc");
-$dbase = new DBConecto();
+
+class Utils 
+    {static public $dbase;
+
+     public function __construct()
+        {self::$dbase = new DBConecto();
+        }
+
+      // Funcióm que ejecuta una consulta SQL y devuelve el resultado.
+
+     static public function execute($query, $file, $line)
+        {if (!$result = self::$dbase->db->Execute($query))
+                {self::$dbase->db_error(self::$dbase->db->ErrorMsg(),$file,$line,$query);
+                 return false;
+                }
+         return $result;
+        }
+
+     static public function msgError($mensaje="Corrija los errores")
+        {return "<script language='javascript'>
+                    Swal.fire({
+                    icon:'error',
+                    title:'{$mensaje}',
+                    confirmButtonColor: '#D22518',
+                    })
+                 </script>";
+        }
+
+    }
 
 ?>
