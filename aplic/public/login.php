@@ -44,20 +44,25 @@ if(strlen($clave)==0)
       $mensaje=Utils::msgError();
      }
 
-$clave = hash("sha512", $clave);
 
-$query = "SELECT user_id, apellidos, nombres, email, nivel, clave, token 
-          FROM user 
-          WHERE email='$email' 
-          AND clave='$clave'";
+if(!isset($mensaje)) // Hasta acá no hubo errores
+     {$clave = hash("sha512", $clave);
 
-$result = Utils::execute($query, __FILE__, __LINE__);
+    $query = "SELECT user_id, apellidos, nombres, email, nivel, clave, token 
+            FROM user 
+            WHERE email='$email' 
+            AND clave='$clave'";
 
-if($result->recordCount() == 0)
-     {$st_email="class='st_error'";
-      $st_clave="class='st_error'";
-      $email_err="<span class='error'>Usuario o clave incorrectos</span>";
-      $mensaje=Utils::msgError();
+    $result = Utils::execute($query, __FILE__, __LINE__);
+
+    if($result->recordCount() == 0)
+        {$st_email="class='st_error'";
+        $st_clave="class='st_error'";
+        $email_err="<span class='error'>Usuario o clave incorrectos</span>";
+        $mensaje=Utils::msgError();
+        }
+
+
      }
 
 if (isset($mensaje))

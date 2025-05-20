@@ -13,15 +13,21 @@ require_once('head.inc');
 echo "
 <div id='login'>
     <h1>Iniciar sesión</h1>
-    <form action='login.php' method='post'>
-        <label for='usuario'>Usuario:</label>
-        <input type='text' name='usuario' id='usuario' required>
-        <label for='password'>Contraseña:</label>
-        <input type='password' name='password' id='password' required>
-        <button type='submit'>Iniciar sesión</button>
+      
+    <form action='{$_SERVER['PHP_SELF']}' method='post'>
+        <label for='email'>
+            E-mail: <input type='text' name='email' id='email' value='$email' size='50' maxlength='64' $st_email> $email_err 
+        </label>
+        
+        <label for='clave'>
+            Clave: <input type='password' name='clave' id='clave' size='20' maxlength='20' $st_clave> $clave_err
+        </label>
+        
+        <input type='submit' name='ingresar' value='Iniciar sesión'/>
     </form>
     <p><a href='recuperar_password.php'>¿Olvidaste tu contraseña?</a></p>
 </div>
+$mensaje
 ";
 require_once('foot.inc');
 ?>

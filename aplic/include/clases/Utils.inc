@@ -31,16 +31,16 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 require("DBConecto.inc");
 
 class Utils 
-    {static public $dbase;
+    {static private $dbase;
 
-     public function __construct()
-        {self::$dbase = new DBConecto();
-        }
 
       // Funcióm que ejecuta una consulta SQL y devuelve el resultado.
 
      static public function execute($query, $file, $line)
-        {if (!$result = self::$dbase->db->Execute($query))
+        {if(!isset(self::$dbase))
+            {self::$dbase = new DBConecto();
+            }
+         if (!$result = self::$dbase->db->Execute($query))
                 {self::$dbase->db_error(self::$dbase->db->ErrorMsg(),$file,$line,$query);
                  return false;
                 }

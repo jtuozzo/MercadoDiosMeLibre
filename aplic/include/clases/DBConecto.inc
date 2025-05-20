@@ -47,18 +47,8 @@ mensaje: $mensaje
 ";
            	    file_put_contents(LOGS."db_error_log.txt", $error_msg, FILE_APPEND | LOCK_EX);
 				
-				$css_local="DBConecto.css";
- 	            require("head.inc");
+				require("DBConecto_vista.inc");
 				
-				echo "<div class='conect_error'>
-				  		<img src='./images/el_grito.png' alt='Error de conexión'/>
-						<h1>Error de conexión número {$linea}</h1> 
-						<h2>Disculpe las molestias ocasionadas, lo solucionaremos a la brevedad</h2>
-						<h2>Muchas gracias.</h2>
-					</div>
-				";
-				
-				require("foot.inc");
                 exit();
              }
 
