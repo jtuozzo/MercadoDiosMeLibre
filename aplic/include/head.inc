@@ -41,7 +41,7 @@ echo "
     <link rel='stylesheet' href='./css/main.css'>
     <link rel='stylesheet' href='./sweetalert/sweetalert2.min.css' type='text/css' charset='utf-8' />
     <script type='text/javascript' src='./sweetalert/sweetalert2.all.min.js'></script>
-    $css_local
+    {$css_local}
     <script type='text/javascript' src='./js/jquery-3.7.1.min.js'></script>
     <script type='text/javascript' src='./js/main.js'></script>
     <title>Mercado Dios Me Libre</title>
@@ -67,3 +67,4 @@ echo "
         </nav>
     </header>
 ";
+?>
