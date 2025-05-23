@@ -52,6 +52,9 @@ class User
          if($result->recordCount() == 0)
             {return true;
             }
+         else
+            {$user_id=$result->fields["user_id"];
+            }
 
          // Existe el e-mail, genero una nueva clave
 
@@ -68,7 +71,20 @@ class User
 
          // Mando el mail con la nueva clave
          $mail = new Mail;
-         return $mail->sendMail($email,"Nueva clave",$body);
+         if($mail->sendMail($email,"Nueva clave",$body))
+            {// Actualizo la clave en la base de datos
+             $clave=hash("sha512", $clave);
+             $query = "UPDATE user 
+                       SET clave='$clave',
+                       update_date=NOW(),
+                       update_user='$user_id'
+                       WHERE user_id='$user_id'";
+             $result = Utils::execute($query, __FILE__, __LINE__);
+             return true;
+            }
+         else
+            {return false;
+            }
 
         }
 

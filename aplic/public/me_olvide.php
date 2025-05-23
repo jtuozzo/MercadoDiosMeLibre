@@ -22,6 +22,24 @@ foreach($_POST as $key => $valor)
      {$$key=trim($valor);
      }
 
+// Valido el email
+if(strlen($email)==0)
+     {$st_email="class='st_error'";
+      $email_err="<br/><span class='error'>Ingrese e-mail</span>";
+     }
+else
+     {// Valido el formato del email
+      if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+         {$st_email="class='st_error'";
+          $email_err="<br/><span class='error'>Formato de e-mail incorrecto</span>";
+         }
+     }
+
+if(strlen($email_err)>0)
+     {require("me_olvide_vista.inc");
+      exit;
+     }
+
 $user = new User();
 
 $mensaje="<script type='text/javascript'>ocultoForm();</script>";

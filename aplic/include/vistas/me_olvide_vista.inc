@@ -18,7 +18,7 @@ echo "
     <form action='{$_SERVER['PHP_SELF']}' method='post' id='form'>
         <div>
             <label for='email'>  E-mail: </label>
-            <input type='email' name='email' id='email' size='40' maxlength='64' $st_email> $email_err 
+            <input type='text' name='email' id='email' size='40' maxlength='64' value='$email' $st_email> $email_err 
         </div>
         <p>
         Ingrese su e-mail. Si se encuentra registrado recibirá un correo con las instrucciones para generar su nueva clave. <br/>
