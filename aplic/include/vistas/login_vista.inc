@@ -17,7 +17,7 @@ echo "
     <form action='{$_SERVER['PHP_SELF']}' method='post'>
         <div>
             <label for='email'>  E-mail: </label>
-            <input type='text' name='email' id='email' value='$email' size='40' maxlength='64' $st_email> $email_err 
+            <input type='email' name='email' id='email' value='$email' size='40' maxlength='64' $st_email> $email_err 
         </div>
 
         <div>

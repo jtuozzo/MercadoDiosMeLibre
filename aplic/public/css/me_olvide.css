@@ -1,8 +1,8 @@
 /*  
-    Nombre: login.css
+    Nombre: me_olvide.css
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
-    Fecha de creación: 20/05/2025.
+    Fecha de creación: 23/05/2025.
     Ultima modificación: 23/05/2025.
 */
 
@@ -17,9 +17,14 @@ input[type="email"] {
 
 input[type="submit"] {
     margin-top: 24px;
+    font-size: large;
 }
 
-#login {
+p {
+    margin-top: 30px;
+}
+
+#me_olvide {
     text-align: center;
     padding: 2em;
     background-color: #f0f0f0;
@@ -28,26 +33,12 @@ input[type="submit"] {
     line-height: 26px;
 }
 
-#login h1 {
-    font-size: 2em;
+#me_olvide h1 {
+    font-size: 1.8em;
     margin-top: 0.5em;
 }
 
-#login a {
-    text-decoration: none;
-    color: #000;
-}
 
-#me_olvide {
-    cursor: pointer;
-    margin-top: 30px;
-    font-size: 1.4em;
-}
-
-#me_olvide img {
-    width: 15%;
-    max-width: 70px;
-}
 
 /* -----------------  Tablet y Desktop  ----------------- */
 
@@ -56,8 +47,9 @@ input[type="submit"] {
         display: inline-block;
     }
 
-    #login {
+    #me_olvide {
         font-size: 16px;
     }
+
 
 }
