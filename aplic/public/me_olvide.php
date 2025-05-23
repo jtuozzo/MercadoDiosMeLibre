@@ -24,7 +24,7 @@ foreach($_POST as $key => $valor)
 
 $user = new User();
 
-if($user->setClave($email))
+if($user->nuevaClave($email))
      {// Se pudo cambiar la clave y enviar la clave, o el mail no está registrado.
       $mensaje="Si el e-mail está registrado, se envió un mail a $email con la nueva clave.";
      }

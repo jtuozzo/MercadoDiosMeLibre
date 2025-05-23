@@ -22,7 +22,8 @@ echo "
 
         <div>
             <label for='clave'> Clave: </label>
-            <input type='password' name='clave' id='clave' size='20' maxlength='20' $st_clave> $clave_err
+            <input type='password' name='clave' id='clave' size='20' maxlength='20' $st_clave> $clave_err 
+            <div class='verifique'>(Verifique no tener activada la tecla \"BLOQ MAYUS\" al ingresar la clave)</div>
         </div>
 
         <div>

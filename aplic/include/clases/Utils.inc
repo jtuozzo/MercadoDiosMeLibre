@@ -16,6 +16,13 @@ define('DB_USER', '');
 define('DB_PASS', '');
 define('DB_BASE', '');
 
+# Variables de conexión con el servidor de correo.
+define('MAIL_HOST',"");
+define('MAIL_USUARIO',"");
+define('MAIL_CLAVE',"");
+define('MAIL_PORT',7);
+define('MAIL_REMITENTE',"");
+
 # Carpeta de logs
 
 define('LOGS', '../carpeta/');

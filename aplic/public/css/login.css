@@ -19,6 +19,10 @@ input[type="submit"] {
     margin-top: 24px;
 }
 
+.verifique {
+    display: none;
+}
+
 #login {
     text-align: center;
     padding: 2em;
@@ -58,6 +62,12 @@ input[type="submit"] {
 
     #login {
         font-size: 16px;
+    }
+
+    .verifique {
+        display: block;
+        font-style: italic;
+        font-size: 0.9em;
     }
 
 }
