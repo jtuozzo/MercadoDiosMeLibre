@@ -2,7 +2,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 20/05/2025.
+    Ultima modificación: 23/05/2025.
 */
 
 
@@ -21,7 +21,7 @@
 }
 
 .conect_error h2 {
-    font-size: 1.5em;
+    font-size: 1.4em;
     margin-top: 15px;
 }
 
@@ -44,7 +44,7 @@
     }
 
     .conect_error h2 {
-        font-size: 1.8em;
+        font-size: 1.6em;
     }
 
     .conect_error img {

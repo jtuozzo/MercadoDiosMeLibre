@@ -2,7 +2,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos general
     Fecha de creación: 17/05/2025.
-    Ultima modificación: 20/05/2025.
+    Ultima modificación: 23/05/2025.
 */
 
 * {
@@ -95,6 +95,24 @@ header {
     color: white;
     padding: 5px;
     border-radius: 5px;
+    font-size: 0.8em;
+}
+
+
+.boton {
+    font-size: 14px;
+    border-radius: 3px;
+    color: white;
+    background: #63676c;
+    padding: 4px;
+    transition: all 0.3s ease-out;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.boton:hover {
+    color: #63676c;
+    background: gainsboro;
 }
 
 

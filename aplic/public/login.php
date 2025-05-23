@@ -34,13 +34,13 @@ foreach($_POST as $key => $valor)
 
 if(strlen($email)==0)
      {$st_email="class='st_error'";
-      $email_err="<span class='error'>Ingrese e-mail</span>";
+      $email_err="<br/><span class='error'>Ingrese e-mail</span>";
       $mensaje=Utils::msgError();
      }
 
 if(strlen($clave)==0)
      {$st_clave="class='st_error'";
-      $clave_err="<span class='error'>Ingrese clave</span>";
+      $clave_err="<br/><span class='error'>Ingrese clave</span>";
       $mensaje=Utils::msgError();
      }
 
@@ -58,7 +58,7 @@ if(!isset($mensaje)) // Hasta acá no hubo errores
     if($result->recordCount() == 0)
         {$st_email="class='st_error'";
         $st_clave="class='st_error'";
-        $email_err="<span class='error'>Usuario o clave incorrectos</span>";
+        $email_err="<br/><span class='error'>Usuario o clave incorrectos</span>";
         $mensaje=Utils::msgError();
         }
 
