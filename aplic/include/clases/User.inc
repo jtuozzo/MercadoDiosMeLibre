@@ -7,6 +7,7 @@
     Ultima modificación: 23/05/2025.
 */
 
+require("Mail.inc");
 
 class User
     {static public function getUser($email, $clave)
@@ -53,7 +54,7 @@ class User
             }
 
          // Existe el e-mail, genero una nueva clave
-         
+
          $clave = $this->generaClave();
 
          // Armo el texto del e-mail con la nueva clave
@@ -63,7 +64,12 @@ class User
          $body = "Ha generado una nueva clave de acceso. <br />
                   Su nueva clave es: <strong>$clave</strong> <br /><br />
                   Ingrese al siguiente link <a href='$link'>$link</a> y cambie la clave por una que usted prefiera. <br /><br />
-                  <strong>Recuerde que la clave es sensible a mayúsculas y minúsculas.</strong> <br /><br />"; echo $body; exit;
+                  <strong>Recuerde que la clave es sensible a may&uacute;sculas y min&uacute;sculas.</strong> <br /><br />"; 
+
+         // Mando el mail con la nueva clave
+         $mail = new Mail;
+         return $mail->sendMail($email,"Nueva clave",$body);
+
         }
 
     // Genera una nueva clave

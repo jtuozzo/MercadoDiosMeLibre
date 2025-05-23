@@ -38,7 +38,19 @@ p {
     margin-top: 0.5em;
 }
 
+.mensaje {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 2em;
+}
 
+.bien {
+    color: darkgreen;
+}
+
+.mal {
+    color: darkred;
+}
 
 /* -----------------  Tablet y Desktop  ----------------- */
 

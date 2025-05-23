@@ -28,7 +28,7 @@ class Mail extends PHPMailer
 
 			 $this->SMTPDebug = 0;
 
-			/* // Agregar este código cuando no conecta en SSL
+			// Agregar este código cuando no conecta en SSL
 
 			 $this->SMTPOptions = array(
 				'ssl' => array(
@@ -61,7 +61,7 @@ class Mail extends PHPMailer
 			 $this->Subject = $subject;
 
 			 $mensaje = "<div style='text-align:left'><img style='text-align:center' src='cid:MDML' alt='Mercado Dios Me Libre' border=0 /></div>
-				<br /> <br /> <br />$mensaje ";
+				<br /> <br />$mensaje ";
 
 	
 			 $mensaje.="<br /> <br /> <em> <strong>Este mensaje fue enviado desde una casilla sin atenci&oacute;n, no responda al remitente. </strong> </em><br /><br />&nbsp;";

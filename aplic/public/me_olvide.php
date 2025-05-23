@@ -24,13 +24,16 @@ foreach($_POST as $key => $valor)
 
 $user = new User();
 
+$mensaje="<script type='text/javascript'>ocultoForm();</script>";
+
 if($user->nuevaClave($email))
      {// Se pudo cambiar la clave y enviar la clave, o el mail no está registrado.
-      $mensaje="Si el e-mail está registrado, se envió un mail a $email con la nueva clave.";
+      $mensaje.="<div class='mensaje bien'>Se envió un mail a <em>$email</em> con la nueva clave.</div>";
      }
 else
      {// No se pudo eviar la clave, aviso que pruebe en un rato.
-      $mensaje=Utils::msgError("No se pudo cambiar la clave, intente más tarde.");
+      $mensaje.="<div class='mensaje mal'>No se pudo cambiar la clave, intente más tarde.</div>";
      }
-     
+require("me_olvide_vista.inc");
+
 ?>
