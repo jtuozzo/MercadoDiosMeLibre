@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos estáticos de uso global.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 19/05/2025.
+    Ultima modificación: 23/05/2025.
 */
 
 // Datos de la instalación
@@ -57,6 +57,33 @@ class Utils
                  </script>";
         }
 
+     static public function getUser($email, $clave)
+        {$query = "SELECT user_id, apellidos, nombres, email, nivel, clave, token 
+              FROM user 
+              WHERE email='$email' 
+              AND clave='$clave'";
+
+        $result = self::execute($query, __FILE__, __LINE__);
+
+        if($result->recordCount() == 0)
+            {return false;
+            }
+
+        // Inicializo las variables de sesión del usuario
+
+        foreach($result->fields as $key => $valor)
+            {$_SESSION["DML_".strtoupper($key)]=$valor;
+            }
+        
+         // Guardo la última sesión
+
+         $query = "UPDATE user 
+                   SET last_login=NOW() 
+                   WHERE email='$email'";
+
+         $update = self::execute($query, __FILE__, __LINE__);
+        }
     }
+
 
 ?>

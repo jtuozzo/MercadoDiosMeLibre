@@ -12,7 +12,7 @@
 
 if (isset($_SESSION['DML_NIVEL']) and $_SESSION['DML_NIVEL'] == 10) 
     {$menu_bar = "<li><a href='articulo_nuevo.php'>Nuevo artículo</a></li>
-                  <li class='li_derecha'><a herf='login.php'>Salir</a></li>";
+                  <li class='li_derecha'><a href='login.php'>Salir</a></li>";
      }
 else {$menu_bar = "<li><a href='usuario.php'>Crear usuario</a></li>
                   <li class='li_derecha'><a href='login.php'>Ingresar</a></li>";

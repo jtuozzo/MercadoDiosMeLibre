@@ -45,23 +45,17 @@ if(strlen($clave)==0)
      }
 
 
-if(!isset($mensaje)) // Hasta acá no hubo errores
+if(!isset($mensaje)) // Hasta acá no hubo errores, valido el usuario y la clave
      {$clave = hash("sha512", $clave);
 
-    $query = "SELECT user_id, apellidos, nombres, email, nivel, clave, token 
-            FROM user 
-            WHERE email='$email' 
-            AND clave='$clave'";
+      $hay_usuario=Utils::getUser($_COOKIE['DML_EMAIL'], $_COOKIE['DML_CLAVE']);
 
-    $result = Utils::execute($query, __FILE__, __LINE__);
-
-    if($result->recordCount() == 0)
+     if(!$hay_usuario)
         {$st_email="class='st_error'";
         $st_clave="class='st_error'";
         $email_err="<br/><span class='error'>Usuario o clave incorrectos</span>";
         $mensaje=Utils::msgError();
         }
-
 
      }
 
@@ -70,18 +64,15 @@ if (isset($mensaje))
       exit;
      }
 
-// Todo OK, guardo el último login del usuario
+// Veo si quería que lo recuerde
 
-$query = "UPDATE user 
-          SET last_login=NOW() 
-          WHERE email='$email'";
-
-$update = Utils::execute($query, __FILE__, __LINE__);
-
-// Guardo los datos del usuario en la sesión
-
-foreach($result->fields as $key => $valor)
-     {$_SESSION["DML_".$key]=$valor;
+if (isset($_POST['recordarme']))
+     {setcookie("DML_EMAIL", $email, time()+60*60*24*30);
+      setcookie("DML_CLAVE", $clave, time()+60*60*24*30);
+     }
+else
+     {setcookie("DML_EMAIL", "", time()-3600);
+      setcookie("DML_CLAVE", "", time()-3600);
      }
 
 // Voy a la página de inicio

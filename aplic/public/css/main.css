@@ -27,6 +27,11 @@ textarea {
     border: 1px #666666 solid;
 }
 
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  background: Gainsboro;
+}
 
 header {
     display: flex;

@@ -25,6 +25,12 @@ echo "
             <input type='password' name='clave' id='clave' size='20' maxlength='20' $st_clave> $clave_err
         </div>
 
+        <div>
+
+        <label for='recordarme'><input type='checkbox' name='recordarme' id='recordarme' value='S'> Recordarme en este dispositivo </label>
+        </div>
+
+
         <input class='boton' type='submit' name='ingresar' value='Iniciar sesión'/>
 
    </form>
