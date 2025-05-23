@@ -1,5 +1,5 @@
 .htaccess
 /aplic/logs
 /aplic/tmp
-/aplic/vendor
+/aplic/public/vendor
 /aplic/include/config_data.inc
