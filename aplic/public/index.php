@@ -10,6 +10,7 @@
 session_start();
 
 require("Utils.inc");
+require("User.inc");
 
 // Veo si el usuario está guardado en el dispositivo
 

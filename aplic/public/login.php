@@ -10,6 +10,7 @@
 session_start();
 
 require("Utils.inc");
+require("User.inc");
 
 // Vacío las variables de sesión y las cookies donde están los datos del usuario
 
