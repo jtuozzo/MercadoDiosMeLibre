@@ -14,7 +14,7 @@ require("Utils.inc");
 // Veo si el usuario está guardado en el dispositivo
 
 if(!isset($_SESSION['DML_NIVEL']) and isset($_COOKIE['DML_EMAIL']) and isset($_COOKIE['DML_CLAVE']))
-    {$hay_usuario=Utils::getUser($_COOKIE['DML_EMAIL'], $_COOKIE['DML_CLAVE']);
+    {$hay_usuario=User::getUser($_COOKIE['DML_EMAIL'], $_COOKIE['DML_CLAVE']);
      
      if($hay_usuario)
         {// Prorrogo por 30 días la cookie

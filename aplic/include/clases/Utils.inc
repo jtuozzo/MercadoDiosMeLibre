@@ -82,6 +82,8 @@ class Utils
                    WHERE email='$email'";
 
          $update = self::execute($query, __FILE__, __LINE__);
+
+         return true;
         }
     }
 

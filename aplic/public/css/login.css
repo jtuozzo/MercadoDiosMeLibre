@@ -21,11 +21,17 @@ input[type="submit"] {
     background-color: #f0f0f0;
     height: 100vh;
     font-size: 18px;
+    line-height: 26px;
 }
 
 #login h1 {
     font-size: 2em;
     margin-top: 0.5em;
+}
+
+#login a {
+    text-decoration: none;
+    color: #000;
 }
 
 #me_olvide {

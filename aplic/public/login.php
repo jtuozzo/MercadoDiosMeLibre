@@ -11,13 +11,15 @@ session_start();
 
 require("Utils.inc");
 
-// Vacío las variables de sesión donde están los datos del usuario
+// Vacío las variables de sesión y las cookies donde están los datos del usuario
 
 foreach($_SESSION as $clave => $valor)
      {if(strpos($clave,"DML_")!== false)
             {unset($_SESSION[$clave]);
             }
      }
+setcookie("DML_EMAIL", "", time()-3600);
+setcookie("DML_CLAVE", "", time()-3600);
 
 if (!isset($_POST['ingresar']))
      {require("login_vista.inc");
@@ -48,7 +50,7 @@ if(strlen($clave)==0)
 if(!isset($mensaje)) // Hasta acá no hubo errores, valido el usuario y la clave
      {$clave = hash("sha512", $clave);
 
-      $hay_usuario=Utils::getUser($_COOKIE['DML_EMAIL'], $_COOKIE['DML_CLAVE']);
+      $hay_usuario=User::getUser($email, $clave);
 
      if(!$hay_usuario)
         {$st_email="class='st_error'";
