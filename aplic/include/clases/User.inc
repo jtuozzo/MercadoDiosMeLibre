@@ -58,11 +58,23 @@ class User
 
          // Existe el e-mail, genero una nueva clave
 
-         $clave = $this->generaClave();
+         while($result->recordCount() > 0)
+            {// Verifico que la clave no exista
 
+             $clave = $this->generaClave();
+             $clave_sha = hash("sha512", $clave);
+             $query = "SELECT user_id
+                       FROM user 
+                       WHERE clave='$clave_sha'";
+             
+             $result = Utils::execute($query, __FILE__, __LINE__);
+    
+            }
+         
+        
          // Armo el texto del e-mail con la nueva clave
 
-         $link=substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/cambiar_clave.php";
+         $link=substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/cambiar_clave.php?id=$email";
 
          $body = "Ha generado una nueva clave de acceso. <br />
                   Su nueva clave es: <strong>$clave</strong> <br /><br />
@@ -76,7 +88,8 @@ class User
              $clave=hash("sha512", $clave);
              $query = "UPDATE user 
                        SET clave='$clave',
-                       update_date=NOW(),
+                       expira_clave=SUBDATE(NOW(), INTERVAL 1 DAY),
+                       update_datetime=NOW(),
                        update_user='$user_id'
                        WHERE user_id='$user_id'";
              $result = Utils::execute($query, __FILE__, __LINE__);

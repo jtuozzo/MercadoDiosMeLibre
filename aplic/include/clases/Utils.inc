@@ -47,10 +47,14 @@ class Utils
         {if(!isset(self::$dbase))
             {self::$dbase = new DBConecto();
             }
-         if (!$result = self::$dbase->db->Execute($query))
-                {self::$dbase->db_error(self::$dbase->db->ErrorMsg(),$file,$line,$query);
-                 return false;
-                }
+
+         try 
+			{$result = self::$dbase->db->Execute($query);
+			} 
+		catch (Exception $e) 
+			{self::$dbase->db_error($e->getMessage(),$file,$line,$query);
+             return false;
+			}
          return $result;
         }
 
