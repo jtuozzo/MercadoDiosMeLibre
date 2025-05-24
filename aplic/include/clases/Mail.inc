@@ -28,7 +28,7 @@ class Mail extends PHPMailer
 
 			 $this->SMTPDebug = 0;
 
-			// Agregar este código cuando no conecta en SSL
+			//  Agregar este código cuando no conecta en SSL
 
 			 $this->SMTPOptions = array(
 				'ssl' => array(

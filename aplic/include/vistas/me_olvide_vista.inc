@@ -21,8 +21,8 @@ echo "
             <input type='text' name='email' id='email' size='40' maxlength='64' value='$email' $st_email> $email_err 
         </div>
         <p>
-        Ingrese su e-mail. Si se encuentra registrado recibirá un correo con las instrucciones para generar su nueva clave. <br/>
-        Si está registrado y no lo recibe, no olvide de mirar en su correo basura.
+        Ingresá tu e-mail. Si se encuentra registrado recibirás un correo con las instrucciones para generar tu nueva clave. <br/>
+        Si estás registrado y no la recibís, no olvides mirar en tu correo basura.
         </p>
         <input class='boton' type='submit' name='enviar' value='Enviar nueva clave' onclick=\"this.value='Aguarde . . .'\">
     </form>    

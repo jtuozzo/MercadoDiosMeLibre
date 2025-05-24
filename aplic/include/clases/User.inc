@@ -77,9 +77,9 @@ class User
          $link=substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/cambiar_clave.php?id=$email";
 
          $body = "Ha generado una nueva clave de acceso. <br />
-                  Su nueva clave es: <strong>$clave</strong> <br /><br />
-                  Ingrese al siguiente link <a href='$link'>$link</a> y cambie la clave por una que usted prefiera. <br /><br />
-                  <strong>Recuerde que la clave es sensible a may&uacute;sculas y min&uacute;sculas.</strong> <br /><br />"; 
+                  Tu nueva clave es: <strong>$clave</strong> <br /><br />
+                  Ingresá al siguiente link <a href='$link'>$link</a> y cambiá esta clave. <br /><br />
+                  <strong>Recordá que la clave es sensible a may&uacute;sculas y min&uacute;sculas.</strong> <br /><br />"; 
 
          // Mando el mail con la nueva clave
          $mail = new Mail;
