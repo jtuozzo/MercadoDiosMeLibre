@@ -2,7 +2,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos general
     Fecha de creación: 17/05/2025.
-    Ultima modificación: 23/05/2025.
+    Ultima modificación: 24/05/2025.
 */
 
 * {
@@ -28,9 +28,9 @@ textarea {
 }
 
 input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  background: Gainsboro;
+    width: 18px;
+    height: 18px;
+    background: Gainsboro;
 }
 
 header {
@@ -79,14 +79,20 @@ header {
     color: white
 }
 
+#barraNavUl li:hover {
+    background-color: #63676c;
+}
+
+
 #burger-menu {
     padding: 10px;
     cursor: pointer;
 }
 
+
 .li_derecha {
     float: right;
-    margin-right: 30px
+    margin-right: 30px;
 }
 
 .st_error {

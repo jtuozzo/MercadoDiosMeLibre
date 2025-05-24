@@ -21,7 +21,8 @@ class User
         {$query = "SELECT user_id, apellidos, nombres, email, nivel, clave, token 
               FROM user 
               WHERE email='$email' 
-              AND clave='$clave'";
+              AND clave='$clave'
+              AND expira_clave > NOW()";
 
         $result = Utils::execute($query, __FILE__, __LINE__);
 

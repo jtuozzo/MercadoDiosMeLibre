@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Header de las páginas.
     Fecha de creación: 17/05/2025.
-    Ultima modificación: 19/05/2025.
+    Ultima modificación: 24/05/2025.
 */
 
 
@@ -14,7 +14,7 @@ if (isset($_SESSION['DML_NIVEL']) and $_SESSION['DML_NIVEL'] > 0)
     {$menu_bar = "<li><a href='articulo_nuevo.php'>Nuevo artículo</a></li>
                   <li class='li_derecha'><a href='login.php'>Salir</a></li>";
      }
-else {$menu_bar = "<li><a href='usuario.php'>Crear usuario</a></li>
+else {$menu_bar = "<li class='li_derecha'><a href='usuario.php' >Crear usuario</a></li>
                   <li class='li_derecha'><a href='login.php'>Ingresar</a></li>";
     
      }
