@@ -1,29 +1,21 @@
 /*  
-    Nombre: login.css
+    Nombre: cambiar_clave.css
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
-    Fecha de creación: 20/05/2025.
-    Ultima modificación: 23/05/2025.
+    Fecha de creación: 24/05/2025.
+    Ultima modificación: 24/05/2025.
 */
 
 label {
     display: block;
-    margin-top: 1.6em;
-}
-
-input[type="email"] {
-    font-size: 16px;
+    margin-top: 1.5em;
 }
 
 input[type="submit"] {
     margin-top: 24px;
 }
 
-.verifique {
-    display: none;
-}
-
-#login {
+#cambiar_clave {
     text-align: center;
     padding: 2em;
     background-color: #f0f0f0;
@@ -31,39 +23,30 @@ input[type="submit"] {
     line-height: 26px;
 }
 
-#login h1 {
+#cambiar_clave h1 {
     font-size: 2em;
     margin-top: 0.5em;
 }
 
-#login a {
-    text-decoration: none;
-    color: #000;
+#tips {
+    font-size: 0.9em;
+    font-style: italic;
 }
 
-#me_olvide {
-    cursor: pointer;
-    margin-top: 30px;
-    font-size: 1.4em;
-}
-
-#me_olvide img {
-    width: 15%;
-    max-width: 70px;
+.verifique {
+    display: none;
 }
 
 /* -----------------  Tablet y Desktop  ----------------- */
 
 @media(min-width: 760px) {
-    label {
-        display: inline-block;
-    }
 
-    #login {
+    #cambiar_clave {
         font-size: 16px;
     }
 
     .verifique {
+        margin-top: 20px;
         display: block;
         font-style: italic;
         font-size: 0.9em;

@@ -78,8 +78,8 @@ class Mail extends PHPMailer
 	                     {return true;
 	                     }
                 else
-                     {$mensaje=strip_tags(html_entity_decode($mensaje,ENT_QUOTES,'ISO-8859-1'));
-          		      $error=strip_tags(html_entity_decode($this->ErrorInfo,ENT_QUOTES,'ISO-8859-1'));
+                     {$mensaje=strip_tags(html_entity_decode($mensaje,ENT_QUOTES,'UTF-8'));
+          		      $error=strip_tags(html_entity_decode($this->ErrorInfo,ENT_QUOTES,'UTF-8'));
   		  	          $fecha=date("d/m/Y H:i:s");
 
 					  if(is_array($e_mail))

@@ -30,7 +30,7 @@ if (!isset($_POST['ingresar']))
 // Guardo los datos posteados en variables
 
 foreach($_POST as $key => $valor)
-     {$$key=trim(htmlentities($valor,ENT_QUOTES,'ISO-8859-1'));
+     {$$key=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
      }
 
 // Validaciones del usuario

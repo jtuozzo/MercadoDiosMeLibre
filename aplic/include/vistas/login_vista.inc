@@ -4,13 +4,15 @@
     Autor: Julio Tuozzo.
     Función: Vista del login.
     Fecha de creación: 20/05/2025.
-    Ultima modificación: 23/05/2025.
+    Ultima modificación: 24/05/2025.
 */
 
 $css_local = "login.css";
 
 require_once('head.inc');
 echo "
+<script type='text/javascript' src='./js/login.js'></script>
+
 <div id='login'>
     <h1>Ingresar</h1>
       

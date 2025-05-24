@@ -22,28 +22,59 @@ $mens_error = "<script language='javascript'>
                     });
                  </script>";
 
-// Verifico el llamado al controlador
 
 foreach($_GET as $key => $valor)
      {$$key=trim($valor);
      }
 
-   
-if(!isset($id))
-     {$mensaje=$mens_error;
+foreach($_POST as $key => $valor)
+     {$$key=trim($valor);
      }
+$user = new User();
 
-// Verifico que exista el usuario y que la clave esté pendiente de generar
+if(isset($id)) // Si se envió el id por GET, lo valido
+     {if(!filter_var($id, FILTER_VALIDATE_EMAIL))
+         {$mensaje=$mens_error;
+         }
 
-$query = "SELECT user_id 
-          FROM user
-          WHERE email = '$id' AND 
-          expira_clace<NOW()";
+     // Verifico que exista el usuario y que la clave esté pendiente de generar
 
-$result = Utils::execute($query,__FILE__,__LINE__);
+      $query = "SELECT user_id 
+                FROM user
+                WHERE email = '$id' AND 
+                expira_clave<NOW()";
 
-if($result->recordCount() == 0)
-     {$mensaje=$mens_error;
+      $result = Utils::execute($query,__FILE__,__LINE__);
+
+      if($result->recordCount() == 0)
+            {$mensaje=$mens_error;
+            }
+       
+     }
+elseif(isset($clave)) // Se envió la clave por POST, llamo al método de User para cambiar la clave
+     {
+
+      if($user->cambiarClave($clave, $nueva_clave, $reingresa))
+            {// Se pudo cambiar la clave
+             $mensaje="<script language='javascript'>
+                          Swal.fire({
+                          icon:'success',
+                          text:'La clave se cambió correctamente.',
+                          confirmButtonColor: '#63676c',
+                          })
+                      .then(function() {
+                                  window.location = 'index.php';
+                              });
+                       </script>";
+            }
+      else
+            {// No se pudo cambiar la clave
+             $mensaje=Utils::msgError();
+            }
+     }
+else // Si no se envió ni el id ni la clave, va a index
+     {header("Location: index.php");
+      exit();
      }
 
 require("cambiar_clave_vista.inc");
