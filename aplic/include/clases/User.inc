@@ -146,27 +146,26 @@ class User
                 return false;
                }
                 
-    
+               
+            // Verifico que la clave nueva no sea igual a la actual
+            if($clave == $nueva_clave)
+                  {$this->st_nueva_clave="class='st_error'";
+                   $this->nueva_clave_err="<br/><span class='error'>La nueva clave no puede ser igual a la actual</span>";
+                   return false;
+                  }
+
             if(strlen($nueva_clave) == 0)
                 {// Verifico que la nueva clave no esté vacía
                  $this->st_nueva_clave="class='st_error'";
                  $this->nueva_clave_err="<br/><span class='error'>Debe ingresar una nueva clave</span>";
                  return false;
                 }
-                
 
             if(strlen($nueva_clave) < 8)
                   {// Verifico que la nueva clave tenga al menos 8 caracteres
                   $this->st_nueva_clave="class='st_error'";
                   $this->nueva_clave_err="<br/><span class='error'>Debe tener al menos 8 caracteres</span>";
                   return false;
-                  }
-
-            // Verifico que la clave no sea igual a la actual
-            if($clave == $nueva_clave)
-                  {$this->st_nueva_clave="class='st_error'";
-                   $this->nueva_clave_err="<br/><span class='error'>La nueva clave no puede ser igual a la actual</span>";
-                   return false;
                   }
 
             // Verifico que la clave tenga caracteres válidos
@@ -197,7 +196,7 @@ class User
             return true;
             }
 
-      public function crearUsuario($nombres, $apellidos, $email, $clave)
+      public function crearUsuario($nombres, $apellidos, $email, $clave, $reingresa)
             {// Crea un nuevo usuario
              $todo_ok=true;
              // Verifico que el nombre no esté vacío
@@ -241,7 +240,37 @@ class User
                  $todo_ok = false;
                 }
 
+           if(strlen($clave) == 0)
+                {// Verifico que la clave no esté vacía
+                 $this->st_clave="class='st_error'";
+                 $this->clave_err="<br/><span class='error'>Debe ingresar una clave</span>";
+                 return false;
+                }
 
+            elseif(strlen($clave) < 8)
+                  {// Verifico que la clave tenga al menos 8 caracteres
+                  $this->st_clave="class='st_error'";
+                  $this->clave_err="<br/><span class='error'>Debe tener al menos 8 caracteres</span>";
+                  return false;
+                  }
+
+            // Verifico que la clave tenga caracteres válidos
+            elseif(!preg_match("/^[a-zA-Z0-9\!\@\#\$\^\&\*\-\_\+\=\{\}\[\]\:\;\"\'\<\>\,\.\?\/\\\|]+$/", $clave))
+                  {$this->st_clave="class='st_error'";
+                   $this->clave_err="<br/><span class='error'>La clave contiene caracteres inválidos</span>";
+                   return false;
+                  }
+                  
+            // Verifico que las nuevas claves coincidan
+            elseif($clave != $reingresa)
+               {$this->st_reingresa="class='st_error'";
+                $this->reingresa_err="<br/><span class='error'>No coincide con la clave</span>";
+                return false;
+
+               }
+             
+             // Si todo está bien, creo el usuario
+ 
              if($todo_ok)
                 {// Envío el e-mail de confirmación
                    $mail = new Mail;
@@ -276,5 +305,6 @@ class User
 
              return $todo_ok;
             }
+
     }
 ?>

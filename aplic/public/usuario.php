@@ -21,7 +21,7 @@ if(!isset($_POST['crear']))
       exit;
      }
 
-if($user->crearUsuario($nombres, $apellidos, $email, $clave ))
+if($user->crearUsuario($nombres, $apellidos, $email, $clave, $reingresa ))
      {// Se pudo crear el usuario
       $mensaje="<div class='creado'>Nuevo usuario creado. Verificá tu casilla la correo de <em>$email</em> para terminar el proceso.<br/> <br/>Si no llegó el mail, revisá la casilla de correo basura.</div>
       <script type='text/javascript'>ocultoForm();</script>";
