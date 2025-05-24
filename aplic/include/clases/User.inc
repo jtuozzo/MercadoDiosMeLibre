@@ -116,86 +116,77 @@ class User
     // Método que cambia la clave
 
       public function cambiarClave($clave, $nueva_clave, $reingresa)
-            {$todo_ok = true;
-
-                
+            {   
              if(strlen($clave)==0)
-                {$todo_ok = false;
+                {
                  $this->st_clave="class='st_error'";
                  $this->clave_err="<br/><span class='error'>Debe ingresar la clave actual</span>";
+                 return false;
                 }
-             else
-                {// Verifico que la clave actual sea correcta
-                 $clave_sha = hash("sha512", $clave);
-                 $query = "SELECT user_id 
-                       FROM user 
-                       WHERE clave='$clave_sha'";
+
+            // Verifico que la clave actual sea correcta
+            $clave_sha = hash("sha512", $clave);
+            $query = "SELECT user_id 
+                  FROM user 
+                  WHERE clave='$clave_sha'";
+
+            $result = Utils::execute($query, __FILE__, __LINE__);
+   
+            if($result->recordCount() == 0)
+               {$this->st_clave="class='st_error'";
+                $this->clave_err="<br/><span class='error'>La clave actual es incorrecta</span>";
+                return false;
+               }
+                
     
-                $result = Utils::execute($query, __FILE__, __LINE__);
-        
-                if($result->recordCount() == 0)
-                    {$todo_ok = false;
-                    $this->st_clave="class='st_error'";
-                    $this->clave_err="<br/><span class='error'>La clave actual es incorrecta</span>";             
-                    }
-                else
-                    {$user_id=$result->fields["user_id"];
-                    }
-                }
-    
-             if(strlen($nueva_clave) == 0)
+            if(strlen($nueva_clave) == 0)
                 {// Verifico que la nueva clave no esté vacía
-                 $todo_ok = false;
                  $this->st_nueva_clave="class='st_error'";
                  $this->nueva_clave_err="<br/><span class='error'>Debe ingresar una nueva clave</span>";
+                 return false;
                 }
                 
-             else
-                {if(strlen($nueva_clave) < 8)
-                        {// Verifico que la nueva clave tenga al menos 8 caracteres
-                        $todo_ok = false;
-                        $this->st_nueva_clave="class='st_error'";
-                        $this->nueva_clave_err="<br/><span class='error'>Debe tener al menos 8 caracteres</span>";
-                        }
-                  // Verifico que la clave no sea igual a la actual
-                  if($clave == $nueva_clave)
-                        {$todo_ok = false;
-                        $this->st_nueva_clave="class='st_error'";
-                        $this->nueva_clave_err="<br/><span class='error'>La nueva clave no puede ser igual a la actual</span>";
-                        }
-                  // Verifico que la clave tenga caracteres válidos
-                  if(!preg_match("/^[a-zA-Z0-9\!\@\#\$\^\&\*\-\_\+\=\{\}\[\]\:\;\"\'\<\>\,\.\?\/\\\|]+$/", $nueva_clave))
-                        {$todo_ok = false;
-                        $this->st_nueva_clave="class='st_error'";
-                        $this->nueva_clave_err="<br/><span class='error'>La nueva clave contiene caracteres inválidos</span>";
-                        }
-                    
-                   // Verifico que las nuevas claves coincidan
-                   if($nueva_clave != $reingresa)
-                        {$todo_ok = false;
-                        $this->st_reingresa="class='st_error'";
-                        $this->reingresa_err="<br/><span class='error'>No coincide con la nueva clave</span>";
-                        }
 
-            
+            if(strlen($nueva_clave) < 8)
+                  {// Verifico que la nueva clave tenga al menos 8 caracteres
+                  $this->st_nueva_clave="class='st_error'";
+                  $this->nueva_clave_err="<br/><span class='error'>Debe tener al menos 8 caracteres</span>";
+                  return false;
+                  }
 
-                }   
+            // Verifico que la clave no sea igual a la actual
+            if($clave == $nueva_clave)
+                  {$this->st_nueva_clave="class='st_error'";
+                   $this->nueva_clave_err="<br/><span class='error'>La nueva clave no puede ser igual a la actual</span>";
+                   return false;
+                  }
 
-            if($todo_ok)
-                {// Actualizo la clave
-                $nueva_clave_sha = hash("sha512", $nueva_clave);
-                $query = "UPDATE user 
-                      SET clave='$nueva_clave_sha',
-                      expira_clave=DATE_ADD(NOW(), INTERVAL 90 DAY),
-                      update_datetime=NOW(),
-                      update_user=user_id
-                      WHERE clave='$clave_sha'";
+            // Verifico que la clave tenga caracteres válidos
+            if(!preg_match("/^[a-zA-Z0-9\!\@\#\$\^\&\*\-\_\+\=\{\}\[\]\:\;\"\'\<\>\,\.\?\/\\\|]+$/", $nueva_clave))
+                  {$this->st_nueva_clave="class='st_error'";
+                   $this->nueva_clave_err="<br/><span class='error'>La nueva clave contiene caracteres inválidos</span>";
+                   return false;
+                  }
+                  
+            // Verifico que las nuevas claves coincidan
+            if($nueva_clave != $reingresa)
+               {$this->st_reingresa="class='st_error'";
+                $this->reingresa_err="<br/><span class='error'>No coincide con la nueva clave</span>";
+                return false;
+               }
+      
+            // Actualizo la clave
+            $nueva_clave_sha = hash("sha512", $nueva_clave);
+            $query = "UPDATE user 
+                  SET clave='$nueva_clave_sha',
+                  expira_clave=DATE_ADD(NOW(), INTERVAL 90 DAY),
+                  update_datetime=NOW(),
+                  update_user=user_id
+                  WHERE clave='$clave_sha'";
+      
+            $result = Utils::execute($query, __FILE__, __LINE__);
             
-                $result = Utils::execute($query, __FILE__, __LINE__);
-                }
-            
-            
-            return $todo_ok;
+            return true;
             }
     }
 ?>

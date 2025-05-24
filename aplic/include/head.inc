@@ -10,7 +10,7 @@
 
 // Verifica el nivel de acceso para mostrar el menú correspondiente
 
-if (isset($_SESSION['DML_NIVEL']) and $_SESSION['DML_NIVEL'] == 10) 
+if (isset($_SESSION['DML_NIVEL']) and $_SESSION['DML_NIVEL'] > 0) 
     {$menu_bar = "<li><a href='articulo_nuevo.php'>Nuevo artículo</a></li>
                   <li class='li_derecha'><a href='login.php'>Salir</a></li>";
      }
