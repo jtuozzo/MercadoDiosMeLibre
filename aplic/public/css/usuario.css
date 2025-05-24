@@ -1,0 +1,57 @@
+/*  
+    Nombre: usuario.css
+    Autor: Julio Tuozzo
+    Función: Hoja de estilos.
+    Fecha de creación: 24/05/2025.
+    Ultima modificación: 24/05/2025.
+*/
+
+label {
+    display: block;
+    margin-top: 1.5em;
+}
+
+input[type="email"] {
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    margin-top: 2em;
+}
+
+.verifique {
+    display: none;
+}
+
+#usuario {
+    text-align: center;
+    padding: 2em;
+    background-color: #f0f0f0;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+#usuario h1 {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+
+
+/* -----------------  Tablet y Desktop  ----------------- */
+
+@media(min-width: 760px) {
+    label {
+        display: inline-block;
+    }
+
+    #usuario {
+        font-size: 16px;
+    }
+
+    .verifique {
+        display: block;
+        font-style: italic;
+        font-size: 0.9em;
+    }
+
+}
