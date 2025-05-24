@@ -11,7 +11,7 @@ require("Utils.inc");
 require("User.inc");
 
 foreach($_POST as $key => $valor)
-     {$$key=trim($valor);
+     {$$key=trim(htmlentities($valor,ENT_QUOTES,"UTF-8"));
      }
 
 $user = new User();
@@ -21,13 +21,20 @@ if(!isset($_POST['crear']))
       exit;
      }
 
-if($user->crearUsuario($email, $clave, $nombres, $apellidos))
+if($user->crearUsuario($nombres, $apellidos, $email, $clave ))
      {// Se pudo crear el usuario
-      $mensaje="<div class='creado'>Nuevo usuario creado. Verificá tu casilla de correo para terminar el proceso. <br />Si no llegó el mail, revisá la casilla de correo basura.</div>";
+      $mensaje="<div class='creado'>Nuevo usuario creado. Verificá tu casilla la correo de <em>$email</em> para terminar el proceso.<br/> <br/>Si no llegó el mail, revisá la casilla de correo basura.</div>
+      <script type='text/javascript'>ocultoForm();</script>";
      }
 else
      {// No se pudo crear el usuario
-      $mensaje=Utils::msgError();
+      if(strlen($user->send_mail_err)>0)
+            {$mensaje=Utils::msgError($user->send_mail_err, "Intente más tarde.");
+            }
+      else 
+            {$mensaje=Utils::msgError();
+            }
+      
      }
 require("usuario_vista.inc");
 ?>

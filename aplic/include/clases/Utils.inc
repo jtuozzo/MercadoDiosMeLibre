@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos estáticos de uso global.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 23/05/2025.
+    Ultima modificación: 24/05/2025.
 */
 
 // Datos de la instalación
@@ -38,7 +38,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 require("DBConecto.inc");
 
 class Utils 
-    {static private $dbase;
+    {static public $dbase;
 
 
       // Funcióm que ejecuta una consulta SQL y devuelve el resultado.
@@ -58,11 +58,16 @@ class Utils
          return $result;
         }
 
-     static public function msgError($mensaje="Corrija los errores")
-        {return "<script language='javascript'>
+     static public function msgError($mensaje="Corrija los errores", $sub = null)
+        {if(isset($sub))
+            {$sub="text: '$sub',";
+            }
+         
+         return "<script language='javascript'>
                     Swal.fire({
                     icon:'error',
                     title:'{$mensaje}',
+                    $sub
                     confirmButtonColor: '#D22518',
                     })
                  </script>";

@@ -19,8 +19,9 @@ input[type="submit"] {
     margin-top: 2em;
 }
 
-.verifique {
-    display: none;
+#tips {
+    font-size: 0.9em;
+    font-style: italic;
 }
 
 #usuario {
@@ -34,6 +35,19 @@ input[type="submit"] {
 #usuario h1 {
     font-size: 2em;
     margin-top: 0.5em;
+}
+
+
+.verifique {
+    display: none;
+}
+
+.creado {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 2em;
+    line-height: 1.2em;
+    color: darkgreen;
 }
 
 

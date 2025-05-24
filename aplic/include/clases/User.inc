@@ -16,6 +16,13 @@ class User
      public $clave_err = "";
      public $nueva_clave_err = "";
      public $reingresa_err = "";
+     public $st_nombres = "";
+     public $st_apellidos = "";
+     public $st_email = "";
+     public $nombres_err = "";
+     public $apellidos_err = "";
+     public $email_err = "";
+     public $send_mail_err = "";
         
      static public function getUser($email, $clave)
         {$query = "SELECT user_id, apellidos, nombres, email, nivel, clave, token 
@@ -188,6 +195,86 @@ class User
             $result = Utils::execute($query, __FILE__, __LINE__);
             
             return true;
+            }
+
+      public function crearUsuario($nombres, $apellidos, $email, $clave)
+            {// Crea un nuevo usuario
+             $todo_ok=true;
+             // Verifico que el nombre no esté vacío
+             if(strlen($nombres) == 0)
+                  {$this->st_nombres="class='st_error'";
+                   $this->nombres_err="<br/><span class='error'>Debe ingresar un nombre</span>";
+                   $todo_ok = false;
+                  }
+
+             // Verifico que el apellido no esté vacío
+             if(strlen($apellidos) == 0)
+                  {$this->st_apellidos="class='st_error'";
+                   $this->apellidos_err="<br/><span class='error'>Debe ingresar un apellido</span>";
+                   $todo_ok = false;
+                  }
+
+             // Verifico que el e-mail no esté vacío
+             if(strlen($email) == 0)
+                  {$this->st_email="class='st_error'";
+                   $this->email_err="<br/><span class='error'>Debe ingresar un e-mail</span>";
+                   $todo_ok = false;
+                  }
+
+             // Verifico que el e-mail sea válido
+             elseif(!filter_var($email, FILTER_VALIDATE_EMAIL))
+                {$this->st_email="class='st_error'";
+                 $this->email_err="<br/><span class='error'>Formato de e-mail incorrecto</span>";
+                 $todo_ok = false;
+                }
+
+             // Verifico que el e-mail no exista
+             $query = "SELECT user_id 
+                       FROM user 
+                       WHERE email='$email'";
+
+             $result = Utils::execute($query, __FILE__, __LINE__);
+
+             if($result->recordCount() > 0)
+                {$this->st_email="class='st_error'";
+                 $this->email_err="<br/><span class='error'>El e-mail ya está registrado</span>";
+                 $todo_ok = false;
+                }
+
+
+             if($todo_ok)
+                {// Envío el e-mail de confirmación
+                   $mail = new Mail;
+                   
+                   $link=substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/confirmar_usuario.php?email=$email";
+                   
+                   $body = "Te registraste en el sitio <strong>Mercado Dios Me Libre de las cosas que tengo en casa y no uso.</strong> <br /><br />
+                            
+                            Para confirmar tu registro, hacé click en el siguiente link: <a href='$link'>$link</a> <br /><br />
+                            
+                            Muchas gracias por registrarte! <br /><br />";
+                   
+                    if(!$mail->sendMail($email, "Confirmación de registro", $body))
+                        {// Si no se pudo enviar el e-mail, muestro un mensaje de error
+                        $todo_ok = false;
+                        $this->send_mail_err="No se pudo crear el usuario.";
+                        }
+                   else
+                      {// Se envió el e-mail, guardo el usuario en la base de datos
+                        $nombres=mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($nombres,ENT_QUOTES,"UTF-8"));
+                        $apellidos=mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($apellidos,ENT_QUOTES,"UTF-8"));
+                        $clave=html_entity_decode($clave,ENT_QUOTES,"UTF-8");
+                        $clave_sha = hash("sha512", $clave);
+                        $query = "INSERT INTO user VALUES 
+                        ('$nombres', '$apellidos', '$email', '$clave_sha', 0, NOW())";
+
+                 // $result = Utils::execute($query, __FILE__, __LINE__);
+
+
+                     }
+               }
+
+             return $todo_ok;
             }
     }
 ?>

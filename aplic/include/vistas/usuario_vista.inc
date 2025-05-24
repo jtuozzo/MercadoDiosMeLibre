@@ -16,7 +16,7 @@ echo "
 <div id='usuario'>
     <h1>Crear usuario</h1>
       
-    <form action='{$_SERVER['PHP_SELF']}' method='post'>
+    <form action='{$_SERVER['PHP_SELF']}' method='post' id='form'>
 
         <div>
             <label for='nombres'>  Nombre/s: </label>
@@ -36,6 +36,7 @@ echo "
         <div>
             <label for='clave'> Clave: </label>
             <input type='password' name='clave' id='clave' size='20' maxlength='20' {$user->st_clave}> {$user->clave_err} 
+            <div id='tips' >Debe tener como mínimo 8 dígitos. Pueden ser letras, números o símbolos.</div>
             <div class='verifique'>(Verifique no tener activada la tecla \"BLOQ MAYUS\" al ingresar la clave)</div>
         </div>
 
@@ -47,9 +48,8 @@ echo "
         <input class='boton' type='submit' name='crear' value='Crear usuario' onClick=\"this.value='Aguarde . . .'\"/>
 
    </form>
-
-</div>
 $mensaje
+</div>
 ";
 require_once('foot.inc');
 ?>

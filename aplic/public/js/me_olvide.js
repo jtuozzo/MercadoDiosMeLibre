@@ -11,7 +11,3 @@ window.onload = function() {
         $('#me_olvide').css({'height':alt+'px', 'overflow-y':'auto'});
     }
 
-
-function ocultoForm() {
-    $("#form").hide();
-}
