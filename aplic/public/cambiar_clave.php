@@ -14,7 +14,7 @@ $mens_error = "<script language='javascript'>
                     Swal.fire({
                     icon:'error',
                     title:'Ooops!!',
-                    text:'No se pudo cambiar la clave, intente nuevamente.',
+                    text:'No se pudo cambiar la clave. Intentá solicitarla nuevamente.',
                     confirmButtonColor: '#D22518',
                     })
                	  .then(function() {
@@ -59,7 +59,7 @@ elseif(isset($clave)) // Se envió la clave por POST, llamo al método de User p
              $mensaje="<script language='javascript'>
                           Swal.fire({
                           icon:'success',
-                          text:'La clave se cambió correctamente.',
+                          title:'La clave se cambió correctamente.',
                           confirmButtonColor: '#63676c',
                           })
                       .then(function() {
