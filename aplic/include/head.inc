@@ -7,12 +7,17 @@
     Ultima modificación: 25/05/2025.
 */
 
-
+$saludo="";
 // Verifica el nivel de acceso para mostrar el menú correspondiente
 
 if (isset($_SESSION['DML_NIVEL']) and $_SESSION['DML_NIVEL'] > 0) 
     {$menu_bar = "<li><a href='articulo_nuevo.php'>Nuevo artículo</a></li>
                   <li class='li_derecha'><a href='login.php'>Salir</a></li>";
+    
+    if(isset($_SESSION['DML_NOMBRES']))
+        {$saludo = "Hola {$_SESSION['DML_NOMBRES']}!";
+         }
+
      }
 else {$menu_bar = "<li class='li_derecha'><a href='usuario.php' >Crear usuario</a></li>
                   <li class='li_derecha'><a href='login.php'>Ingresar</a></li>";
@@ -49,13 +54,16 @@ echo "
 
 <body>
     <header id='header'>
-        <div>
+        <div class='logo'>
             <a href='index.php'>
                 <img id='logo' src='./images/logo_455_175.png' alt='Mercado Dios Me Libre de las cosas que tengo en casa y no uso' title='Mercado Dios Me Libre de las cosas que tengo en casa y no uso'>
             </a>
+            <div id='saludo'>
+                {$saludo}
+            </div>
         </div>
+
         <nav id='barraNav'>
-            
             <div id='burger-menu' onclick='toggleMenu()'>
                 <img src='./images/burger.png' alt='menu' />
             </div>

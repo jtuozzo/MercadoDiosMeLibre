@@ -49,6 +49,10 @@ header {
     margin: auto;
 }
 
+#saludo {
+    display: none;
+}
+
 #barraNavUl {
     display: none;
 }
@@ -134,11 +138,26 @@ header {
     }
 
     #logo {
-        width: 30%;
-        max-width: 300px;
         margin: auto;
+        width: 75%;
+        height: auto;
     }
 
+    .logo {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #saludo {
+        display: block;
+        text-align: right;
+        margin-right: 10px;
+        margin-top: 10px;
+        font-size: 1.2em;
+        color: white;
+    }
     #burger-menu {
         display: none;
     }
