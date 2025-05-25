@@ -2,7 +2,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos general
     Fecha de creación: 17/05/2025.
-    Ultima modificación: 24/05/2025.
+    Ultima modificación: 25/05/2025.
 */
 
 * {
@@ -108,7 +108,7 @@ header {
 
 
 .boton {
-    font-size: 14px;
+    font-size: 18px;
     border-radius: 3px;
     color: white;
     background: #63676c;

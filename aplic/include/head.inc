@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Header de las páginas.
     Fecha de creación: 17/05/2025.
-    Ultima modificación: 24/05/2025.
+    Ultima modificación: 25/05/2025.
 */
 
 
@@ -48,13 +48,14 @@ echo "
 </head>
 
 <body>
-    <header>
+    <header id='header'>
         <div>
             <a href='index.php'>
                 <img id='logo' src='./images/logo_455_175.png' alt='Mercado Dios Me Libre de las cosas que tengo en casa y no uso' title='Mercado Dios Me Libre de las cosas que tengo en casa y no uso'>
             </a>
         </div>
         <nav id='barraNav'>
+            
             <div id='burger-menu' onclick='toggleMenu()'>
                 <img src='./images/burger.png' alt='menu' />
             </div>

@@ -14,6 +14,8 @@ CREATE TABLE user (
  update_user INT UNSIGNED  NULL,
  update_datetime datetime NOT NULL,
  PRIMARY KEY (user_id),
+ UNIQUE(email),
+ UNIQUE(token),
  CONSTRAINT FOREIGN KEY (insert_user) REFERENCES user (user_id),
  CONSTRAINT FOREIGN KEY (update_user) REFERENCES user (user_id)
 ) ENGINE=InnoDB;
