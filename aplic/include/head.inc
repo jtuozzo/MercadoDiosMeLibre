@@ -69,7 +69,7 @@ echo "
             </div>
             <ul id='barraNavUl'>
                 <li>
-                    <a href='index.php'>Home</a>
+                    <a href='index.php'>Inicio</a>
                 </li>
                 {$menu_bar}
             </ul>

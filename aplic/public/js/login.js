@@ -8,6 +8,6 @@
 
 window.onload = function() {
         let header = $('#header').height();
-        let alt=$(window).height()-header;
+        let alt=$(window).height()-header-10;
         $('#login').css({'height':alt+'px', 'overflow-y':'auto'});
     }

@@ -1,0 +1,41 @@
+/*  
+    Nombre: index.css
+    Autor: Julio Tuozzo
+    Función: Hoja de estilos.
+    Fecha de creación: 25/05/2025.
+    Ultima modificación: 25/05/2025.
+*/
+
+
+#index {
+    padding: 1em;
+    background-color: #f0f0f0;
+    font-size: 1.2em;
+}
+
+p {
+    margin: 0.5em 0;
+}
+
+h1 {
+    font-size: 1.6em;
+}
+
+h2 {
+    font-size: 1.4em;
+}
+
+a {
+    color: #05183c;
+    text-decoration: none;
+    font-weight: bold;
+}
+/* -----------------  Tablet y Desktop  ----------------- */
+
+@media(min-width: 760px) {
+    #index {
+        font-size: 1.4em;
+    }
+
+
+}

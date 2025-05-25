@@ -31,7 +31,5 @@ if(!isset($_SESSION['DML_NIVEL']) and isset($_COOKIE['DML_EMAIL']) and isset($_C
         }
     }
 
-require("head.inc");
-require("foot.inc");
-
+require("index_vista.inc");
 ?>
