@@ -23,6 +23,7 @@ class User
      public $apellidos_err = "";
      public $email_err = "";
      public $send_mail_err = "";
+     public $msg_error = "";
         
      static public function getUser($email, $clave)
         {$query = "SELECT user_id, apellidos, nombres, email, nivel, clave, token 
@@ -321,6 +322,24 @@ class User
 
              return $todo_ok;
             }
+      public function confirmarUsuario($email)
+            {// Confirma el usuario
+             $query = "UPDATE user 
+                       SET token=SHA2(CONCAT(email, NOW()), 256), 
+                       update_datetime=NOW(), 
+                       update_user=user_id 
+                       WHERE email='$email'
+                       AND token IS NULL";
 
+             $result = Utils::execute($query, __FILE__, __LINE__);
+
+             if(Utils::$dbase->db->affected_rows() == 1)
+                {return true;
+                }
+             else
+                {$this->msg_error="El usuario ya está confirmado o no existe.";
+                 return false;
+                }
+            }
     }
 ?>
