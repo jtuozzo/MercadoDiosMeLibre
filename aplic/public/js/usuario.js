@@ -9,6 +9,6 @@
 window.onload = function() {
         let header = $('#header').height();
         let alt=$(window).height()-header;
-        $('#usuario').css({'height':alt+'px', 'overflow-y':'auto'}); alert(alt); alert(header);
+        $('#usuario').css({'height':alt+'px', 'overflow-y':'auto'}); 
     }
 
