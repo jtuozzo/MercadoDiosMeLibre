@@ -49,7 +49,7 @@ class User
 
          $query = "UPDATE user 
                    SET last_login=NOW(),
-                   ip_address='".Utils::getIP()."', 
+                   ip_address='".Utils::getIP()."'
                    WHERE email='$email'";
 
          $update = Utils::execute($query, __FILE__, __LINE__);

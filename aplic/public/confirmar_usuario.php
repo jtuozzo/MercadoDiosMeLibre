@@ -39,7 +39,7 @@ if(isset($id)) // Hay ID trato de confirmar el usuario
                         icon:'success',
                         title:'Usuario confirmado',
                         text:'El usuario ha sido confirmado correctamente.',
-                        confirmButtonColor: '#3085d6',
+                        confirmButtonColor: '#63676c',
                         confirmButtonText: 'Continuar'
                         })
                      .then(function() {
