@@ -39,6 +39,7 @@ header {
     flex-wrap: nowrap;
     justify-content: space-between;
     background-color: #282828;
+    color: white;
     padding: 5px;
     width: 100%
 }
