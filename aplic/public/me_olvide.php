@@ -13,7 +13,8 @@ require("User.inc");
 // Si no se envió el formulario, lo muestro
 
 if(!isset($_POST['enviar']))
-     {require("me_olvide_vista.inc");
+     {$email=$st_email=$email_err=$mensaje="";
+      require("me_olvide_vista.inc");
       exit;
      }
 

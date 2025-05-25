@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista del login.
     Fecha de creación: 20/05/2025.
-    Ultima modificación: 24/05/2025.
+    Ultima modificación: 25/05/2025.
 */
 
 $css_local = "login.css";

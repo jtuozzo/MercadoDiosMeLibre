@@ -17,7 +17,8 @@ require("User.inc");
 Utils::logout();
 
 if (!isset($_POST['ingresar']))
-     {require("login_vista.inc");
+     {$email=$st_email=$email_err=$st_clave=$clave_err=$mensaje="";
+      require("login_vista.inc");
       exit;
      }
 

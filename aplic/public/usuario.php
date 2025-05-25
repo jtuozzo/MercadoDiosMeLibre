@@ -17,7 +17,8 @@ foreach($_POST as $key => $valor)
 $user = new User();
 
 if(!isset($_POST['crear']))
-     {require("usuario_vista.inc");
+     {$nombres=$apellidos=$email=$mensaje="";
+      require("usuario_vista.inc");
       exit;
      }
 
