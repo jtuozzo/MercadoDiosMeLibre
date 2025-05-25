@@ -12,7 +12,7 @@ $saludo="";
 
 if (isset($_SESSION['DML_NIVEL']) and $_SESSION['DML_NIVEL'] > 0) 
     {$menu_bar = "<li><a href='articulo_nuevo.php'>Nuevo artículo</a></li>
-                  <li class='li_derecha'><a href='login.php'>Salir</a></li>";
+                  <li class='li_derecha'><a href='salir.php'>Salir</a></li>";
     
     if(isset($_SESSION['DML_NOMBRES']))
         {$saludo = "Hola {$_SESSION['DML_NOMBRES']}!";

@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Controlador del login del usuario.
     Fecha de creación: 20/05/2025.
-    Ultima modificación: 20/05/2025.
+    Ultima modificación: 25/05/2025.
 */
 
 session_start();
@@ -14,13 +14,7 @@ require("User.inc");
 
 // Vacío las variables de sesión y las cookies donde están los datos del usuario
 
-foreach($_SESSION as $clave => $valor)
-     {if(strpos($clave,"DML_")!== false)
-            {unset($_SESSION[$clave]);
-            }
-     }
-setcookie("DML_EMAIL", "", time()-3600);
-setcookie("DML_CLAVE", "", time()-3600);
+Utils::logout();
 
 if (!isset($_POST['ingresar']))
      {require("login_vista.inc");

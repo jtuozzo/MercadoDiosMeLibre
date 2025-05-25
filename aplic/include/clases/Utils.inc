@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos estáticos de uso global.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 24/05/2025.
+    Ultima modificación: 25/05/2025.
 */
 
 // Datos de la instalación
@@ -98,6 +98,18 @@ class Utils
             return $realip;
             }
 
+     static public function logout()
+         {// Destruyo la sesión del usuario y las cookies asociadas
+
+            foreach($_SESSION as $clave => $valor)
+                  {if(strpos($clave,"DML_")!== false)
+                           {unset($_SESSION[$clave]);
+                           }
+                  }
+
+            setcookie("DML_EMAIL", "", time()-3600);
+            setcookie("DML_CLAVE", "", time()-3600);
+         }
     }
 
 
