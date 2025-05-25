@@ -29,7 +29,8 @@ class User
               FROM user 
               WHERE email='$email' 
               AND clave='$clave'
-              AND expira_clave > NOW()";
+              AND expira_clave > NOW()
+              AND token IS NOT NULL";
 
         $result = Utils::execute($query, __FILE__, __LINE__);
 
@@ -46,7 +47,8 @@ class User
          // Guardo la última sesión
 
          $query = "UPDATE user 
-                   SET last_login=NOW() 
+                   SET last_login=NOW(),
+                   ip_address='".Utils::getIP()."', 
                    WHERE email='$email'";
 
          $update = Utils::execute($query, __FILE__, __LINE__);
@@ -57,10 +59,11 @@ class User
      public function nuevaClave($email)
         {// Genera una nueva clave y la envía al usuario
 
-         // Verifico que el e-mail exista
+         // Verifico que el e-mail exista y se haya confirmado
          $query = "SELECT user_id
                    FROM user 
-                   WHERE email='$email'";
+                   WHERE email='$email'
+                   AND token IS NOT NULL";
 
          $result = Utils::execute($query, __FILE__, __LINE__);
 
@@ -275,13 +278,13 @@ class User
                 {// Envío el e-mail de confirmación
                    $mail = new Mail;
                    
-                   $link=substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/confirmar_usuario.php?email=$email";
+                   $link=substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/confirmar_usuario.php?id=$email";
                    
                    $body = "Te registraste en el sitio <strong>Mercado Dios Me Libre de las cosas que tengo en casa y no uso.</strong> <br /><br />
                             
-                            Para confirmar tu registro, hacé click en el siguiente link: <a href='$link'>$link</a> <br /><br />
+                            Para terminar el proceso, hac&eacute; click en el siguiente link: <a href='$link'>$link</a> <br /><br />
                             
-                            Muchas gracias por registrarte! <br /><br />";
+                            Muchas gracias por registrarte! <br />";
                    
                     if(!$mail->sendMail($email, "Confirmación de registro", $body))
                         {// Si no se pudo enviar el e-mail, muestro un mensaje de error
@@ -294,11 +297,24 @@ class User
                         $apellidos=mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($apellidos,ENT_QUOTES,"UTF-8"));
                         $clave=html_entity_decode($clave,ENT_QUOTES,"UTF-8");
                         $clave_sha = hash("sha512", $clave);
+
                         $query = "INSERT INTO user VALUES 
-                        ('$nombres', '$apellidos', '$email', '$clave_sha', 0, NOW())";
+                                 (NULL,
+                                 '$apellidos', 
+                                 '$nombres', 
+                                 '$email', 
+                                 10,
+                                 '$clave_sha', 
+                                 ADDDATE(NOW(), INTERVAL 90 DAY),
+                                 NULL,
+                                 NULL,
+                                 '".Utils::getIP()."',
+                                 NULL,
+                                 NOW(),
+                                 NULL,
+                                 NOW())";
 
-                 // $result = Utils::execute($query, __FILE__, __LINE__);
-
+                        $result = Utils::execute($query, __FILE__, __LINE__);
 
                      }
                }

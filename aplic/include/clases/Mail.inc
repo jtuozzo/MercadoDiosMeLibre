@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo
     Función: Clase que maneja el envío de e-mails
     Fecha de creación: 23/05/2025.
-    Ultima modificación: 23/08/2025.
+    Ultima modificación: 24/08/2025.
 */
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -25,6 +25,7 @@ class Mail extends PHPMailer
 			 $this->SMTPAuth = true;
 			 $this->Username = MAIL_USUARIO;
 			 $this->Password = MAIL_CLAVE;
+			 $this->CharSet = 'UTF-8';
 
 			 $this->SMTPDebug = 0;
 
