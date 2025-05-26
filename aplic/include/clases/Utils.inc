@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos estáticos de uso global.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 25/05/2025.
+    Ultima modificación: 26/05/2025.
 */
 
 // Datos de la instalación
@@ -25,6 +25,9 @@ define('MAIL_REMITENTE',"");
 
 # Carpeta de logs
 define('LOGS', '../carpeta/');
+
+# Carpeta de archivos temporales
+define('TMP', '../tmp/');
 
 # Cantidad máxima de fotos por artículo
 define('MAX_FOTOS', 10);
@@ -51,14 +54,42 @@ class Utils
             }
 
          try 
-			{$result = self::$dbase->db->Execute($query);
-			} 
-		catch (Exception $e) 
-			{self::$dbase->db_error($e->getMessage(),$file,$line,$query);
-             return false;
-			}
+            {$result = self::$dbase->db->Execute($query);
+            } 
+         catch (Exception $e) 
+            {self::$dbase->db_error($e->getMessage(),$file,$line,$query);
+            return false;
+            }
          return $result;
         }
+
+      // Función que inicia una transacción 
+      static public function startTrans($file, $line)
+         {if(!isset(self::$dbase))
+               {self::$dbase = new DBConecto();
+               }
+
+            try
+               {self::$dbase->db->StartTrans();
+               }
+            catch (Exception $e)
+               {self::$dbase->db_error($e->getMessage(),$file,$line);
+               }
+         }
+
+      // Función que completa una transacción
+      static public function completeTrans($file, $line)
+         {if(!isset(self::$dbase))
+               {self::$dbase = new DBConecto();
+               }
+
+            try
+               {self::$dbase->db->CompleteTrans();
+               }
+            catch (Exception $e)
+               {self::$dbase->db_error($e->getMessage(),$file,$line);
+               }
+         }
 
      static public function msgError($mensaje="Corrija los errores", $sub = null)
         {if(isset($sub))

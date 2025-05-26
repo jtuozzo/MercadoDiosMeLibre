@@ -9,27 +9,147 @@
 
 
 class Articulo
-    {    
-      public function crearArticulo($titulo, $descripcion, $moneda, $precio, $foto)
-         {if(empty($titulo) || empty($descripcion) || empty($moneda) || empty($precio))
-             {return false;
+    {public $st_titulo = "";
+     public $st_descripcion = "";
+     public $st_precio = "";
+     public $sel_ARS = "";
+     public $sel_USD = "";
+     public $titulo_err = "";
+     public $descripcion_err = "";
+     public $precio_err = "";
+     
+
+     public function __construct()
+         {for($i = 1; $i <= MAX_FOTOS; $i++)
+               {$foto_err = "foto_err_{$i}";
+                $st_foto = "st_foto_$i";
+                $this->$foto_err = "";
+                $this->$st_foto = "";
+               }
+
+         }
+      
+      
+     public function crearArticulo($titulo, $descripcion, $moneda, $precio, $fotos)
+         {$todo_ok = true;
+            
+          // Preparo el array con las fotos
+          $las_fotos = $this->armoFotos($fotos);
+
+          // Inicializo el select del tipo de moneda
+
+          $aux="sel_{$moneda}";
+          $this->$aux = "selected='selected'";
+
+          $obligativos = array('titulo', 'descripcion', 'precio');
+          
+         // Valido los campos obligatorios
+         foreach($obligativos as $campo)
+            {if(empty($$campo))
+               {$this->{$campo . '_err'} = "<span class='error'>Campo obligatorio.</span>";
+               $this->{'st_' . $campo} = "class='st_error'";
+                $todo_ok = false;
+               }
+            }
+
+
+          if(!is_numeric($precio) || $precio <= 0)
+             {$this->precio_err = "<span class='error'>El precio debe ser un número positivo.</span>";
+              $this->st_precio = "class='st_error'";
+              $todo_ok = false;
+             }
+            
+           
+          if($todo_ok)
+             {
+               $titulo = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($titulo,ENT_QUOTES,"UTF-8"));
+               $descripcion = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($descripcion,ENT_QUOTES,"UTF-8"));
+               $moneda = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,$moneda);
+               $precio = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,$precio);
+          
+                // Inicio la transacción
+                Utils::startTrans(__FILE__, __LINE__);
+
+
+
+               // Inserto el artículo en la base de datos
+               
+               $query = "INSERT INTO articulo (titulo, descripcion, moneda, precio, foto, user_id, create_datetime)
+                        VALUES ('$titulo', '$descripcion', '$moneda', '$precio',  '{$_SESSION['DML_USER_ID']}', NOW())";
+               
+               $result = Utils::execute($query, __FILE__, __LINE__);
+
+               // Fin de la transacción
+               Utils::completeTrans(__FILE__, __LINE__);
+
              }
           
-          // Escapo los datos
-          
-          $titulo = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($titulo,ENT_QUOTES,"UTF-8"));
-          $descripcion = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($descripcion,ENT_QUOTES,"UTF-8"));
-          $moneda = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,$moneda);
-          $precio = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,$precio);
-          
-          // Inserto el artículo en la base de datos
-          
-          $query = "INSERT INTO articulo (titulo, descripcion, moneda, precio, foto, user_id, create_datetime)
-                    VALUES ('$titulo', '$descripcion', '$moneda', '$precio', '$foto', '{$_SESSION['DML_USER_ID']}', NOW())";
-          
-          $result = Utils::execute($query, __FILE__, __LINE__);
-          
-          return true;
+          return $todo_ok;
          }
-    }
+
+      private function armoFotos($fotos)
+         {$tmp = array();
+          $foto_tamanio = array();
+          $foto_tipo_file = array();
+          $foto_nombre_file = array();
+          $foto = array();
+          $las_fotos = array();
+            
+          for($i = 1; $i <= MAX_FOTOS; $i++)
+               {if(strlen($fotos[$i]['tmp_name'])>0)
+                  {$tmp[$i] = $fotos[$i]['tmp_name'];
+                   $foto_tamanio[$i] = $fotos[$i]['size'];
+                   $foto_tipo_file[$i] = $fotos[$i]['type'];
+                   $foto_nombre_file[$i] = $fotos[$i]['name'];
+                        
+                  if(strlen($foto_nombre_file[$i])>0)
+                              {// Valido si el adjunto es un jpg ó jpeg para comprimirlo
+                              $nombre_aux=strtolower($foto_nombre_file[$i]);
+                              $extension=substr($nombre_aux,strrpos($nombre_aux, "." )+1);
+
+                              if(($extension=="jpg" or $extension=="jpeg") and exif_imagetype($tmp[$i])==IMAGETYPE_JPEG)
+                                 {$nombre_tmp="adjunto_".date("Y_m_d_H_i_s").".jpg";
+                                 $im = imagecreatefromjpeg($tmp[$i]);
+                                 imagejpeg($im,TMP.$nombre_tmp,30);
+                                 $fp = fopen(TMP.$nombre_tmp, "rb");
+                                 $foto[$i] = fread($fp,filesize(TMP.$nombre_tmp));
+                                 $foto[$i] = addslashes($foto[$i]);
+                                 fclose($fp); 
+                                 unlink(TMP.$nombre_tmp);
+                                 }
+                              elseif($extension=="png" and exif_imagetype($tmp[$i])==IMAGETYPE_PNG)
+                                 {$nombre_tmp="adjunto_".date("Y_m_d_H_i_s").".png";
+                                  $im = imagecreatefrompng($tmp[$i]);
+                                  imagepng($im,TMP.$nombre_tmp,9);
+                                  $fp = fopen(TMP.$nombre_tmp, "rb");
+                                  $foto[$i] = fread($fp,filesize(TMP.$nombre_tmp));
+                                  $foto[$i] = addslashes($foto[$i]);
+                                  fclose($fp); 
+                                  unlink(TMP.$nombre_tmp);
+                                 }
+                              else
+                                 {$fp = fopen($tmp[$i], "rb");
+                                    $foto[$i] = fread($fp, $foto_tamanio[$i]);
+                                    $foto[$i] = addslashes($foto[$i]);
+                                    fclose($fp);
+                                 }
+                              }
+
+                        }
+
+                     $las_fotos[$i] = array(
+                        'foto' => $foto[$i],
+                        'tamanio' => $foto_tamanio[$i],
+                        'tipo_file' => $foto_tipo_file[$i],
+                        'nombre_file' => $foto_nombre_file[$i]
+                     );
+
+                   }
+      
+                 return $las_fotos;
+
+         }
+
+   }
+    
 ?>

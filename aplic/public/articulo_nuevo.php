@@ -28,12 +28,18 @@ $articulo = new Articulo();
 
 if(!isset($_POST['crear']))
      {// No se ha enviado el formulario, muestro la vista
-      $mensaje="";
+      $titulo=$descripcion=$precio=$mensaje="";
       require("articulo_vista.inc");
       exit;
      }
 
-if(!$articulo->crearArticulo($titulo, $descripcion, $moneda, $precio, $foto))
+// Armo el array de fotos
+$fotos = array();
+for($i=1; $i<=MAX_FOTOS; $i++)
+     {$fotos[$i] = $_FILES["foto_$i"];
+     }
+
+if(!$articulo->crearArticulo($titulo, $descripcion, $moneda, $precio, $fotos))
         {// No se pudo crear el artículo
          $mensaje=Utils::msgError();
         }

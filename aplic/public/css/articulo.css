@@ -77,8 +77,25 @@ input[type="submit"] {
         font-size: 16px;
     }
 
+    #descripcion {
+        width: 70%;
+    }
+
+
     .linea_1 {
         display: flex;
-        row-gap: 200px;
+        column-gap: 25px;
+    }
+
+    .linea_2 {
+        padding-top: 30px;
+        text-align: left;
+        display: flex;
+        align-items: flex-start;
+        column-gap: 20px;
+    }
+
+    .linea_2 label {
+        margin-top: 0;
     }
 }
