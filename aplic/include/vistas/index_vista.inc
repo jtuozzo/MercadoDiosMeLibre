@@ -1,4 +1,4 @@
-a<?php
+<?php
 /*
     Nombre: index_vista.inc
     Autor: Julio Tuozzo.

@@ -337,8 +337,27 @@ class User
                 {return true;
                 }
              else
-                {$this->msg_error="El usuario ya está confirmado o no existe.";
-                 return false;
+                {// Por alguna razón que ignoro Hotmail llama dos veces a este script, así que chequeo este tema
+
+                 $query = "SELECT user_id 
+                           FROM user 
+                           WHERE email='$email' 
+                           AND token IS NOT NULL
+                           AND update_datetime > DATE_SUB(NOW(), INTERVAL 2 second)";
+
+                 $result = Utils::execute($query, __FILE__, __LINE__);
+
+                 if($result->recordCount() == 1)
+                    {// El usuario ya está confirmado
+                     return true;
+                    }
+                   else
+                     {// El usuario no existe o ya está confirmado
+                        $this->msg_error="El usuario ya está confirmado o no existe.";
+                        return false;
+                     }   
+
+                 
                 }
             }
     }
