@@ -31,7 +31,7 @@ class Articulo
       
       
      public function crearArticulo($titulo, $descripcion, $moneda, $precio, $fotos)
-         {$todo_ok = true;
+         {$todo_ok = true; 
             
           // Preparo el array con las fotos
           $las_fotos = $this->armoFotos($fotos);
@@ -52,7 +52,7 @@ class Articulo
                }
             }
 
-
+          $precio = str_replace(",",".", $precio);
           if(!is_numeric($precio) || $precio <= 0)
              {$this->precio_err = "<span class='error'>El precio debe ser un número positivo.</span>";
               $this->st_precio = "class='st_error'";
@@ -66,7 +66,6 @@ class Articulo
 
                $titulo = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($titulo,ENT_QUOTES,"UTF-8"));
                $descripcion = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($descripcion,ENT_QUOTES,"UTF-8"));
-               $precio = str_replace(",",".", $precio);
    
                // Inserto el artículo en la base de datos
                
@@ -84,28 +83,30 @@ class Articulo
                         '{$_SESSION['DML_USER_ID']}',
                         NOW())";
                
+               $query =str_replace("''", "NULL", $query);
                $result = Utils::execute($query, __FILE__, __LINE__);
 
                // Guarda las imágenes
 
                $articulo_id = mysqli_insert_id(Utils::$dbase->db->_connectionID);
-
+               $principal = 'S';
                for($i = 1; $i <= MAX_FOTOS; $i++)
                   {if(strlen($las_fotos[$i]['foto'])>0)
                      {// Inserto la foto en la base de datos
                       $query = "INSERT INTO articulo_foto VALUES
                                (NULL,
                                 '$articulo_id',
+                                '$principal',
                                '{$las_fotos[$i]['foto']}',
-                               '{$las_fotos[$i]['tamanio']}',
                                '{$las_fotos[$i]['tipo_file']}',
-                               '{$las_fotos[$i]['nombre_file']}',
-                               'N')";
+                               '{$_SESSION['DML_USER_ID']}',
+                               NOW(),
+                               '{$_SESSION['DML_USER_ID']}',
+                               NOW())";
+
+                      $query =str_replace("''", "NULL", $query);
                       $result = Utils::execute($query, __FILE__, __LINE__);
-                      if(!$result)
-                         {$todo_ok = false;
-                          break;
-                         }
+                      $principal = '';
                      }
                   }
 
@@ -134,13 +135,31 @@ class Articulo
                         
                   if(strlen($foto_nombre_file[$i])>0)
                               {// Valido si el adjunto es un jpg ó jpeg para comprimirlo
+
                               $nombre_aux=strtolower($foto_nombre_file[$i]);
                               $extension=substr($nombre_aux,strrpos($nombre_aux, "." )+1);
 
                               if(($extension=="jpg" or $extension=="jpeg") and exif_imagetype($tmp[$i])==IMAGETYPE_JPEG)
                                  {$nombre_tmp="adjunto_".date("Y_m_d_H_i_s").".jpg";
                                  $im = imagecreatefromjpeg($tmp[$i]);
-                                 imagejpeg($im,TMP.$nombre_tmp,30);
+
+                                 // Arreglo la orientación de la imagen
+                                 $exif = @exif_read_data($tmp[$i]);
+                                 if(!empty($exif['Orientation']))
+                                    {switch($exif['Orientation'])
+                                         {case 3:
+                                              $im = imagerotate($im, 180, 0);
+                                              break;
+                                          case 6:
+                                              $im = imagerotate($im, -90, 0);
+                                              break;
+                                          case 8:
+                                              $im = imagerotate($im, 90, 0);
+                                              break;
+                                         }
+                                    }
+
+                                 imagejpeg($im,TMP.$nombre_tmp,20);
                                  $fp = fopen(TMP.$nombre_tmp, "rb");
                                  $foto[$i] = fread($fp,filesize(TMP.$nombre_tmp));
                                  $foto[$i] = addslashes($foto[$i]);

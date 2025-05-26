@@ -36,7 +36,7 @@ if(!isset($_POST['crear']))
 // Armo el array de fotos
 $fotos = array();
 for($i=1; $i<=MAX_FOTOS; $i++)
-     {$fotos[$i] = $_FILES["foto_$i"];
+     {$fotos[$i] = $_FILES["foto_$i"]; 
      }
 
 if(!$articulo->crearArticulo($titulo, $descripcion, $moneda, $precio, $fotos))

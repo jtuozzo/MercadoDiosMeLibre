@@ -16,7 +16,7 @@ echo "
 <div id='articulo'>
     <h1>Crear Articulo</h1>
       
-    <form action='{$_SERVER['PHP_SELF']}' method='post' id='form'>
+    <form enctype='multipart/form-data' action='{$_SERVER['PHP_SELF']}' method='post' id='form'>
 
         <div class='linea_1'>
             <div>
