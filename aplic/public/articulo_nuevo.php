@@ -52,11 +52,11 @@ if(!$articulo->crearArticulo($titulo, $descripcion, $moneda, $precio, $fotos))
                         confirmButtonColor: '#63676c',
                         confirmButtonText: 'Continuar'
                         })
-                     .then(function() {
-        	                window.location = 'index.php';
-                     });
                      </script>";
+        foreach($_POST as $key => $valor)
+            {$$key="";
+            }
         }
-
+     
 require("articulo_vista.inc");
 ?>

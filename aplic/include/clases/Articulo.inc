@@ -61,23 +61,53 @@ class Articulo
             
            
           if($todo_ok)
-             {
-               $titulo = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($titulo,ENT_QUOTES,"UTF-8"));
-               $descripcion = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($descripcion,ENT_QUOTES,"UTF-8"));
-               $moneda = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,$moneda);
-               $precio = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,$precio);
-          
-                // Inicio la transacción
+             {// Inicio la transacción
                 Utils::startTrans(__FILE__, __LINE__);
 
-
-
+               $titulo = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($titulo,ENT_QUOTES,"UTF-8"));
+               $descripcion = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($descripcion,ENT_QUOTES,"UTF-8"));
+               $precio = str_replace(",",".", $precio);
+   
                // Inserto el artículo en la base de datos
                
-               $query = "INSERT INTO articulo (titulo, descripcion, moneda, precio, foto, user_id, create_datetime)
-                        VALUES ('$titulo', '$descripcion', '$moneda', '$precio',  '{$_SESSION['DML_USER_ID']}', NOW())";
+               $query = "INSERT INTO articulo VALUES
+                        (NULL,
+                        '{$_SESSION['DML_USER_ID']}',
+                        '$titulo',
+                        '$descripcion',
+                        '$moneda',
+                        '$precio',
+                        'S',
+                        NULL,
+                        '{$_SESSION['DML_USER_ID']}',
+                        NOW(),
+                        '{$_SESSION['DML_USER_ID']}',
+                        NOW())";
                
                $result = Utils::execute($query, __FILE__, __LINE__);
+
+               // Guarda las imágenes
+
+               $articulo_id = mysqli_insert_id(Utils::$dbase->db->_connectionID);
+
+               for($i = 1; $i <= MAX_FOTOS; $i++)
+                  {if(strlen($las_fotos[$i]['foto'])>0)
+                     {// Inserto la foto en la base de datos
+                      $query = "INSERT INTO articulo_foto VALUES
+                               (NULL,
+                                '$articulo_id',
+                               '{$las_fotos[$i]['foto']}',
+                               '{$las_fotos[$i]['tamanio']}',
+                               '{$las_fotos[$i]['tipo_file']}',
+                               '{$las_fotos[$i]['nombre_file']}',
+                               'N')";
+                      $result = Utils::execute($query, __FILE__, __LINE__);
+                      if(!$result)
+                         {$todo_ok = false;
+                          break;
+                         }
+                     }
+                  }
 
                // Fin de la transacción
                Utils::completeTrans(__FILE__, __LINE__);

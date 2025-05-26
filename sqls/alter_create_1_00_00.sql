@@ -25,7 +25,7 @@ CREATE TABLE articulo (
   user_id INT UNSIGNED NOT NULL,
   titulo VARCHAR(256) NOT NULL,
   descripcion TEXT NULL,
-  moneda ENUM("ARS","USS") DEFAULT "ARS" NOT NULL,
+  moneda ENUM("ARS","USD") DEFAULT "ARS" NOT NULL,
   precio DECIMAL(16,2) NOT NULL,
   en_venta ENUM("S") NULL DEFAULT NULL,
   vendido_el DATETIME NULL,
@@ -42,7 +42,7 @@ CREATE TABLE articulo (
 CREATE TABLE articulo_foto (
   articulo_foto_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   articulo_id INT UNSIGNED NOT NULL,
-  titulo VARCHAR(256) NOT NULL,
+  principal ENUM('S') NULL DEFAULT NULL,
   foto MEDIUMBLOB NOT NULL,
   foto_tipo_file VARCHAR(128) NOT NULL,
   insert_user INT UNSIGNED NOT NULL,
