@@ -18,22 +18,24 @@ echo "
       
     <form action='{$_SERVER['PHP_SELF']}' method='post' id='form'>
 
-        <div>
-            <label for='titulo'>  Título: </label>
-            <input type='text' name='titulo' id='titulo' value='$titulo' size='40' maxlength='64' {$user->st_titulo}> {$user->titulo_err} 
-        </div>
+        <div class='linea_1'>
+            <div>
+                <label for='titulo'>  Título: </label>
+                <input type='text' name='titulo' id='titulo' value='$titulo' size='40' maxlength='64' {$user->st_titulo}> {$user->titulo_err} 
+            </div>
 
-        <div>
-            <label for='precio'>  Precio: </label>
+            <div>
+                <label for='precio'>  Precio: </label>
 
-            <select name='moneda' id='moneda' {$user->st_moneda}>
-                <option value='ARS' {$user->sel_ARS}>ARS - Pesos</option>
-                <option value='USD' {$user->sel_USD}>USD - Dólares</option>
-            </select> {$user->moneda_err}
+                <select name='moneda' id='moneda' {$user->st_moneda}>
+                    <option value='ARS' {$user->sel_ARS}>ARS - Pesos</option>
+                    <option value='USD' {$user->sel_USD}>USD - Dólares</option>
+                </select> {$user->moneda_err}
 
-            <input type='text' name='precio' id='precio' value='$precio' size='10' maxlength='16' {$user->st_precio}> {$user->precio_err}
-        </div>
-
+                <input type='text' name='precio' id='precio' value='$precio' size='10' maxlength='16' {$user->st_precio}> {$user->precio_err}
+            </div>
+        </div>   
+        
         <div>
             <label for='clave'> Descripción: </label>
             <textarea name='descripcion' id='descripcion' rows='5'  {$user->st_descripcion}>$descripcion</textarea> {$user->descripcion_err}
@@ -54,13 +56,19 @@ echo "
              echo "<div id='id_foto_$i' class='foto'>";
 
                 if($i==1)
-                    {echo "<h4>Principal</h4>";
+                    {$ppal = "<div class='ppal_side'><strong >Foto principal</strong></div>";
                     }
 
-echo "          <input class='del_foto' type='button' onclick='delFoto($i)' title='Elimina foto'> <input type='file' name='$foto' id='$foto' accept='image/*' {$user->$st_foto}> {$user->$foto_err}
-                  </div>";
+                else
+                    {$ppal = "";
+                    }
+
+echo "    $ppal_title
+      <input class='del_foto' type='button' onclick='delFoto($i)' title='Elimina foto'> <input type='file' name='$foto' id='$foto' accept='image/*' {$user->$st_foto}> {$user->$foto_err}
+                  $ppal </div> ";
             }
-    echo "<input class='boton' type='submit' name='crear' value='Crear artículo' onClick=\"this.value='Aguarde . . .'\"/>
+    echo "</div>
+          <input class='boton' type='submit' name='crear' value='Crear artículo' onClick=\"this.value='Aguarde . . .'\"/>
 
    </form>
 $mensaje

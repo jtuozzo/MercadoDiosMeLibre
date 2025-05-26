@@ -59,7 +59,7 @@ input[type="submit"] {
 }
 
 .foto_principal {
-    position:absolute; 
+    position: absolute;
     right: 25px;
     margin-top: 10px;
 }
@@ -68,13 +68,17 @@ input[type="submit"] {
 
 /* -----------------  Tablet y Desktop  ----------------- */
 
-    @media(min-width: 760px) {
-        label {
-            display: inline-block;
-        }
-
-        #articulo {
-            font-size: 16px;
-        }
-
+@media(min-width: 760px) {
+    label {
+        display: inline-block;
     }
+
+    #articulo {
+        font-size: 16px;
+    }
+
+    .linea_1 {
+        display: flex;
+        row-gap: 200px;
+    }
+}
