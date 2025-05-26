@@ -25,7 +25,7 @@ CREATE TABLE articulo (
   user_id INT UNSIGNED NOT NULL,
   titulo VARCHAR(256) NOT NULL,
   descripcion TEXT NULL,
-  moneda ENUM("P","USS") DEFAULT "P" NOT NULL,
+  moneda ENUM("ARS","USS") DEFAULT "ARS" NOT NULL,
   precio DECIMAL(16,2) NOT NULL,
   en_venta ENUM("S") NULL DEFAULT NULL,
   vendido_el DATETIME NULL,
