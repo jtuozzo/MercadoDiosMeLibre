@@ -40,6 +40,14 @@ input[type="submit"] {
     background: url(../images/agregar.png) no-repeat left;
 }
 
+.del_foto {
+    height: 24px;
+    width: 24px;
+    border: 0;
+    cursor: pointer;
+    background: url(../images/eliminar.png) no-repeat left;
+}
+
 .foto {
     margin-top: 0.8em;
     display: none;

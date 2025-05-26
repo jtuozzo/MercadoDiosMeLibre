@@ -40,15 +40,15 @@ echo "
         </div>
 
         <div id='foto'>
-        <label><strong>Fotos</strong> <input id='nueva_foto' title='Agregar medicamento' type='button' onclick='addFoto(".MAX_FOTOS.")'></label>";
+        <label><strong>Fotos</strong> <input id='nueva_foto' type='button' onclick='addFoto(".MAX_FOTOS.")' title='Agregar fotos'></label>";
 
         for($i = 1; $i <= MAX_FOTOS; $i++)
             {$foto = "foto_$i";
              $foto_err = "foto_{$i}_err";
              $st_foto = "st_foto_$i";
             
-             echo "<div id='foto_$i' class='foto'>
-                    <input type='file' name='$foto' id='$foto' accept='image/*' {$user->$st_foto}> {$user->$foto_err}
+             echo "<div id='id_foto_$i' class='foto'>
+                    <input class='del_foto' type='button' onclick='delFoto($i)' title='Elimina foto'> <input type='file' name='$foto' id='$foto' accept='image/*' {$user->$st_foto}> {$user->$foto_err}
                   </div>";
             }
     echo "<input class='boton' type='submit' name='crear' value='Crear artículo' onClick=\"this.value='Aguarde . . .'\"/>
