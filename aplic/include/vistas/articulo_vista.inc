@@ -40,15 +40,24 @@ echo "
         </div>
 
         <div id='foto'>
-        <label><strong>Fotos</strong> <input id='nueva_foto' type='button' onclick='addFoto(".MAX_FOTOS.")' title='Agregar fotos'></label>";
+        <label>
+            <strong>Fotos</strong> 
+            <input id='nueva_foto' type='button' onclick='addFoto(".MAX_FOTOS.")' title='Agregar fotos'>
+            <span class='nota'> (Máximo ".MAX_FOTOS." fotos) </span>
+        </label>";
 
         for($i = 1; $i <= MAX_FOTOS; $i++)
             {$foto = "foto_$i";
              $foto_err = "foto_{$i}_err";
              $st_foto = "st_foto_$i";
             
-             echo "<div id='id_foto_$i' class='foto'>
-                    <input class='del_foto' type='button' onclick='delFoto($i)' title='Elimina foto'> <input type='file' name='$foto' id='$foto' accept='image/*' {$user->$st_foto}> {$user->$foto_err}
+             echo "<div id='id_foto_$i' class='foto'>";
+
+                if($i==1)
+                    {echo "<h4>Principal</h4>";
+                    }
+
+echo "          <input class='del_foto' type='button' onclick='delFoto($i)' title='Elimina foto'> <input type='file' name='$foto' id='$foto' accept='image/*' {$user->$st_foto}> {$user->$foto_err}
                   </div>";
             }
     echo "<input class='boton' type='submit' name='crear' value='Crear artículo' onClick=\"this.value='Aguarde . . .'\"/>

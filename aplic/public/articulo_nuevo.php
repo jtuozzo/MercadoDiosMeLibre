@@ -4,10 +4,16 @@
     Autor: Julio Tuozzo.
     Función: Creación de artículo.
     Fecha de creación: 25/05/2025.
-    Ultima modificación: 25/05/2025.
+    Ultima modificación: 26/05/2025.
 */
 
 session_start();
+
+if(!isset($_SESSION['DML_NIVEL']) or $_SESSION['DML_NIVEL'] < 2)
+     {// No tiene permisos para crear artículos
+      header("Location: index.php");
+      exit;
+     }
 
 require("Utils.inc");
 require("Articulo.inc");

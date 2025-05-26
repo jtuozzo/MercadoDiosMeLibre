@@ -17,7 +17,7 @@ input[type="submit"] {
 
 #articulo {
     text-align: center;
-    padding: 2em;
+    padding: 1em;
     background-color: #f0f0f0;
     font-size: 18px;
     line-height: 26px;
@@ -51,17 +51,30 @@ input[type="submit"] {
 .foto {
     margin-top: 0.8em;
     display: none;
+    white-space: nowrap;
 }
+
+.nota {
+    font-style: italic;
+}
+
+.foto_principal {
+    position:absolute; 
+    right: 25px;
+    margin-top: 10px;
+}
+
+
 
 /* -----------------  Tablet y Desktop  ----------------- */
 
-@media(min-width: 760px) {
-    label {
-        display: inline-block;
-    }
+    @media(min-width: 760px) {
+        label {
+            display: inline-block;
+        }
 
-    #articulo {
-        font-size: 16px;
-    }
+        #articulo {
+            font-size: 16px;
+        }
 
-}
+    }
