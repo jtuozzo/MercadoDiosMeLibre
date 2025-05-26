@@ -11,3 +11,17 @@ window.onload = function() {
         let alt=$(window).height()-header-10;
         $('#articulo').css({'height':alt+'px', 'overflow-y':'auto'});
     }
+
+function addFoto(max_fotos)
+    {for (i=1; i <= max_fotos ; i++)
+          {let foto='foto_' + i;
+           if(i==max_fotos)
+                {$('#nueva_foto').hide(500);
+
+                }
+           if($('#' + foto).is(':hidden'))
+                {$('#' + foto).show(500);
+                 break;
+                }
+          }
+    }

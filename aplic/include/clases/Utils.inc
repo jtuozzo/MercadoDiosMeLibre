@@ -24,8 +24,10 @@ define('MAIL_PORT',7);
 define('MAIL_REMITENTE',"");
 
 # Carpeta de logs
-
 define('LOGS', '../carpeta/');
+
+# Cantidad máxima de fotos por artículo
+define('MAX_FOTOS', 10);
 
 */
 

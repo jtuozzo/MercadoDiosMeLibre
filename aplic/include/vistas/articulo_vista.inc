@@ -39,11 +39,19 @@ echo "
             <textarea name='descripcion' id='descripcion' rows='5'  {$user->st_descripcion}>$descripcion</textarea> {$user->descripcion_err}
         </div>
 
-        <div>
-            
-        </div>
+        <div id='foto'>
+        <label><strong>Fotos</strong> <input id='nueva_foto' title='Agregar medicamento' type='button' onclick='addFoto(".MAX_FOTOS.")'></label>";
 
-        <input class='boton' type='submit' name='crear' value='Crear artículo' onClick=\"this.value='Aguarde . . .'\"/>
+        for($i = 1; $i <= MAX_FOTOS; $i++)
+            {$foto = "foto_$i";
+             $foto_err = "foto_{$i}_err";
+             $st_foto = "st_foto_$i";
+            
+             echo "<div id='foto_$i' class='foto'>
+                    <input type='file' name='$foto' id='$foto' accept='image/*' {$user->$st_foto}> {$user->$foto_err}
+                  </div>";
+            }
+    echo "<input class='boton' type='submit' name='crear' value='Crear artículo' onClick=\"this.value='Aguarde . . .'\"/>
 
    </form>
 $mensaje
