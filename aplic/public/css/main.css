@@ -50,7 +50,10 @@ header {
 }
 
 #saludo {
-    display: none;
+    display: block;
+    text-align: right;
+    margin-right: 10px;
+    color: white;
 }
 
 #barraNavUl {
@@ -152,13 +155,10 @@ header {
     }
 
     #saludo {
-        display: block;
-        text-align: right;
-        margin-right: 10px;
-        margin-top: 10px;
         font-size: 1.4em;
-        color: white;
+        margin-top: 10px;
     }
+
     #burger-menu {
         display: none;
     }
