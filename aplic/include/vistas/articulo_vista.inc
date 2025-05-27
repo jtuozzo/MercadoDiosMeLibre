@@ -21,7 +21,7 @@ echo "
         <div class='linea_1'>
             <div>
                 <label for='titulo'>  Título: </label>
-                <input type='text' name='titulo' id='titulo' value='$titulo' size='40' maxlength='64' {$articulo->st_titulo}> {$articulo->titulo_err} 
+                <input type='text' name='titulo' id='titulo' value='$titulo' size='40' maxlength='64' {$articulo->st_titulo} required='required'> {$articulo->titulo_err} 
             </div>
 
             <div>
@@ -32,13 +32,13 @@ echo "
                     <option value='USD' {$articulo->sel_USD}>USD - Dólares</option>
                 </select> 
 
-                <input type='text' name='precio' id='precio' value='$precio' size='10' maxlength='16' {$articulo->st_precio}> {$articulo->precio_err}
+                <input type='text' name='precio' id='precio' value='$precio' size='10' maxlength='16' {$articulo->st_precio} required='required'> {$articulo->precio_err}
             </div>
         </div>   
         
         <div class='linea_2'>
             <label for='descripcion'> Descripción: </label>
-            <textarea name='descripcion' id='descripcion' rows='5'  {$articulo->st_descripcion}>$descripcion</textarea> {$articulo->descripcion_err}
+            <textarea name='descripcion' id='descripcion' rows='5'  {$articulo->st_descripcion} required='required'>$descripcion</textarea> {$articulo->descripcion_err}
         </div>
 
         <div id='foto'>
