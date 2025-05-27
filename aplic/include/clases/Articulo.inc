@@ -222,14 +222,14 @@ class Articulo
 
           return "SELECT ar.articulo_id, ar.titulo, ar.descripcion, ar.moneda, ar.precio, ar.en_venta, ar.vendido_el, af.articulo_foto_id
                   FROM articulo ar
-                  JOIN articulo_foto af ON af.articulo_id=ar.articulo_id
+                  LEFT JOIN articulo_foto af ON af.articulo_id=ar.articulo_id
                   WHERE user_id='$user_id'
                   AND af.principal='S'
                   $en_venta
                   ORDER BY $orden $sentido";
          }
 
-    public function getFoto($articulo_foto_id)
+    public function getFoto($articulo_foto_id=0)
          {// Trae una foto del artículo
 
           $query="SELECT foto, foto_tipo_file

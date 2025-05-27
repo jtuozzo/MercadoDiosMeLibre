@@ -13,6 +13,10 @@ require_once('head.inc');
 echo "
 <div id='list_articulos'>";
 
+if($result->recordCount()==0)
+    {echo "<h1>Sin artículos a la venta</h1>";
+    }
+
 while(!$result->EOF)
     {foreach($result->fields as $clave=>$valor)
             {$$clave=$valor; 
