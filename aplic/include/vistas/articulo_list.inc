@@ -18,7 +18,7 @@ while(!$result->EOF)
             {$$clave=$valor; 
             }
 
-      echo "<div class='un_articulo>
+      echo "<div class='un_articulo'>
                 <img src='getFoto.php?id=$articulo_foto_id' alt='$titulo'>
         </div>";
 
