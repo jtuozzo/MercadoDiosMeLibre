@@ -7,7 +7,7 @@
     Ultima modificación: 27/05/2025.
 */
 
-$css_local = "articulo.css";
+$css_local = "articulo_list.css";
 
 require_once('head.inc');
 echo "
@@ -18,9 +18,14 @@ while(!$result->EOF)
             {$$clave=$valor; 
             }
 
-      echo "<div class='un_articulo'>
+      $precio=number_format($precio,2,",",".");
+      echo "<a href='getArticulo.php?id=$articulo_id' class='un_articulo'>
                 <img src='getFoto.php?id=$articulo_foto_id' alt='$titulo'>
-        </div>";
+
+            <div class='titulo'>$titulo</div>
+            <div class='precio'>$moneda $precio</div>
+
+            </a>";
 
      $result->moveNext();
     }

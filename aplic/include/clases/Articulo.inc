@@ -18,6 +18,8 @@ class Articulo
      public $descripcion_err = "";
      public $precio_err = "";
      public $solo_en_venta = true;
+     public $foto;
+     public $foto_tipo_file;
      
 
      public function __construct()
@@ -225,6 +227,27 @@ class Articulo
                   AND af.principal='S'
                   $en_venta
                   ORDER BY $orden $sentido";
+         }
+
+    public function getFoto($articulo_foto_id)
+         {// Trae una foto del artículo
+
+          $query="SELECT foto, foto_tipo_file
+                  FROM articulo_foto
+                  WHERE articulo_foto_id='$articulo_foto_id'";
+          
+          $result = Utils::execute($query,__FILE__,__LINE__);
+
+          if($result->recordCount()==1)
+               {foreach($result->fields as $clave=>$valor)
+                  {$this->$clave=$valor;
+                  }
+                return true;
+               }   
+          else 
+               {return false;
+               }
+
          }
    }
     

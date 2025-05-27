@@ -13,7 +13,7 @@ $articulo = new Articulo;
 
 if($articulo->getFoto($_GET['id']))
     {
-     header("Content-Type: {$articulo->tipo_file}");
+     header("Content-Type: {$articulo->foto_tipo_file}");
      echo $articulo->foto;
     }
 else    
