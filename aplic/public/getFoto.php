@@ -18,8 +18,8 @@ if($articulo->getFoto($_GET['id']))
     }
 else    
     {header("Content-Type: image/jpeg");
-     $fp = fopen("./images/darth_vader.jpg", "rb");
-     $foto = fread($fp, filesize("./images/darth_vader.jpg"));
+     $fp = fopen("./images/sin_foto.jpg", "rb");
+     $foto = fread($fp, filesize("./images/sin_foto.jpg"));
      echo $foto;
     }
 

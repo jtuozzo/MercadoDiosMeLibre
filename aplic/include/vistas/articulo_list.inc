@@ -14,7 +14,10 @@ echo "
 <div id='list_articulos'>";
 
 if($result->recordCount()==0)
-    {echo "<h1>Sin artículos a la venta</h1>";
+    {echo "<div class='sin'>
+                    <img src='./images/estanteria.png' />
+                    <h1>Sin artículos a la venta</h1>
+          </div>";
     }
 
 while(!$result->EOF)
