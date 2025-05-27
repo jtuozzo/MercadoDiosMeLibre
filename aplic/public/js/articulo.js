@@ -12,6 +12,12 @@ window.onload = function () {
     $('#articulo').css({ 'height': alt + 'px', 'overflow-y': 'auto' });
 }
 
+window.addEventListener('beforeunload', function (event) {
+     $('#crear').val('Aguarde . . .');
+     $('#crear').prop('disabled', true);
+});
+
+
 function addFoto(max_fotos) {
     for (i = 1; i <= max_fotos; i++) {
         let foto = 'foto_' + i;

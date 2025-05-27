@@ -68,7 +68,7 @@ echo "    $ppal_title
                   $ppal </div> ";
             }
     echo "</div>
-          <input class='boton' type='submit' name='crear' value='Crear artículo' onClick=\"this.value='Aguarde . . .'\"/>
+          <input class='boton' type='submit' name='crear' id='crear' value='Crear artículo' />
 
    </form>
 $mensaje
