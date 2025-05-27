@@ -43,6 +43,7 @@ if(!$usuario->tokenValido($token))
       exit;
      }    
 
+$result = Utils::selectLimit($query, $desde,__FILE__, __LINE__);
 
 require("articulo_list.inc");
 ?>

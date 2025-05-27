@@ -32,6 +32,9 @@ define('TMP', '../tmp/');
 # Cantidad máxima de fotos por artículo
 define('MAX_FOTOS', 10);
 
+# Cantidad máxima de artículos por página
+define('MAX_ARTICULOS', 20);
+
 */
 
 require("config_data.inc");
@@ -62,6 +65,23 @@ class Utils
             }
          return $result;
         }
+
+     // Función que ejecuta una consulta SQL en un rango de registros y devuelve el resultado.
+     static public function selectLimit($query, $desde, $file, $line)
+        {if(!isset(self::$dbase))
+            {self::$dbase = new DBConecto();
+            }
+
+         try 
+            {$result = self::$dbase->db->SelectLimit($query, MAX_ARTICULOS, $desde);
+            } 
+         catch (Exception $e) 
+            {self::$dbase->db_error($e->getMessage(),$file,$line,$query);
+             return false;
+            }
+         return $result;
+        }
+
 
       // Función que inicia una transacción 
       static public function startTrans($file, $line)

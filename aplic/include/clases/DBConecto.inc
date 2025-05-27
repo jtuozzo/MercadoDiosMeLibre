@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo
     Función: Definición de la clase de conexión con la base de datos.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 20/05/2025.
+    Ultima modificación: 27/05/2025.
 */
 require('adodb.inc.php');
 
@@ -33,6 +33,12 @@ class DBConecto
 
        public function db_error($mensaje,$programa,$linea,$query="")
       		{$fecha=date("d/m/Y H:i:s");
+			 // Si el query es muy largo, dejo los primeros 1000 caracteres y dejo los últimos 1000 caracteres
+			 if(strlen($query)>2000)
+				{$query=substr($query,0,1000)."   /....../   ".substr($query,-1000);
+				}
+
+			 // Armo el mensaje de error
        	 	 $error_msg="
 $fecha Error acceso MySQL. programa: $programa, línea $linea
 mensaje: $mensaje
