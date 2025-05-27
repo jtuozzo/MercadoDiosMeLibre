@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de manejo de usuarios.
     Fecha de creación: 23/05/2025.
-    Ultima modificación: 24/05/2025.
+    Ultima modificación: 27/05/2025.
 */
 
 require("Mail.inc");
@@ -358,6 +358,22 @@ class User
                      }   
 
                  
+                }
+            }
+      public function tokenValido($token)
+            {// Verifica si el token es válido
+             $query = "SELECT user_id 
+                       FROM user 
+                       WHERE token='$token' 
+                       AND nivel > 0";
+
+             $result = Utils::execute($query, __FILE__, __LINE__);
+
+             if($result->recordCount() == 1)
+                {return true;
+                }
+             else
+                {return false;
                 }
             }
     }
