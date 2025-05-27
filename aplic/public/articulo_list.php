@@ -51,7 +51,7 @@ if(!isset($pagina))
      {// No está paginando, es un query nuevo
       $pagina = 1;
       $sentido ="ASC";
-      $orden = "id";
+      $orden = "articulo_id";
       $q_registros = $articulo->countArticulos($usuario->id);
      }
 

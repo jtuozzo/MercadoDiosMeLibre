@@ -210,8 +210,7 @@ class Articulo
           return $result->recordCount();
          }
     
-    public function queryArticulos($user_id, $orden, $sentido, 
-                                  $campos="articulo_id, titulo, descripcion, moneda, precio, en_venta, vendido_el")
+    public function queryArticulos($user_id, $orden, $sentido) 
          {if($this->solo_en_venta)
                {$en_venta=" AND en_venta='S'";
                }
@@ -219,9 +218,11 @@ class Articulo
                {$en_venta="";
                }
 
-          return "SELECT $campos
-                  FROM articulo
+          return "SELECT ar.articulo_id, ar.titulo, ar.descripcion, ar.moneda, ar.precio, ar.en_venta, ar.vendido_el, af.articulo_foto_id
+                  FROM articulo ar
+                  JOIN articulo_foto af ON af.articulo_id=ar.articulo_id
                   WHERE user_id='$user_id'
+                  AND af.principal='S'
                   $en_venta
                   ORDER BY $orden $sentido";
          }
