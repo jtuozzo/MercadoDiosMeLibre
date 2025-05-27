@@ -11,10 +11,12 @@ $css_local = "articulo_list.css";
 
 require_once('head.inc');
 echo "
+<script type='text/javascript' src='./js/articulo_list.js'></script>
 <div id='list_articulos'>";
 
 if($result->recordCount()==0)
-    {echo "<div class='sin'>
+    {echo "<script type='text/javascript'>sin_articulos()</script>
+          <div class='sin'>
                     <img src='./images/estanteria.png' />
                     <h1>Sin artículos a la venta</h1>
           </div>";

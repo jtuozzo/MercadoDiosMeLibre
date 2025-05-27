@@ -1,6 +1,6 @@
 /*  Nombre: articulo.js
     Autor: Julio Tuozzo
-    Función: Javascript del login de usuario.
+    Función: Javascript del artículo.
     Fecha de creación: 26/05/2025.
     Ultima modificación: 26/05/2025.
 */
