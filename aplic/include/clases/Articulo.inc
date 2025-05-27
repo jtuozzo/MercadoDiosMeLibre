@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de los artículos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 26/05/2025.
+    Ultima modificación: 27/05/2025.
 */
 
 
@@ -17,6 +17,7 @@ class Articulo
      public $titulo_err = "";
      public $descripcion_err = "";
      public $precio_err = "";
+     public $solo_en_venta = true;
      
 
      public function __construct()
@@ -199,6 +200,31 @@ class Articulo
 
          }
 
+    public function countArticulos($user_id)
+         {$query = "SELECT articulo_id
+                    FROM articulo
+                    WHERE user_id='$user_id'";
+
+          $result = Utils::execute($query,__FILE__,__LINE__);
+
+          return $result->recordCount();
+         }
+    
+    public function queryArticulos($user_id, $orden, $sentido, 
+                                  $campos="articulo_id, titulo, descripcion, moneda, precio, en_venta, vendido_el")
+         {if($this->solo_en_venta)
+               {$en_venta=" AND en_venta='S'";
+               }
+          else
+               {$en_venta="";
+               }
+
+          return "SELECT $campos
+                  FROM articulo
+                  WHERE user_id='$user_id'
+                  $en_venta
+                  ORDER BY $orden $sentido";
+         }
    }
     
 ?>

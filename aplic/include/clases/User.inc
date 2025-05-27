@@ -24,6 +24,7 @@ class User
      public $email_err = "";
      public $send_mail_err = "";
      public $msg_error = "";
+     public $id;
         
      static public function getUser($email, $clave)
         {$query = "SELECT user_id, apellidos, nombres, email, nivel, clave, token 
@@ -370,7 +371,8 @@ class User
              $result = Utils::execute($query, __FILE__, __LINE__);
 
              if($result->recordCount() == 1)
-                {return true;
+                {$this->id=$result->fields['user_id'];
+                 return true;
                 }
              else
                 {return false;
