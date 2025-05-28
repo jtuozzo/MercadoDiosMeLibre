@@ -9,26 +9,32 @@
 
 session_start();
 
+require("Utils.inc");
+require("Articulo.inc");
+
+$articulo = new Articulo;
+
 // Inicializo GETS y POSTS
 
-foreach($_GET as $clave=>$valor)
-    {$$clave = $valor;
+if(isset($_GET['id']))
+    {$articulo->articulo_id=$_GET['id'];
     }
 
-foreach($_POST as $clave=>$valor)
-    {$$clave = $valor;
-    }
+foreach($_POST as $key => $valor)
+     {if(isset($articulo->$key))
+          {$articulo->$key=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
+          }
+      else     
+          {$$key=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
+          }
+     }
 
-if(!isset($articulo_id))
+if(!isset($articulo->articulo_id))
     {// No hay artículo
      header("Location: index.php");
      exit;
     }
 
-require("Utils.inc");
-require("Articulo.inc");
-
-$articulo = new Articulo;
 
 if(isset($modificar))
     {// Armo los array de fotos
@@ -37,15 +43,17 @@ if(isset($modificar))
     for($i=1; $i<=MAX_FOTOS; $i++)
         {$aux="articulo_foto_id_{$i}";
          if(isset($$aux))
-            {$fotos_actuales[]=$$aux;
+            {$fotos_actuales[$i]=$$aux;
             }
          elseif(isset($_FILES["foto_$i"]))
-            {$fotos_nuevas[]= $_FILES["foto_$i"]; 
+            {$fotos_nuevas[$i]= $_FILES["foto_$i"]; 
+            }
+         else
+            {$fotos_actuales[$i]="";
             }
         }
-
         
-     if(!modifArticulo($articulo_id, $articulo->titulo, $articulo->descripcion, $articulo->moneda, $articulo->precio, $fotos_actuales, $fotos_nuevas))
+     if($articulo->modifArticulo($articulo->articulo_id, $articulo->titulo, $articulo->descripcion, $articulo->moneda, $articulo->precio, $fotos_actuales, $fotos_nuevas))
             {$mensaje="<script language='javascript'>
                         Swal.fire({
                         icon:'success',
@@ -60,13 +68,14 @@ if(isset($modificar))
                      </script>";
             }
         else
-            {$mensaje=Utils::msgError();
+            {$articulo->las_fotos = $fotos_actuales;
+             $mensaje=Utils::msgError();
             }
     }
 else
     {// Trae los datos del artículo
 
-    if (!$articulo->getArticulo($articulo_id))
+    if (!$articulo->getArticulo($articulo->articulo_id))
         {header("Location: index.php");
         exit;
         }
@@ -82,7 +91,7 @@ if(isset($_SESSION['DML_USER_ID']) and $_SESSION['DML_USER_ID']==$articulo->user
     }
 else    
     {// Lo puede ver y comprar
-     
+
     }
 
 ?>

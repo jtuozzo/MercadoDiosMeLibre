@@ -56,8 +56,8 @@ function delHayFoto(i) {
     })
         .then((result) => {
             if (result.isConfirmed) {
-                $('#id_foto_' + i).hide(500)
-                    .then(function () { $('#id_foto_' + i).remove(); })
+                $('#id_foto_' + i).hide(500);
+                $('#articulo_foto_id_' + i).val('');
 
                 if ($('#nueva_foto').is(':hidden')) {
                     $('#nueva_foto').show(500);

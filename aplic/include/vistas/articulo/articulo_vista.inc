@@ -33,6 +33,7 @@ echo "
     $encabezado
     <form enctype='multipart/form-data' action='{$_SERVER['PHP_SELF']}' method='post' id='form'>
         <input type='hidden' name='articulo_id' value='{$articulo->articulo_id}'/>
+        <input type='hidden' name='user_id' value='{$articulo->user_id}'/>
 
         <div class='linea_1'>
             <div>

@@ -28,7 +28,7 @@ while(!$result->EOF)
             }
 
       $precio=number_format($precio,2,",",".");
-      echo "<div class='un_articulo' onCLick=\"window.open('articuloGet.php?articulo_id=$articulo_id')\">
+      echo "<div class='un_articulo' onCLick=\"window.open('articuloGet.php?id=$articulo_id')\">
                 <img src='getFoto.php?id=$articulo_foto_id' alt='$titulo'>
 
             <div class='titulo'>$titulo</div>

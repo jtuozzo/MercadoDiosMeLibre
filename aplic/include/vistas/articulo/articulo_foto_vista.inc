@@ -13,12 +13,14 @@ echo "<div id='foto'>
         <div class='hay_fotos'>";
 
         for($i=1; $i<=count($articulo->las_fotos); $i++)
-            {$articulo_foto_id="articulo_foto_id_{$i}";
-             echo "<div id='id_foto_$i' class='hay_foto'>
-                        <input type='hidden' name='{$articulo_foto_id}' value={$articulo->las_fotos[$i]} />
-                        <input class='del_foto' type='button' onclick='delHayFoto($i)' title='Elimina foto'> <img src='getFoto.php?id={$articulo->las_fotos[$i]} alt='SIN FOTO'> 
-                  $ppal </div> ";
-             $ppal="";
+            {if(strlen($articulo->las_fotos[$i])>0)
+                    {$articulo_foto_id="articulo_foto_id_{$i}";
+                    echo "<div id='id_foto_$i' class='hay_foto'>
+                                <input type='hidden' name='{$articulo_foto_id}' id='{$articulo_foto_id}' value='{$articulo->las_fotos[$i]}' />
+                                <input class='del_foto' type='button' onclick='delHayFoto($i)' title='Elimina foto'> <img src='getFoto.php?id={$articulo->las_fotos[$i]} alt='SIN FOTO'> 
+                        $ppal </div> ";
+                    $ppal="";
+                    }
             }
         echo "</div>
         <label>

@@ -111,6 +111,13 @@ class Articulo
           
          }
 
+      public function modifArticulo($articulo_id, $titulo, $descripcion, $moneda, $precio, $fotos_actuales, $fotos_nuevas)
+            {if(!$this->validoArticulo($titulo, $descripcion, $precio))
+                  {return false;
+                  }
+
+            }
+
       private function validoArticulo($titulo, $descripcion, $precio)
          {$todo_ok = true;
           $obligatorios = array('titulo', 'descripcion', 'precio');
