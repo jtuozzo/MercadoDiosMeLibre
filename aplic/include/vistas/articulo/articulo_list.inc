@@ -28,13 +28,13 @@ while(!$result->EOF)
             }
 
       $precio=number_format($precio,2,",",".");
-      echo "<a href='articuloGet.php?id=$articulo_id' class='un_articulo'>
+      echo "<div class='un_articulo' onCLick=\"window.open('articuloGet.php?articulo_id=$articulo_id')\">
                 <img src='getFoto.php?id=$articulo_foto_id' alt='$titulo'>
 
             <div class='titulo'>$titulo</div>
             <div class='precio'>$moneda $precio</div>
 
-            </a>";
+            </div>";
 
      $result->moveNext();
     }

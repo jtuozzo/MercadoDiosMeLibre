@@ -9,7 +9,8 @@
 
 #[AllowDynamicProperties]
 class Articulo
-    {public $st_titulo = "";
+    {public $articulo_id = 0;
+     public $st_titulo = "";
      public $st_descripcion = "";
      public $st_precio = "";
      public $sel_ARS = "";
@@ -263,7 +264,7 @@ class Articulo
           
           // Trae los datos de un artículo
 
-          $query = "SELECT user_id, titulo, descripcion, moneda, precio
+          $query = "SELECT articulo_id, user_id, titulo, descripcion, moneda, precio
                     FROM articulo 
                     WHERE articulo_id='$articulo_id'";
 

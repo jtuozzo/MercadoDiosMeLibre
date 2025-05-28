@@ -2,7 +2,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos general
     Fecha de creación: 17/05/2025.
-    Ultima modificación: 25/05/2025.
+    Ultima modificación: 28/05/2025.
 */
 
 * {
@@ -142,6 +142,13 @@ header {
 
 .paginado img {
     width: 36px;
+}
+
+.botonera {
+  display: flex;
+  justify-content: space-between;
+  line-height: 22px;
+  margin: 15px 50px 15px 50px;
 }
 
 /* -----------------  Tablet y Desktop  ----------------- */

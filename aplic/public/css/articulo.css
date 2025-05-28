@@ -11,7 +11,8 @@ label {
     margin-top: 0.8em;
 }
 
-input[type="submit"] {
+input[type="submit"],
+input[type="button"] {
     margin-top: 24px;
 }
 
@@ -36,7 +37,7 @@ input[type="submit"] {
 }
 
 #precio {
- text-align: right;
+    text-align: right;
 }
 
 #descripcion {

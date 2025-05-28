@@ -14,12 +14,12 @@ $css_local = "articulo.css";
 switch ($articulo->vista)
     {case "A": // Alta
         $encabezado = "<h1>Crear Articulo</h1>";
+        $cerrar="";
         break;
      case "M": // Modifica
         $encabezado = "<h1>Modificar Articulo</h1>";
+        $cerrar="<input type='button' class='boton' value='Cerrar' onClick='window.close()' />";
         break;
-     case "C": // Consulta y compra
-        $encabezado = "<h2>{$articulo->titulo}</h2>";
     }
 
 
@@ -30,6 +30,7 @@ echo "
 <div id='articulo'>
     $encabezado
     <form enctype='multipart/form-data' action='{$_SERVER['PHP_SELF']}' method='post' id='form'>
+        <input type='hidden' name='articulo_id' value='{$articulo->articulo_id}'/>
 
         <div class='linea_1'>
             <div>
@@ -80,7 +81,11 @@ echo "<input class='del_foto' type='button' onclick='delFoto($i)' title='Elimina
                   $ppal </div> ";
             }
     echo "</div>
-          <input class='boton' type='submit' name='crear' id='crear' value='Crear artículo' />
+         <div class='botonera'>
+            <div></div>
+            <input class='boton' type='submit' name='crear' id='crear' value='Crear artículo' />
+            {$cerrar}
+         </div> 
 
    </form>
 $mensaje
