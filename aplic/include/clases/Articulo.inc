@@ -4,10 +4,10 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de los artículos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 27/05/2025.
+    Ultima modificación: 28/05/2025.
 */
 
-
+#[AllowDynamicProperties]
 class Articulo
     {public $st_titulo = "";
      public $st_descripcion = "";
@@ -20,6 +20,12 @@ class Articulo
      public $solo_en_venta = true;
      public $foto;
      public $foto_tipo_file;
+     public $las_fotos = array();
+     public $titulo;
+     public $descripcion;
+     public $moneda;
+     public $precio;
+
      
 
      public function __construct()
@@ -247,6 +253,45 @@ class Articulo
                {return false;
                }
 
+         }
+
+    public function getArticulo($articulo_id)
+         {if(!is_numeric($articulo_id))
+               {return false;
+               }
+          
+          // Trae los datos de un artículo
+
+          $query = "SELECT titulo, descripcion, moneda, precio
+                    FROM articulo 
+                    WHERE articulo_id='$articulo_id'";
+
+          $result = Utils::execute($query,__FILE__,__LINE__);
+
+          if($result->recordCount()==0)
+               {return false;
+               }
+            
+          foreach($result->fileds as $campo=>$valor)
+               {$this->$campo=htmlentities($valor,ENT_QUOTES,"UTF-8");
+               }
+
+          // Busco las fotos
+
+          $query = "SELECT foto, foto_tipo_file
+                    FROM articulo_foto
+                    WHERE articulo_id='$articulo_id'
+                    ORDER BY principal DESC";
+
+          $result = Utils::execute($query,__FILE__,__LINE__);
+
+          while(!$result->EOF)
+               {foreach($result->fileds as $campo=>$valor)
+                     {$this->$campo=$valor;
+                     }
+                $result->moveNext();
+               }
+          return true;
          }
    }
     
