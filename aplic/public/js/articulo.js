@@ -13,8 +13,8 @@ window.onload = function () {
 }
 
 window.addEventListener('beforeunload', function (event) {
-     $('#crear').val('Aguarde . . .');
-     $('#crear').prop('disabled', true);
+    $('#crear').val('Aguarde . . .');
+    $('#crear').prop('disabled', true);
 });
 
 
@@ -37,9 +37,35 @@ function delFoto(i) {
     $('#foto_' + i).val('');
     $('#id_foto_' + i).hide(500);
 
-
     if ($('#nueva_foto').is(':hidden')) {
         $('#nueva_foto').show(500);
     }
+
+}
+function delHayFoto(i) {
+
+    Swal.fire({
+        title: 'Elimina la foto??',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#1b998b',
+        cancelButtonColor: '#d7263d',
+        cancelButtonText: 'No',
+        confirmButtonText: 'Si',
+        focusCancel: true
+    })
+        .then((result) => {
+            if (result.isConfirmed) {
+                $('#id_foto_' + i).hide(500)
+                    .then(function () { $('#id_foto_' + i).remove(); })
+
+                if ($('#nueva_foto').is(':hidden')) {
+                    $('#nueva_foto').show(500);
+                }
+
+            }
+        }
+        )
+
 
 }

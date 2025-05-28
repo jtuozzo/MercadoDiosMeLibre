@@ -16,7 +16,7 @@ echo "<div id='foto'>
             {$articulo_foto_id="articulo_foto_id_{$i}";
              echo "<div id='id_foto_$i' class='hay_foto'>
                         <input type='hidden' name='{$articulo_foto_id}' value={$articulo->las_fotos[$i]} />
-                        <input class='del_foto' type='button' onclick='delFoto($i)' title='Elimina foto'> <img src='getFoto.php?id={$articulo->las_fotos[$i]} alt='SIN FOTO'> 
+                        <input class='del_foto' type='button' onclick='delHayFoto($i)' title='Elimina foto'> <img src='getFoto.php?id={$articulo->las_fotos[$i]} alt='SIN FOTO'> 
                   $ppal </div> ";
              $ppal="";
             }
