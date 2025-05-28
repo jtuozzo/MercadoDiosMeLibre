@@ -14,11 +14,13 @@ $css_local = "articulo.css";
 switch ($articulo->vista)
     {case "A": // Alta
         $encabezado = "<h1>Crear Articulo</h1>";
+        $guardar="<input class='boton' type='submit' name='crear' id='crear' value='Crear artículo' />";
         $cerrar="";
         break;
      case "M": // Modifica
         $encabezado = "<h1>Modificar Articulo</h1>";
         $cerrar="<input type='button' class='boton' value='Cerrar' onClick='window.close()' />";
+        $guardar="<input class='boton' type='submit' name='modificar' id='crear' value='Modificar artículo' />";
         break;
     }
 
@@ -83,7 +85,7 @@ echo "<input class='del_foto' type='button' onclick='delFoto($i)' title='Elimina
     echo "</div>
          <div class='botonera'>
             <div></div>
-            <input class='boton' type='submit' name='crear' id='crear' value='Crear artículo' />
+            {$guardar}
             {$cerrar}
          </div> 
 

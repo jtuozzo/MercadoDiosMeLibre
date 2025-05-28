@@ -43,35 +43,14 @@ class Articulo
       
       
      public function crearArticulo($titulo, $descripcion, $moneda, $precio, $fotos)
-         {$todo_ok = true; 
-            
-          // Preparo el array con las fotos
+         {// Preparo el array con las fotos
           $las_fotos = $this->armoFotos($fotos);
 
           // Inicializo el select del tipo de moneda
           $aux="sel_{$moneda}";
           $this->$aux = "selected='selected'";
-
-          $obligativos = array('titulo', 'descripcion', 'precio');
-          
-         // Valido los campos obligatorios
-         foreach($obligativos as $campo)
-            {if(empty($$campo))
-               {$this->{$campo . '_err'} = "<span class='error'>Campo obligatorio.</span>";
-               $this->{'st_' . $campo} = "class='st_error'";
-                $todo_ok = false;
-               }
-            }
-
-          $precio = str_replace(",",".", $precio);
-          if(!is_numeric($precio) || $precio <= 0)
-             {$this->precio_err = "<span class='error'>El precio debe ser un número positivo.</span>";
-              $this->st_precio = "class='st_error'";
-              $todo_ok = false;
-             }
-            
            
-          if($todo_ok)
+          if($this->validoArticulo($titulo,$descripcion,$precio))
              {// Inicio la transacción
                 Utils::startTrans(__FILE__, __LINE__);
 
@@ -123,9 +102,35 @@ class Articulo
 
                // Fin de la transacción
                Utils::completeTrans(__FILE__, __LINE__);
-
+               return true;
+             }
+          else
+             {return false;
              }
           
+          
+         }
+
+      private function validoArticulo($titulo, $descripcion, $precio)
+         {$todo_ok = true;
+          $obligatorios = array('titulo', 'descripcion', 'precio');
+
+         // Valido los campos obligatorios
+         foreach($obligatorios as $campo)
+            {if(empty($$campo))
+               {$this->{$campo . '_err'} = "<span class='error'>Campo obligatorio.</span>";
+                $this->{'st_' . $campo} = "class='st_error'";
+                $todo_ok = false;
+               }
+            }
+
+          $precio = str_replace(",",".", $precio);
+          if(!is_numeric($precio) || $precio <= 0)
+             {$this->precio_err = "<span class='error'>El precio debe ser un número positivo.</span>";
+              $this->st_precio = "class='st_error'";
+              $todo_ok = false;
+             }
+
           return $todo_ok;
          }
 
@@ -137,7 +142,7 @@ class Articulo
           $foto = array();
           $las_fotos = array();
             
-          for($i = 1; $i <= MAX_FOTOS; $i++)
+          for($i = 1; $i <= count($fotos); $i++)
                {if(strlen($fotos[$i]['tmp_name'])>0)
                   {$tmp[$i] = $fotos[$i]['tmp_name'];
                    $foto_tamanio[$i] = $fotos[$i]['size'];
