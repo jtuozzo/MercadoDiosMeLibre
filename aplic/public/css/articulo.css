@@ -45,6 +45,7 @@ input[type="button"] {
 }
 
 #nueva_foto {
+    margin: 0;
     height: 32px;
     width: 32px;
     border: 0;
@@ -61,22 +62,37 @@ input[type="button"] {
 }
 
 .foto {
-    margin-top: 0.8em;
     display: none;
     white-space: nowrap;
+}
+
+.ppal_side {
+    font-weight: bold;
 }
 
 .nota {
     font-style: italic;
 }
 
-.foto_principal {
-    position: absolute;
-    right: 25px;
-    margin-top: 10px;
+.hay_fotos {
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
 }
 
+.hay_foto {
+    padding: 0.8em;
+    width: 30%;
+    min-width: 280px;
+    margin: auto;
+    background-color: #ececec;
+    border-radius: 12px;
+}
 
+.hay_foto img {
+    width: 100%;
+    border-radius: 12px;
+}
 
 /* -----------------  Tablet y Desktop  ----------------- */
 
@@ -110,4 +126,11 @@ input[type="button"] {
     .linea_2 label {
         margin-top: 0;
     }
+
+
+    .hay_foto {
+        width: 20%;
+        min-width: 360px;
+    }
+
 }

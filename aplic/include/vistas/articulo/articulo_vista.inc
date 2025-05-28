@@ -55,35 +55,11 @@ echo "
         <div class='linea_2'>
             <label for='descripcion'> Descripción: </label>
             <textarea name='descripcion' id='descripcion' rows='5'  {$articulo->st_descripcion} required='required'>{$articulo->descripcion}</textarea> {$articulo->descripcion_err}
-        </div>
+        </div>";
 
-        <div id='foto'>
-        <label>
-            <input id='nueva_foto' type='button' onclick='addFoto(".MAX_FOTOS.")' title='Agregar fotos'>
-            <strong>Fotos</strong> 
-            <span class='nota'> (Máximo ".MAX_FOTOS." fotos) </span>
-        </label>";
+require("articulo_foto_vista.inc");
 
-        for($i = 1; $i <= MAX_FOTOS; $i++)
-            {$foto = "foto_$i";
-             $foto_err = "foto_err_{$i}";
-             $st_foto = "st_foto_$i";
-            
-             echo "<div id='id_foto_$i' class='foto'>";
-
-                if($i==1)
-                    {$ppal = "<div class='ppal_side'><strong >Foto principal</strong></div>";
-                    }
-
-                else
-                    {$ppal = "";
-                    }
-
-echo "<input class='del_foto' type='button' onclick='delFoto($i)' title='Elimina foto'> <input type='file' name='$foto' id='$foto' accept='image/*' {$articulo->$st_foto}> {$articulo->$foto_err}
-                  $ppal </div> ";
-            }
-    echo "</div>
-         <div class='botonera'>
+echo       " <div class='botonera'>
             <div></div>
             {$guardar}
             {$cerrar}

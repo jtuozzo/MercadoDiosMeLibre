@@ -289,17 +289,18 @@ class Articulo
 
           // Busco las fotos
 
-          $query = "SELECT foto, foto_tipo_file
+          $query = "SELECT articulo_foto_id
                     FROM articulo_foto
                     WHERE articulo_id='$articulo_id'
                     ORDER BY principal DESC";
 
           $result = Utils::execute($query,__FILE__,__LINE__);
-
+          $i=0;
           while(!$result->EOF)
-               {foreach($result->fields as $campo=>$valor)
-                     {$this->$campo=$valor;
-                     }
+               {$i++;
+
+                $this->las_fotos[$i]=$result->fields['articulo_foto_id'];
+
                 $result->moveNext();
                }
           return true;

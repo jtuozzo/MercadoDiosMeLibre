@@ -27,6 +27,7 @@ function addFoto(max_fotos) {
         }
         if ($('#id_' + foto).is(':hidden')) {
             $('#id_' + foto).show(500);
+            $('#' + foto).focus();
             break;
         }
     }
