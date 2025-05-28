@@ -18,13 +18,15 @@ class Articulo
      public $descripcion_err = "";
      public $precio_err = "";
      public $solo_en_venta = true;
-     public $foto;
-     public $foto_tipo_file;
+     public $foto = "";
+     public $foto_tipo_file = "";
      public $las_fotos = array();
-     public $titulo;
-     public $descripcion;
-     public $moneda;
-     public $precio;
+     public $titulo = "";
+     public $descripcion = "";
+     public $moneda = "";
+     public $precio = "";
+     public $user_id = "";
+     public $vista = ""; // Define el tipo de vista de artículo que va a haber
 
      
 
@@ -46,7 +48,6 @@ class Articulo
           $las_fotos = $this->armoFotos($fotos);
 
           // Inicializo el select del tipo de moneda
-
           $aux="sel_{$moneda}";
           $this->$aux = "selected='selected'";
 
@@ -99,7 +100,7 @@ class Articulo
 
                $articulo_id = mysqli_insert_id(Utils::$dbase->db->_connectionID);
                $principal = 'S';
-               for($i = 1; $i <= MAX_FOTOS; $i++)
+               for($i = 1; $i <= count($las_fotos); $i++)
                   {if(strlen($las_fotos[$i]['foto'])>0)
                      {// Inserto la foto en la base de datos
                       $query = "INSERT INTO articulo_foto VALUES
@@ -192,15 +193,15 @@ class Articulo
                                     fclose($fp);
                                  }
                               }
-
+                        $las_fotos[$i] = array(
+                                                'foto' => $foto[$i],
+                                                'tamanio' => $foto_tamanio[$i],
+                                                'tipo_file' => $foto_tipo_file[$i],
+                                                'nombre_file' => $foto_nombre_file[$i]
+                                             );
                         }
 
-                     $las_fotos[$i] = array(
-                        'foto' => $foto[$i],
-                        'tamanio' => $foto_tamanio[$i],
-                        'tipo_file' => $foto_tipo_file[$i],
-                        'nombre_file' => $foto_nombre_file[$i]
-                     );
+                    
 
                    }
       
@@ -262,7 +263,7 @@ class Articulo
           
           // Trae los datos de un artículo
 
-          $query = "SELECT titulo, descripcion, moneda, precio
+          $query = "SELECT user_id, titulo, descripcion, moneda, precio
                     FROM articulo 
                     WHERE articulo_id='$articulo_id'";
 
@@ -272,9 +273,13 @@ class Articulo
                {return false;
                }
             
-          foreach($result->fileds as $campo=>$valor)
+          foreach($result->fields as $campo=>$valor)
                {$this->$campo=htmlentities($valor,ENT_QUOTES,"UTF-8");
                }
+
+          // Inicializo el select del tipo de moneda
+          $aux="sel_{$this->moneda}";
+          $this->$aux = "selected='selected'";
 
           // Busco las fotos
 
@@ -286,7 +291,7 @@ class Articulo
           $result = Utils::execute($query,__FILE__,__LINE__);
 
           while(!$result->EOF)
-               {foreach($result->fileds as $campo=>$valor)
+               {foreach($result->fields as $campo=>$valor)
                      {$this->$campo=$valor;
                      }
                 $result->moveNext();

@@ -1,6 +1,6 @@
 <?php
 /*
-    Nombre: getArticulo.php
+    Nombre: articuloGet.php
     Autor: Julio Tuozzo.
     Función: Ver / Editar un artículo.
     Fecha de creación: 28/05/2025.
@@ -27,5 +27,18 @@ if (!$articulo->getArticulo($_GET['id']))
      exit;
     }
 
+// Defino el tipo de vista del artículo
+
+if(isset($_SESSION['DML_USER_ID']) and $_SESSION['DML_USER_ID']==$articulo->user_id)
+    {// El artículo es del usuario, es una vista de edición y lo puede modificar
+     $articulo->vista="M";
+    }
+else    
+    {// Lo puede ver y comprar
+     $articulo->vista="C";
+    }
+// Traigo la vista con los datos del artículo
+$mensaje="";
+require("articulo_vista.inc");
 
 ?>

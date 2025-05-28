@@ -3,7 +3,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 26/05/2025.
+    Ultima modificación: 28/05/2025.
 */
 
 label {
@@ -25,7 +25,14 @@ input[type="submit"] {
 
 #articulo h1 {
     font-size: 2em;
-    margin-top: 0.3em;
+    margin-top: 0.2em;
+    margin-bottom: 0.1em;
+}
+
+#articulo h2 {
+    font-size: 1.8em;
+    margin-top: 0.2em;
+    margin-bottom: 0.1em;
 }
 
 #precio {
@@ -37,8 +44,8 @@ input[type="submit"] {
 }
 
 #nueva_foto {
-    height: 24px;
-    width: 24px;
+    height: 32px;
+    width: 32px;
     border: 0;
     cursor: pointer;
     background: url(../images/agregar.png) no-repeat left;

@@ -28,7 +28,7 @@ while(!$result->EOF)
             }
 
       $precio=number_format($precio,2,",",".");
-      echo "<a href='getArticulo.php?id=$articulo_id' class='un_articulo'>
+      echo "<a href='articuloGet.php?id=$articulo_id' class='un_articulo'>
                 <img src='getFoto.php?id=$articulo_foto_id' alt='$titulo'>
 
             <div class='titulo'>$titulo</div>

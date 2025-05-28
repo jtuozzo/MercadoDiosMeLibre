@@ -129,10 +129,10 @@ class Utils
 
       static public function getIP()
             {if ($_SERVER)
-                  {if ( $_SERVER["HTTP_X_FORWARDED_FOR"] )
+                  {if (isset($_SERVER["HTTP_X_FORWARDED_FOR"]) and $_SERVER["HTTP_X_FORWARDED_FOR"] )
                      {$realip = $_SERVER["HTTP_X_FORWARDED_FOR"];
                      }
-                  elseif ( $_SERVER["HTTP_CLIENT_IP"] )
+                  elseif (isset($_SERVER["HTTP_CLIENT_IP"]) and  $_SERVER["HTTP_CLIENT_IP"] )
                      {$realip = $_SERVER["HTTP_CLIENT_IP"];
                      }
                   else
@@ -216,8 +216,8 @@ class Utils
 
          if ($pagina<($q_registros/MAX_ARTICULOS))
             {$pag=$pagina+1;
-            $ultima=intval($q_registros/MAX_ARTICULOS)+1;
-            $paginador.= "&nbsp;
+             $ultima=intval(($q_registros-1)/MAX_ARTICULOS)+1;
+             $paginador.= "&nbsp;
                   <a href='{$_SERVER['PHP_SELF']}?pagina=$pag&q_registros=$q_registros&orden=$orden&sentido=$sentido'><strong>
                   <img src='./images/go-next.png' alt='|Sig.>' border='0' /></a> &nbsp;
                   <a href='{$_SERVER['PHP_SELF']}?pagina=$ultima&q_registros=$q_registros&orden=$orden&sentido=$sentido'>

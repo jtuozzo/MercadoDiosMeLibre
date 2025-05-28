@@ -17,18 +17,26 @@ if(!isset($_SESSION['DML_NIVEL']) or $_SESSION['DML_NIVEL'] < 2)
 
 require("Utils.inc");
 require("Articulo.inc");
+$articulo = new Articulo();
+
+// Defino la vista del artículo como Alta
+$articulo->vista="A";
 
 // Guardo los datos posteados en variables
-
 foreach($_POST as $key => $valor)
-     {$$key=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
+     {if(isset($articulo->$key))
+          {$articulo->$key=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
+          }
+      else     
+          {$$key=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
+          }
      }
 
-$articulo = new Articulo();
+
 
 if(!isset($_POST['crear']))
      {// No se ha enviado el formulario, muestro la vista
-      $titulo=$descripcion=$precio=$mensaje="";
+      $mensaje="";
       require("articulo_vista.inc");
       exit;
      }
@@ -39,7 +47,7 @@ for($i=1; $i<=MAX_FOTOS; $i++)
      {$fotos[$i] = $_FILES["foto_$i"]; 
      }
 
-if(!$articulo->crearArticulo($titulo, $descripcion, $moneda, $precio, $fotos))
+if(!$articulo->crearArticulo($articulo->titulo, $articulo->descripcion, $articulo->moneda, $articulo->precio, $fotos))
         {// No se pudo crear el artículo
          $mensaje=Utils::msgError();
         }
@@ -54,9 +62,14 @@ if(!$articulo->crearArticulo($titulo, $descripcion, $moneda, $precio, $fotos))
                         })
                      </script>";
         foreach($_POST as $key => $valor)
-            {$$key="";
+            {if(isset($articulo->$key))
+                    {$articulo->$key="";
+                    }
+             else     
+                    {$$key="";
+                    }
             }
         }
-     
+
 require("articulo_vista.inc");
 ?>
