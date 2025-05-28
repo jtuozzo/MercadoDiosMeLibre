@@ -61,7 +61,7 @@ $desde = ($pagina - 1) * MAX_ARTICULOS;
 
 $query = $articulo->queryArticulos($usuario->id, $orden, $sentido);
 
-$result = Utils::selectLimit($query, $desde,__FILE__, __LINE__);
+$result = Utils::selectLimit($query, $desde,__FILE__, __LINE__); 
 
 
 if($sentido=="DESC")

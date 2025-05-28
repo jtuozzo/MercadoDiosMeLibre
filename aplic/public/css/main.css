@@ -130,6 +130,19 @@ header {
     background: gainsboro;
 }
 
+.paginado {
+    text-align: center;
+    margin-top: 1.5em;
+    margin-bottom: 2em;
+    font-size: 1.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paginado img {
+    width: 36px;
+}
 
 /* -----------------  Tablet y Desktop  ----------------- */
 
@@ -184,5 +197,9 @@ header {
         border: none;
         margin: 0 1em;
         cursor: pointer;
+    }
+
+    .paginado img {
+        width: 48px;
     }
 }

@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista del listado de artículos.
     Fecha de creación: 27/05/2025.
-    Ultima modificación: 27/05/2025.
+    Ultima modificación: 28/05/2025.
 */
 
 $css_local = "articulo_list.css";
@@ -40,5 +40,6 @@ while(!$result->EOF)
     }
 
 echo "</div>";
+echo Utils::paginador($pagina,$q_registros,$orden,$sentido);
 require_once('foot.inc');
 ?>
