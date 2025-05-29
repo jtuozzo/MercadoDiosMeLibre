@@ -42,6 +42,7 @@ function delFoto(i) {
     }
 
 }
+
 function delHayFoto(i) {
 
     Swal.fire({
@@ -65,3 +66,8 @@ function delHayFoto(i) {
 
 
 }
+
+function setFotoPpal(articulo_foto_id)
+        {$('#fotoPpal').attr('src', 'getFoto.php?id=' + articulo_foto_id);
+        }
+

@@ -24,7 +24,7 @@ require("articulo_comprador_foto.inc");
 echo       "<form enctype='multipart/form-data' action='{$_SERVER['PHP_SELF']}' method='post' id='form'>
 <div class='botonera'>
             <div></div>
-            <input class='boton' type='submit' name='comprar' id='comprar' value='Comprar artículo' />
+            <input class='boton' type='submit' name='comprar' id='comprar' value='Quiero comprarlo' />
             <input type='button' class='boton' value='Cerrar' onClick='window.close()' />
          </div> 
 
