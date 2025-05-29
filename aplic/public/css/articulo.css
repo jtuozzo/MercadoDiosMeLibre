@@ -20,6 +20,9 @@ p {
     text-align: left;
     margin-top: 0.8em;
     margin-bottom: 0.4em;
+    border-radius: 12px;
+    border: 1px solid #1f2124;
+    padding: 0.4em;
 }
 
 #articulo {
