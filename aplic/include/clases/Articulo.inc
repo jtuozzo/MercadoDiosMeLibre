@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de los artículos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 28/05/2025.
+    Ultima modificación: 29/05/2025.
 */
 
 #[AllowDynamicProperties]
@@ -43,13 +43,11 @@ class Articulo
       
       
      public function crearArticulo($titulo, $descripcion, $moneda, $precio, $fotos)
-         {// Preparo el array con las fotos
-          $las_fotos = $this->armoFotos($fotos);
-
-          // Inicializo el select del tipo de moneda
+         {// Inicializo el select del tipo de moneda
           $aux="sel_{$moneda}";
           $this->$aux = "selected='selected'";
-           
+          $precio = str_replace(",",".", $precio);
+
           if($this->validoArticulo($titulo,$descripcion,$precio))
              {// Inicio la transacción
                 Utils::startTrans(__FILE__, __LINE__);
@@ -76,29 +74,13 @@ class Articulo
                $query =str_replace("''", "NULL", $query);
                $result = Utils::execute($query, __FILE__, __LINE__);
 
-               // Guarda las imágenes
-
                $articulo_id = mysqli_insert_id(Utils::$dbase->db->_connectionID);
-               $principal = 'S';
-               for($i = 1; $i <= count($las_fotos); $i++)
-                  {if(strlen($las_fotos[$i]['foto'])>0)
-                     {// Inserto la foto en la base de datos
-                      $query = "INSERT INTO articulo_foto VALUES
-                               (NULL,
-                                '$articulo_id',
-                                '$principal',
-                               '{$las_fotos[$i]['foto']}',
-                               '{$las_fotos[$i]['tipo_file']}',
-                               '{$_SESSION['DML_USER_ID']}',
-                               NOW(),
-                               '{$_SESSION['DML_USER_ID']}',
-                               NOW())";
 
-                      $query =str_replace("''", "NULL", $query);
-                      $result = Utils::execute($query, __FILE__, __LINE__);
-                      $principal = '';
-                     }
-                  }
+               // Preparo el array con las fotos
+               $las_fotos = $this->armoFotos($fotos);
+               // Guarda las fotos
+               $this->insertFotos($articulo_id, $las_fotos);
+              
 
                // Fin de la transacción
                Utils::completeTrans(__FILE__, __LINE__);
@@ -112,10 +94,53 @@ class Articulo
          }
 
       public function modifArticulo($articulo_id, $titulo, $descripcion, $moneda, $precio, $fotos_actuales, $fotos_nuevas)
-            {if(!$this->validoArticulo($titulo, $descripcion, $precio))
+            {$precio = str_replace(",",".", $precio);
+             if(!$this->validoArticulo($titulo, $descripcion, $precio))
                   {return false;
                   }
+             
+             // Inicio la transacción
+             Utils::startTrans(__FILE__, __LINE__);
+             
+             // Veo si hay que eliminar de la base de datos alguna de las fotos
 
+             $query ="SELECT articulo_foto_id
+                      FROM articulo_foto
+                      WHERE articulo_id='$articulo_id'";
+
+             $result = Utils::execute($query, __FILE__, __LINE__);
+             
+             while (!$result->EOF)
+                  {if(!in_array($result->fields['articulo_foto_id'], $fotos_actuales))
+                        {$query="DELETE FROM articulo_foto
+                                 WHERE articulo_foto_id='{$result->fields['articulo_foto_id']}'";
+                         
+                         $delete = Utils::execute($query, __FILE__, __LINE__);
+                        }
+                   $result->moveNext();
+                  }
+
+
+             // Modifico los datos en la tabla de artículos
+             $titulo = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($titulo,ENT_QUOTES,"UTF-8"));
+             $descripcion = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($descripcion,ENT_QUOTES,"UTF-8"));
+             
+             $query = "UPDATE articulo SET
+                       titulo='$titulo',
+                       descripcion = '$descripcion',
+                       moneda = '$moneda',
+                       precio = '$precio',
+                       update_user='{$_SESSION['DML_USER_ID']}',
+                       update_datetime=NOW()";
+
+             $result = Utils::execute($query, __FILE__, __LINE__);
+
+             // Inserto las fotos nuevas
+
+             $this->insertFotos($articulo_id, $fotos_nuevas);
+             // Fin de la transacción
+             Utils::completeTrans(__FILE__, __LINE__);
+             return true;
             }
 
       private function validoArticulo($titulo, $descripcion, $precio)
@@ -131,7 +156,6 @@ class Articulo
                }
             }
 
-          $precio = str_replace(",",".", $precio);
           if(!is_numeric($precio) || $precio <= 0)
              {$this->precio_err = "<span class='error'>El precio debe ser un número positivo.</span>";
               $this->st_precio = "class='st_error'";
@@ -221,6 +245,42 @@ class Articulo
                  return $las_fotos;
 
          }
+
+   private function insertFotos($articulo_id, $las_fotos)
+         {
+          // Inserta las fotos en la base de datos
+          for($i = 1; $i <= count($las_fotos); $i++)
+               {if(strlen($las_fotos[$i]['foto'])>0)
+                  {// Inserto la foto en la base de datos
+                     $query = "INSERT INTO articulo_foto VALUES
+                              (NULL,
+                              '$articulo_id',
+                               NULL,
+                              '{$las_fotos[$i]['foto']}',
+                              '{$las_fotos[$i]['tipo_file']}',
+                              '{$_SESSION['DML_USER_ID']}',
+                              NOW(),
+                              '{$_SESSION['DML_USER_ID']}',
+                              NOW())";
+
+                     $query =str_replace("''", "NULL", $query);
+                     $result = Utils::execute($query, __FILE__, __LINE__);
+                  }
+               }
+
+          // Marco la foto principal
+
+          $query="UPDATE articulo_foto
+                  SET principal='S'
+                  WHERE articulo_foto_id= (SELECT MIN(articulo_foto_id) 
+                                           FROM articulo_foto
+                                           WHERE articulo_id='$articulo_id')";
+
+          $result = Utils::execute($query, __FILE__, __LINE__);
+          
+          return;
+         }
+
 
     public function countArticulos($user_id)
          {$query = "SELECT articulo_id
