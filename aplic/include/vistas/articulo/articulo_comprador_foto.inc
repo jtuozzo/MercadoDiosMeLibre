@@ -1,15 +1,26 @@
 <?php
 /*
-    Nombre: articulo_foto_vista.inc
+    Nombre: articulo_comprador_foto.inc
     Autor: Julio Tuozzo.
-    Función: Vista de las fotos de un artículo.
-    Fecha de creación: 28/05/2025.
+    Función: Vista de las fotos de un artículo, desde el punto de vista del comprador.
+    Fecha de creación: 29/05/2025.
     Ultima modificación: 29/05/2025.
 */
 
-$ppal = "<div class='ppal_side'>Foto principal</div>";
+
+if(isset($articulo->las_fotos[1]))
+        {$img_ppal="<img src='getFoto.php?id={$articulo->las_fotos[1]}' alt='SIN FOTO'>"; 
+        }
+else    
+        {$img_ppal="<img src='./images/sin_foto.jpgos[$1]} alt='SIN FOTO'>"; 
+        }
 
 echo "<div id='foto'>
+        $img_ppal
+      </div>
+
+
+
         <div id='hay_fotos'>";
 
         for($i=1; $i<=count($articulo->las_fotos); $i++)
@@ -17,8 +28,8 @@ echo "<div id='foto'>
                     {$articulo_foto_id="articulo_foto_id_{$i}";
                     echo "<div id='id_articulo_foto_$i' class='hay_una_foto'>
                                 <input type='hidden' name='{$articulo_foto_id}' id='{$articulo_foto_id}' value='{$articulo->las_fotos[$i]}' />
-                                <input class='del_foto' type='button' onclick='delHayFoto($i)' title='Elimina foto'> <img src='getFoto.php?id={$articulo->las_fotos[$i]}' alt='SIN FOTO'> 
-                        $ppal </div> ";
+                                <input class='del_foto' type='button' onclick='delHayFoto($i)' title='Elimina foto'> <img src='getFoto.php?id={$articulo->las_fotos[$i]} alt='SIN FOTO'> 
+                        </div> ";
                     $ppal="";
                     }
             }
