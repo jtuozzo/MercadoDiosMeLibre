@@ -172,7 +172,7 @@ class Articulo
           $foto = array();
           $las_fotos = array();
             
-          for($i = 1; $i <= count($fotos); $i++)
+          for($i = 1; $i <= MAX_FOTOS; $i++)
                {if(isset($fotos[$i]) and strlen($fotos[$i]['tmp_name'])>0)
                   {$tmp[$i] = $fotos[$i]['tmp_name'];
                    $foto_tamanio[$i] = $fotos[$i]['size'];
@@ -250,8 +250,8 @@ class Articulo
           $las_fotos = $this->armoFotos($fotos);
 
           // Inserta las fotos en la base de datos
-          for($i = 1; $i <= count($las_fotos); $i++)
-               {if(strlen($las_fotos[$i]['foto'])>0)
+          for($i = 1; $i <= MAX_FOTOS; $i++)
+               {if(isset($las_fotos[$i]) and strlen($las_fotos[$i]['foto'])>0)
                   {// Inserto la foto en la base de datos
                      $query = "INSERT INTO articulo_foto VALUES
                               (NULL,

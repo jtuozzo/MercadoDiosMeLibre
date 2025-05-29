@@ -52,7 +52,7 @@ if(isset($modificar))
             {$fotos_actuales[$i]="";
             }
         }
-        
+
      if($articulo->modifArticulo($articulo->articulo_id, $articulo->titulo, $articulo->descripcion, $articulo->moneda, $articulo->precio, $fotos_actuales, $fotos_nuevas))
             {$mensaje="<script language='javascript'>
                         Swal.fire({

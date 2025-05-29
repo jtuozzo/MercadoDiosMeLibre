@@ -3,7 +3,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 28/05/2025.
+    Ultima modificación: 29/05/2025.
 */
 
 label {
@@ -53,6 +53,13 @@ input[type="button"] {
     background: url(../images/agregar.png) no-repeat left;
 }
 
+#hay_fotos {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
 .del_foto {
     height: 24px;
     width: 24px;
@@ -74,22 +81,15 @@ input[type="button"] {
     font-style: italic;
 }
 
-.hay_fotos {
-    display: flex;
-    align-content: space-between;
-    flex-wrap: wrap;
-}
-
-.hay_foto {
+.hay_una_foto {
     padding: 0.8em;
     width: 30%;
     min-width: 280px;
     margin: auto;
     background-color: #ececec;
-    border-radius: 12px;
 }
 
-.hay_foto img {
+.hay_una_foto img {
     width: 100%;
     border-radius: 12px;
 }
@@ -128,7 +128,7 @@ input[type="button"] {
     }
 
 
-    .hay_foto {
+    .hay_una_foto {
         width: 20%;
         min-width: 360px;
     }
