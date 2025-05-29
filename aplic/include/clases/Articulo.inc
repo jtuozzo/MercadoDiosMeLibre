@@ -360,7 +360,7 @@ class Articulo
           $query = "SELECT articulo_foto_id
                     FROM articulo_foto
                     WHERE articulo_id='$articulo_id'
-                    ORDER BY principal DESC";
+                    ORDER BY principal DESC, articulo_foto_id";
 
           $result = Utils::execute($query,__FILE__,__LINE__);
           $i=0;

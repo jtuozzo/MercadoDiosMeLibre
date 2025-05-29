@@ -2,7 +2,7 @@
     Autor: Julio Tuozzo
     Función: Javascript del artículo.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 26/05/2025.
+    Ultima modificación: 29/05/2025.
 */
 
 
@@ -56,12 +56,8 @@ function delHayFoto(i) {
     })
         .then((result) => {
             if (result.isConfirmed) {
-                $('#id_foto_' + i).hide(500);
+                $('#id_articulo_foto_' + i).hide(500);
                 $('#articulo_foto_id_' + i).val('');
-
-                if ($('#nueva_foto').is(':hidden')) {
-                    $('#nueva_foto').show(500);
-                }
 
             }
         }

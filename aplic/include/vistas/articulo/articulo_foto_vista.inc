@@ -15,16 +15,24 @@ echo "<div id='foto'>
         for($i=1; $i<=count($articulo->las_fotos); $i++)
             {if(strlen($articulo->las_fotos[$i])>0)
                     {$articulo_foto_id="articulo_foto_id_{$i}";
-                    echo "<div id='id_foto_$i' class='hay_una_foto'>
+                    echo "<div id='id_articulo_foto_$i' class='hay_una_foto'>
                                 <input type='hidden' name='{$articulo_foto_id}' id='{$articulo_foto_id}' value='{$articulo->las_fotos[$i]}' />
                                 <input class='del_foto' type='button' onclick='delHayFoto($i)' title='Elimina foto'> <img src='getFoto.php?id={$articulo->las_fotos[$i]} alt='SIN FOTO'> 
                         $ppal </div> ";
                     $ppal="";
                     }
             }
+
+        if ($i>MAX_FOTOS)
+            {$style="style='display:none'";
+            }
+        else 
+            {$style="";
+            }
+
         echo "</div>
         <label>
-            <input id='nueva_foto' type='button' onclick='addFoto(".MAX_FOTOS.")' title='Agregar fotos'>
+            <input id='nueva_foto' type='button' onclick='addFoto(".MAX_FOTOS.")' title='Agregar fotos' $style>
             <strong>Fotos</strong> 
             <span class='nota'> (Máximo ".MAX_FOTOS." fotos) </span>
         </label>";
