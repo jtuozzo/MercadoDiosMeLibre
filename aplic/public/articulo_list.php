@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Listadode de artículos.
     Fecha de creación: 27/05/2025.
-    Ultima modificación: 27/05/2025.
+    Ultima modificación: 29/05/2025.
 */
 
 session_start();
@@ -22,6 +22,7 @@ if((!isset($_SESSION['DML_NIVEL']) or $_SESSION['DML_NIVEL'] < 2) and (!isset($_
      }
 
 // Guardo los datos en variables
+$id="";
 
 foreach($_GET as $key => $valor)
      {$$key=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
@@ -30,15 +31,11 @@ foreach($_GET as $key => $valor)
 $articulo = new Articulo();
 $usuario = new User();
 
-if(isset($id))
+if(strlen($id)>0)
      {$token = $id;
-      // Como no es el usuario dueño de los artículos, ve los que están solo en venta
-      $articulo->solo_en_venta = true;
      }
 else
      {$token = $_SESSION['DML_TOKEN'];
-      // Es el usuario, ve a todos los artículos
-      $articulo->solo_en_venta = false;
      }
 
 if(!$usuario->tokenValido($token))
@@ -52,14 +49,14 @@ if(!isset($pagina))
       $pagina = 1;
       $sentido ="ASC";
       $orden = "articulo_id";
-      $q_registros = $articulo->countArticulos($usuario->id);
+      $q_registros = $articulo->countArticulos($usuario->user_id);
      }
 
 $desde = ($pagina - 1) * MAX_ARTICULOS;
 
 // Armo y ejecuto la consulta
 
-$query = $articulo->queryArticulos($usuario->id, $orden, $sentido);
+$query = $articulo->queryArticulos($usuario->user_id, $orden, $sentido);
 
 $result = Utils::selectLimit($query, $desde,__FILE__, __LINE__); 
 
@@ -77,6 +74,12 @@ else
          $$_aux_var="DESC";
         }
 
+if(isset($_SESSION['DML_TOKEN']) and $_SESSION['DML_TOKEN']!=$id)
+     {$cabecera="<h2>Artículos de {$usuario->nombres}</h2>";
+     }
+else 
+     {$cabecera="";
+     }
 
 require("articulo_list.inc");
 ?>

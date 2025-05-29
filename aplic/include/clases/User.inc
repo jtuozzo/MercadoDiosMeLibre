@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de manejo de usuarios.
     Fecha de creación: 23/05/2025.
-    Ultima modificación: 27/05/2025.
+    Ultima modificación: 29/05/2025.
 */
 
 require("Mail.inc");
@@ -24,7 +24,8 @@ class User
      public $email_err = "";
      public $send_mail_err = "";
      public $msg_error = "";
-     public $id;
+     public $user_id;
+     public $nombres;
         
      static public function getUser($email, $clave)
         {$query = "SELECT user_id, apellidos, nombres, email, nivel, clave, token 
@@ -363,7 +364,7 @@ class User
             }
       public function tokenValido($token)
             {// Verifica si el token es válido
-             $query = "SELECT user_id 
+             $query = "SELECT user_id, nombres
                        FROM user 
                        WHERE token='$token' 
                        AND nivel > 0";
@@ -371,7 +372,10 @@ class User
              $result = Utils::execute($query, __FILE__, __LINE__);
 
              if($result->recordCount() == 1)
-                {$this->id=$result->fields['user_id'];
+                {foreach($result->fields as $clave=>$valor)
+                     {$this->$clave=htmlentities($valor,ENT_QUOTES,"UTF-8");
+                     }
+                  
                  return true;
                 }
              else

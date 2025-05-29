@@ -18,7 +18,6 @@ class Articulo
      public $titulo_err = "";
      public $descripcion_err = "";
      public $precio_err = "";
-     public $solo_en_venta = true;
      public $foto = "";
      public $foto_tipo_file = "";
      public $las_fotos = array();
@@ -294,18 +293,10 @@ class Articulo
          }
     
     public function queryArticulos($user_id, $orden, $sentido) 
-         {if($this->solo_en_venta)
-               {$en_venta=" AND en_venta='S'";
-               }
-          else
-               {$en_venta="";
-               }
-
-          return "SELECT DISTINCT ar.articulo_id, ar.titulo, ar.descripcion, ar.moneda, ar.precio, ar.en_venta, ar.vendido_el, af.articulo_foto_id
+         {return "SELECT DISTINCT ar.articulo_id, ar.titulo, ar.descripcion, ar.moneda, ar.precio, ar.en_venta, ar.vendido_el, af.articulo_foto_id
                   FROM articulo ar
                   LEFT JOIN articulo_foto af ON af.articulo_id=ar.articulo_id AND af.principal='S'
                   WHERE user_id='$user_id'
-                  $en_venta
                   ORDER BY $orden $sentido";
          }
 

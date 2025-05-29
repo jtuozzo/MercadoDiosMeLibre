@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos estáticos de uso global.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 28/05/2025.
+    Ultima modificación: 29/05/2025.
 */
 
 // Datos de la instalación
@@ -166,11 +166,12 @@ class Utils
          }
 
 
-     static function paginador($pagina,$q_registros,$orden,$sentido)
+     static function paginador($pagina,$q_registros,$orden,$sentido,$id)
          {# $pagina: Página que estoy mostrando.
           # $q_registros: cantidad de registros de la consulta.
           # $orden: orden de los registros.
           # $sentido: Sentido ascendente o descendente.
+          # $id: ID del llamador.
 
          if($q_registros<=MAX_ARTICULOS)
             {return "";
@@ -180,9 +181,9 @@ class Utils
 
          if ($pagina>1)
             { $pag=$pagina-1;
-               $paginador.= "<strong><a href='{$_SERVER['PHP_SELF']}?pagina=1&q_registros=$q_registros&orden=$orden&sentido=$sentido'>
+               $paginador.= "<strong><a href='{$_SERVER['PHP_SELF']}?pagina=1&q_registros=$q_registros&orden=$orden&sentido=$sentido&id=$id'>
                <img src='./images/go-first.png' alt='<<||' border='0' /></a> &nbsp;
-               <a href='{$_SERVER['PHP_SELF']}?pagina=$pag&q_registros=$q_registros&orden=$orden&sentido=$sentido'>
+               <a href='{$_SERVER['PHP_SELF']}?pagina=$pag&q_registros=$q_registros&orden=$orden&sentido=$sentido&id=$id'>
                <img src='./images/go-previous.png' alt='< Ant.|' border='0' /></strong></a>";
             }
 
@@ -203,7 +204,7 @@ class Utils
                      {$paginador.= "<strong>&nbsp;<big> $pag </big>&nbsp;</strong>";
                      }
                else
-                     {$paginador.= "<a href='{$_SERVER['PHP_SELF']}?pagina=$pag&q_registros=$q_registros&orden=$orden&sentido=$sentido'> $pag </a> &nbsp; \n";
+                     {$paginador.= "<a href='{$_SERVER['PHP_SELF']}?pagina=$pag&q_registros=$q_registros&orden=$orden&sentido=$sentido&id=$id'> $pag </a> &nbsp; \n";
                      }
 
                if ($pag-$pag_desde>14)
@@ -218,9 +219,9 @@ class Utils
             {$pag=$pagina+1;
              $ultima=intval(($q_registros-1)/MAX_ARTICULOS)+1;
              $paginador.= "&nbsp;
-                  <a href='{$_SERVER['PHP_SELF']}?pagina=$pag&q_registros=$q_registros&orden=$orden&sentido=$sentido'><strong>
+                  <a href='{$_SERVER['PHP_SELF']}?pagina=$pag&q_registros=$q_registros&orden=$orden&sentido=$sentido&id=$id'><strong>
                   <img src='./images/go-next.png' alt='|Sig.>' border='0' /></a> &nbsp;
-                  <a href='{$_SERVER['PHP_SELF']}?pagina=$ultima&q_registros=$q_registros&orden=$orden&sentido=$sentido'>
+                  <a href='{$_SERVER['PHP_SELF']}?pagina=$ultima&q_registros=$q_registros&orden=$orden&sentido=$sentido&id=$id'>
                   <img src='./images/go-last.png' alt='||>>' border='0' /></strong></a>";
             }
 

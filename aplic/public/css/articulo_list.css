@@ -3,8 +3,13 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 27/05/2025.
-    Ultima modificación: 28/05/2025.
+    Ultima modificación: 29/05/2025.
 */
+
+h2 {
+    margin: 0.5em 0 0 0.5em;
+    font-size: 1.4em;
+}
 
 #list_articulos {
     padding: 1em;
@@ -13,6 +18,20 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.7em;
+}
+
+.vendido {
+    opacity: 50%;
+}
+
+.vendido h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #e00000;
+    text-align: center;
+    opacity: 100%;
 }
 
 .sin {
@@ -37,9 +56,10 @@
     border-radius: 12px;
 }
 
-.un_articulo:hover {
+.en_venta:hover {
     box-shadow: 10px 10px 30px -2px rgba(0, 0, 0, 0.46);
     opacity: 60%;
+    cursor:pointer;
 }
 
 .un_articulo img {
