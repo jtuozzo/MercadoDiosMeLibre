@@ -15,7 +15,7 @@ else
         {$img_ppal="<img src='./images/sin_foto.jpg' alt='SIN FOTO'>"; 
         }
 
-echo "<div id='foto'>
+echo "<div id='foto_comprador'>
         $img_ppal
       </div>
 

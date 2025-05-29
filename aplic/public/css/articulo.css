@@ -65,6 +65,7 @@ p {
 #hay_fotos {
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
 }
 
 #encabezado {
@@ -73,7 +74,7 @@ p {
     flex-wrap: wrap;
 }
 
-#foto img {
+#foto_comprador img {
     height: 30%;
     max-height: 200px;
     border: 2px solid #1f2124;
@@ -87,6 +88,7 @@ p {
     border: 0;
     cursor: pointer;
     background: url(../images/eliminar.png) no-repeat left;
+    margin: 0;
 }
 
 .foto {
@@ -103,17 +105,15 @@ p {
 }
 
 .hay_una_foto {
-    padding: 0.8em;
+    padding-right: 0.8em;
     width: 30%;
     min-width: 280px;
     margin: auto;
-    background-color: red;
 }
 
 .hay_una_foto img {
     border-radius: 12px;
     border: 1px solid #1f2124;
-    background-color: blue;
     width: 100%;
 }
 
@@ -142,7 +142,7 @@ p {
         width: 70%;
     }
 
-    #foto img {
+    #foto_comprador img {
         max-height: 350px;
     }
 
