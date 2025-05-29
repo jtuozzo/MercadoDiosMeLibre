@@ -68,6 +68,6 @@ function delHayFoto(i) {
 }
 
 function setFotoPpal(articulo_foto_id, key)
-        {$('#fotoPpal').attr('src', 'getFoto.php?id=' + articulo_foto_id + '&key=' + key);
+        {$('#fotoPpal').attr('src', 'getFoto.php?id=' + articulo_foto_id + '&key=' + key); 
         }
 

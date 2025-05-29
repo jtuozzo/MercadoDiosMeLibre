@@ -24,7 +24,7 @@ echo "<div id='foto_comprador'>
         for($i=1; $i<=count($articulo->las_fotos); $i++)
             {if(strlen($articulo->las_fotos[$i])>0)
                     {$articulo_foto_id="articulo_foto_id_{$i}";
-                     echo "<img src='getFoto.php?id={$articulo->las_fotos[$i]}&key={$key}' alt='SIN FOTO' onClick=setFotoPpal({$articulo->las_fotos[$i]},{$key})>";
+                     echo "<img src='getFoto.php?id={$articulo->las_fotos[$i]}&key={$key}' alt='SIN FOTO' onClick=setFotoPpal({$articulo->las_fotos[$i]},'{$key}')>";
                     }
             }
 
