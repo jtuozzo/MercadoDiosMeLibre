@@ -27,16 +27,23 @@ while(!$result->EOF)
     {foreach($result->fields as $clave=>$valor)
             {$$clave=$valor; 
             }
+     
+     $onClick="onCLick=\"window.open('articuloGet.php?id=$articulo_id')\"";
 
      if($en_venta=="S")
             {$label_vendido="";
              $class_vendido="en_venta";
-             $onClick="onCLick=\"window.open('articuloGet.php?id=$articulo_id')\"";
             }
       else  
             {$label_vendido="<h2 class='vendido'>VENDIDO</h2>";
              $class_vendido="vendido";
-             $onClick="";
+             if(!isset($_SESSION['DML_TOKEN']) or $_SESSION['DML_TOKEN']!==$token)
+                {$onClick="";
+                }
+             else
+                {$class_vendido.=" propietario ";
+                }
+             
             }
 
 

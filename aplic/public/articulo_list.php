@@ -74,7 +74,7 @@ else
          $$_aux_var="DESC";
         }
 
-if(isset($_SESSION['DML_TOKEN']) and $_SESSION['DML_TOKEN']!=$id)
+if(!isset($_SESSION['DML_TOKEN']) or $_SESSION['DML_TOKEN']!=$token)
      {$cabecera="<h2>Artículos de {$usuario->nombres}</h2>";
      }
 else 
