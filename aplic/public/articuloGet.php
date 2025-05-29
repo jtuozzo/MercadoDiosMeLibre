@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Ver / Editar un artículo.
     Fecha de creación: 28/05/2025.
-    Ultima modificación: 28/05/2025.
+    Ultima modificación: 29/05/2025.
 */
 
 session_start();
@@ -62,7 +62,7 @@ if(isset($modificar))
                         confirmButtonText: 'Continuar'
                         })
                        .then(function() {
-        	                window.parent.location = reload();
+        	                window.opener.location.reload();
                             window.close();
                     });
                      </script>";

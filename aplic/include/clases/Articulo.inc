@@ -76,10 +76,8 @@ class Articulo
 
                $articulo_id = mysqli_insert_id(Utils::$dbase->db->_connectionID);
 
-               // Preparo el array con las fotos
-               $las_fotos = $this->armoFotos($fotos);
                // Guarda las fotos
-               $this->insertFotos($articulo_id, $las_fotos);
+               $this->insertFotos($articulo_id, $fotos);
               
 
                // Fin de la transacción
@@ -131,7 +129,8 @@ class Articulo
                        moneda = '$moneda',
                        precio = '$precio',
                        update_user='{$_SESSION['DML_USER_ID']}',
-                       update_datetime=NOW()";
+                       update_datetime=NOW()
+                       WHERE articulo_id='$articulo_id'";
 
              $result = Utils::execute($query, __FILE__, __LINE__);
 
@@ -174,7 +173,7 @@ class Articulo
           $las_fotos = array();
             
           for($i = 1; $i <= count($fotos); $i++)
-               {if(strlen($fotos[$i]['tmp_name'])>0)
+               {if(isset($fotos[$i]) and strlen($fotos[$i]['tmp_name'])>0)
                   {$tmp[$i] = $fotos[$i]['tmp_name'];
                    $foto_tamanio[$i] = $fotos[$i]['size'];
                    $foto_tipo_file[$i] = $fotos[$i]['type'];
@@ -246,8 +245,10 @@ class Articulo
 
          }
 
-   private function insertFotos($articulo_id, $las_fotos)
-         {
+   private function insertFotos($articulo_id, $fotos)
+         {// Preparo el array con las fotos
+          $las_fotos = $this->armoFotos($fotos);
+
           // Inserta las fotos en la base de datos
           for($i = 1; $i <= count($las_fotos); $i++)
                {if(strlen($las_fotos[$i]['foto'])>0)
@@ -277,7 +278,7 @@ class Articulo
                                            WHERE articulo_id='$articulo_id')";
 
           $result = Utils::execute($query, __FILE__, __LINE__);
-          
+
           return;
          }
 
