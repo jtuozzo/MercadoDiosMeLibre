@@ -9,7 +9,7 @@
 
 
 if(isset($articulo->las_fotos[1]))
-        {$img_ppal="<img src='getFoto.php?id={$articulo->las_fotos[1]}' alt='SIN FOTO'  id='fotoPpal'>"; 
+        {$img_ppal="<img src='getFoto.php?id={$articulo->las_fotos[1]}&key={$key}' alt='SIN FOTO'  id='fotoPpal'>"; 
         }
 else    
         {$img_ppal="<img src='./images/sin_foto.jpg' alt='SIN FOTO'>"; 
@@ -24,7 +24,7 @@ echo "<div id='foto'>
         for($i=1; $i<=count($articulo->las_fotos); $i++)
             {if(strlen($articulo->las_fotos[$i])>0)
                     {$articulo_foto_id="articulo_foto_id_{$i}";
-                     echo "<img src='getFoto.php?id={$articulo->las_fotos[$i]} alt='SIN FOTO' onClick=setFotoPpal({$articulo->las_fotos[$i]})>";
+                     echo "<img src='getFoto.php?id={$articulo->las_fotos[$i]}&key={$key}' alt='SIN FOTO' onClick=setFotoPpal({$articulo->las_fotos[$i]},{$key})>";
                     }
             }
 

@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista de un artículo.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 28/05/2025.
+    Ultima modificación: 29/05/2025.
 */
 
 $css_local = "articulo.css";
@@ -34,6 +34,7 @@ echo "
     <form enctype='multipart/form-data' action='{$_SERVER['PHP_SELF']}' method='post' id='form'>
         <input type='hidden' name='articulo_id' value='{$articulo->articulo_id}'/>
         <input type='hidden' name='user_id' value='{$articulo->user_id}'/>
+        <input type='hidden' name='key' value='$key'/>
 
         <div class='linea_1'>
             <div>

@@ -24,8 +24,8 @@ if((!isset($_SESSION['DML_NIVEL']) or $_SESSION['DML_NIVEL'] < 2) and (!isset($_
 // Guardo los datos en variables
 $id="";
 
-foreach($_GET as $key => $valor)
-     {$$key=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
+foreach($_GET as $clave => $valor)
+     {$$clave=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
      }
 
 $articulo = new Articulo();

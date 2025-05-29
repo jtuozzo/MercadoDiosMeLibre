@@ -4,14 +4,14 @@
     Autor: Julio Tuozzo.
     Función: Trae una foto de artículo de la base de datos.
     Fecha de creación: 27/05/2025.
-    Ultima modificación: 27/05/2025.
+    Ultima modificación: 29/05/2025.
 */
 require("Utils.inc");
 require("Articulo.inc");
 
 $articulo = new Articulo;
 
-if($articulo->getFoto($_GET['id']))
+if($articulo->getFoto($_GET['id'], $_GET['key']))
     {
      header("Content-Type: {$articulo->foto_tipo_file}");
      echo $articulo->foto;

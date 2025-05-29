@@ -14,18 +14,19 @@ require("Articulo.inc");
 
 $articulo = new Articulo;
 
-// Inicializo GETS y POSTS
+// Inicializo GETS y POSTS y verifico el acceso al artículo
 
-if(isset($_GET['id']))
-    {$articulo->articulo_id=$_GET['id'];
+if(isset($_GET['id']) and isset($_GET['key']))
+    {$articulo->articulo_id = $articulo->validoID($_GET['id'],$_GET['key']);
+     $key=$_GET['key'];
     }
 
-foreach($_POST as $key => $valor)
-     {if(isset($articulo->$key))
-          {$articulo->$key=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
+foreach($_POST as $clave => $valor)
+     {if(isset($articulo->$clave))
+          {$articulo->$clave=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
           }
       else     
-          {$$key=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
+          {$$clave=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
           }
      }
 

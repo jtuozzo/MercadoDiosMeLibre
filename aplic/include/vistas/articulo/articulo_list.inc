@@ -28,7 +28,7 @@ while(!$result->EOF)
             {$$clave=$valor; 
             }
      
-     $onClick="onCLick=\"window.open('articuloGet.php?id=$articulo_id')\"";
+     $onClick="onCLick=\"window.open('articuloGet.php?id=$articulo_id&key=$token')\"";
 
      if($en_venta=="S")
             {$label_vendido="";
@@ -50,7 +50,7 @@ while(!$result->EOF)
       $precio=number_format($precio,2,",",".");
       echo "<div class='un_articulo $class_vendido' $onClick>
                  $label_vendido
-                <img src='getFoto.php?id=$articulo_foto_id' alt='$titulo'>
+                <img src='getFoto.php?id=$articulo_foto_id&key=$token' alt='$titulo'>
 
             <div class='titulo'>$titulo</div>
             <div class='precio'>$moneda $precio</div>

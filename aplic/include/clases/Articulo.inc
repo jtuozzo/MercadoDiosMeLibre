@@ -40,6 +40,21 @@ class Articulo
 
          }
       
+     public function validoID($articulo_id, $token)
+         {$query = "SELECT articulo_id
+                    FROM articulo art
+                    JOIN user usr ON usr.user_id=art.user_id AND usr.token='$token'
+                    WHERE art.articulo_id='$articulo_id'";
+          
+          $result = Utils::execute($query, __FILE__, __LINE__);
+
+          if($result->recordCount()==1)
+               {return $articulo_id;
+               }
+          else
+               {return null;
+               }
+         }
       
      public function crearArticulo($titulo, $descripcion, $moneda, $precio, $fotos)
          {// Inicializo el select del tipo de moneda
@@ -130,7 +145,8 @@ class Articulo
                        update_user='{$_SESSION['DML_USER_ID']}',
                        update_datetime=NOW()
                        WHERE articulo_id='$articulo_id'";
-
+             
+             $query =str_replace("''", "NULL", $query);
              $result = Utils::execute($query, __FILE__, __LINE__);
 
              // Inserto las fotos nuevas
@@ -300,11 +316,13 @@ class Articulo
                   ORDER BY $orden $sentido";
          }
 
-    public function getFoto($articulo_foto_id=0)
+    public function getFoto($articulo_foto_id=0,$token="")
          {// Trae una foto del artículo
 
           $query="SELECT foto, foto_tipo_file
-                  FROM articulo_foto
+                  FROM articulo_foto af
+                  JOIN articulo art ON art.articulo_id=af.articulo_id
+                  JOIN user usr ON usr.user_id=art.user_id AND usr.token='$token'
                   WHERE articulo_foto_id='$articulo_foto_id'";
           
           $result = Utils::execute($query,__FILE__,__LINE__);
