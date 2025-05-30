@@ -30,11 +30,8 @@ while(!$result->EOF)
      
      $onClick="onCLick=\"window.open('articuloGet.php?id=$articulo_id&key=$token')\"";
 
-     if($en_venta=="S")
-            {$label_vendido="";
-             $class_vendido="en_venta";
-            }
-      else  
+     
+    if($vendido=="S")
             {$label_vendido="<h2 class='vendido'>VENDIDO</h2>";
              $class_vendido="vendido";
              if(!isset($_SESSION['DML_TOKEN']) or $_SESSION['DML_TOKEN']!==$token)
@@ -45,7 +42,10 @@ while(!$result->EOF)
                 }
              
             }
-
+      else
+            {$label_vendido="";
+             $class_vendido="en_venta";
+            }
 
       $precio=number_format($precio,2,",",".");
       echo "<div class='un_articulo $class_vendido' $onClick>

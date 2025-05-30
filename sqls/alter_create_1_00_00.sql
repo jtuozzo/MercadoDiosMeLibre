@@ -27,7 +27,7 @@ CREATE TABLE articulo (
   descripcion TEXT NULL,
   moneda ENUM("ARS","USD") DEFAULT "ARS" NOT NULL,
   precio DECIMAL(16,2) NOT NULL,
-  en_venta ENUM("S") NULL DEFAULT NULL,
+  vendido ENUM("S") NULL DEFAULT NULL,
   vendido_el DATETIME NULL,
   insert_user INT UNSIGNED NOT NULL,
   insert_datetime datetime NOT NULL,

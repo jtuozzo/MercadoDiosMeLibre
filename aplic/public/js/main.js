@@ -14,12 +14,15 @@ function ocultoForm() {
 }
 
 function copyClipp(value) {
-    try {navigator.clipboard.writeText(value);
-         window.alert('Copiado!');
-        }
-    catch(e) {
-         $(".link").html(function(i, origText){
-            return origText + ": <br/>" + value; });
+    try {
+        navigator.clipboard.writeText(value);
+        window.alert('Copiado!');
+    }
+    catch (e) {
+        $('.link').html(function (i, origText) {
+            return origText + ": <br/>" + value;
+        });
+        $('.link').removeAttr('onclick');
         window.alert('No se pudo copiar, cópielo manualmente');
     }
 
