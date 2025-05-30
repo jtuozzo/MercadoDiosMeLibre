@@ -13,14 +13,3 @@ function sin_articulos() {
     $('#list_articulos').css('background-color', '#f0f0f0');
 }
 
-function copyClipp(value) {
-    try {navigator.clipboard.writeText(value);
-         window.alert('Copiado!');
-        }
-    catch(e) {
-         $(".link").html(function(i, origText){
-            return origText + ": <br/>" + value; });
-        window.alert('No se pudo copiar, copielo manualmente');
-    }
-
-};

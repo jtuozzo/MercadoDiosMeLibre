@@ -18,8 +18,11 @@ switch ($articulo->vista)
         $cerrar="";
         break;
      case "M": // Modifica
-        $encabezado = "<h1>Modificar Articulo</h1>";
-        $cerrar="<input type='button' class='boton' value='Cerrar' onClick='window.close()' />";
+        $link=$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."?id={$articulo->articulo_id}&key=".$_SESSION['DML_TOKEN'];
+        $encabezado = "<h1>Modificar Articulo</h1>
+                <div class='link' onClick=copyClipp('{$link}')><img src='./images/copy.png' />  Copiar link del artículo</div>";
+
+                $cerrar="<input type='button' class='boton' value='Cerrar' onClick='window.close()' />";
         $guardar="<input class='boton' type='submit' name='modificar' id='crear' value='Modificar artículo' />";
         break;
     }
