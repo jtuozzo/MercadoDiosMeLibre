@@ -43,6 +43,8 @@ echo "<div id='foto_comprador'>
 echo "</div>";
 
 echo       "<form enctype='multipart/form-data' action='{$_SERVER['PHP_SELF']}' method='post' id='form'>
+            <input type='hidden' name='id' value='{$articulo->articulo_id}' />
+            <input type='hidden' name='key' value='$key' />
 <div class='botonera'>
             <div></div>
             <input class='boton' type='submit' name='comprar' id='comprar' value='Quiero comprarlo' />

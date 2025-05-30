@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Ver / Editar un artículo.
     Fecha de creación: 28/05/2025.
-    Ultima modificación: 29/05/2025.
+    Ultima modificación: 30/05/2025.
 */
 
 session_start();
@@ -73,12 +73,15 @@ if(isset($modificar))
              $mensaje=Utils::msgError();
             }
     }
+elseif(isset($comprar))
+    {header("Location: articulo_comprar.php?id={$id}&key={$key}");
+    }
 else
     {// Trae los datos del artículo
 
     if (!$articulo->getArticulo($articulo->articulo_id))
         {header("Location: index.php");
-        exit;
+         exit;
         }
     $mensaje="";
     }
