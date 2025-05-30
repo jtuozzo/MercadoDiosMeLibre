@@ -78,7 +78,8 @@ if(!isset($_SESSION['DML_TOKEN']) or $_SESSION['DML_TOKEN']!=$token)
      {$cabecera="<h2>Artículos de {$usuario->nombres}</h2>";
      }
 else 
-     {$cabecera="";
+     {$link=$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."?id=".$_SESSION['DML_TOKEN'];
+      $cabecera="<div class='link' onClick=copyClipp('{$link}')><img src='./images/copy.png' />  Copiar link del listado</div>";
      }
 
 require("articulo_list.inc");

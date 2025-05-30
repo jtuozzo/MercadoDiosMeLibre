@@ -19,7 +19,28 @@ echo "
     <div id='encabezado'><h3>{$articulo->titulo}</h3> &nbsp; <h3>{$articulo->moneda} {$precio}</h3></div>
     <p>{$descripcion}</p>";
 
-require("articulo_comprador_foto.inc");
+
+if(isset($articulo->las_fotos[1]))
+        {$img_ppal="<img src='getFoto.php?id={$articulo->las_fotos[1]}&key={$key}' alt='SIN FOTO'  id='fotoPpal'>"; 
+        }
+else    
+        {$img_ppal="<img src='./images/sin_foto.jpg' alt='SIN FOTO'>"; 
+        }
+
+echo "<div id='foto_comprador'>
+        $img_ppal
+      </div>
+
+       <div class='select_foto'>";
+
+        for($i=1; $i<=count($articulo->las_fotos); $i++)
+            {if(strlen($articulo->las_fotos[$i])>0)
+                    {$articulo_foto_id="articulo_foto_id_{$i}";
+                     echo "<img src='getFoto.php?id={$articulo->las_fotos[$i]}&key={$key}' alt='SIN FOTO' onClick=setFotoPpal({$articulo->las_fotos[$i]},'{$key}')>";
+                    }
+            }
+
+echo "</div>";
 
 echo       "<form enctype='multipart/form-data' action='{$_SERVER['PHP_SELF']}' method='post' id='form'>
 <div class='botonera'>

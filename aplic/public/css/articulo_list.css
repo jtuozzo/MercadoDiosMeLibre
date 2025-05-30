@@ -83,6 +83,13 @@ h2 {
     text-align: center;
 }
 
+.link {
+    padding: 0.6em;
+    cursor: pointer;
+    display: flex;
+    align-items:center;
+}
+
 /* -----------------  Tablet y Desktop  ----------------- */
 
 @media(min-width: 760px) {
