@@ -23,6 +23,7 @@ function copyClipp(value) {
             return origText + ": <br/>" + value;
         });
         $('.link').removeAttr('onclick');
+        $('.link').css({ 'cursor' : 'default'});
         window.alert('No se pudo copiar, cópielo manualmente');
     }
 

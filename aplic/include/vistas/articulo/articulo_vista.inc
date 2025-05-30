@@ -15,7 +15,7 @@ switch ($articulo->vista)
     {case "A": // Alta
         $encabezado = "<h1>Crear Articulo</h1>";
         $guardar="<input class='boton' type='submit' name='crear' id='crear' value='Crear artículo' />";
-        $cerrar="";
+        $cerrar="<div></div>";
         break;
      case "M": // Modifica
         $link=$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."?id={$articulo->articulo_id}&key=".$_SESSION['DML_TOKEN'];
@@ -54,6 +54,9 @@ echo "
                 </select> 
 
                 <input type='text' name='precio' id='precio' value='{$articulo->precio}' size='10' maxlength='16' {$articulo->st_precio} required='required'> {$articulo->precio_err}
+            </div>
+            <div>
+                <label for='vendido' class='vendido'><input type='checkbox' name='vendido' id='vendido' value='S' {$articulo->chk_vendido} /> Vendido </label>
             </div>
         </div>   
         

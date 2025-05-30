@@ -135,6 +135,10 @@ p {
     align-items:center;
 }
 
+.vendido {
+    font-size: 1.3em;
+    font-weight: bold;
+}
 /* -----------------  Tablet y Desktop  ----------------- */
 
 @media(min-width: 760px) {
@@ -157,7 +161,7 @@ p {
 
     .linea_1 {
         display: flex;
-        column-gap: 25px;
+        column-gap: 35px;
     }
 
     .linea_2 {

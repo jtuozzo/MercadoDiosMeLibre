@@ -47,7 +47,7 @@ for($i=1; $i<=MAX_FOTOS; $i++)
      {$fotos[$i] = $_FILES["foto_$i"]; 
      }
 
-if(!$articulo->crearArticulo($articulo->titulo, $articulo->descripcion, $articulo->moneda, $articulo->precio, $fotos))
+if(!$articulo->crearArticulo($articulo->titulo, $articulo->descripcion, $articulo->moneda, $articulo->precio, $articulo->vendido, $fotos))
         {// No se pudo crear el artículo
          $mensaje=Utils::msgError();
         }

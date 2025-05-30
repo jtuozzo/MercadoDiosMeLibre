@@ -54,7 +54,7 @@ if(isset($modificar))
             }
         }
 
-     if($articulo->modifArticulo($articulo->articulo_id, $articulo->titulo, $articulo->descripcion, $articulo->moneda, $articulo->precio, $fotos_actuales, $fotos_nuevas))
+     if($articulo->modifArticulo($articulo->articulo_id, $articulo->titulo, $articulo->descripcion, $articulo->moneda,  $articulo->precio, $articulo->vendido, $fotos_actuales, $fotos_nuevas))
             {$mensaje="<script language='javascript'>
                         Swal.fire({
                         icon:'success',

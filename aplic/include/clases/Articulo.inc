@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de los artículos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 29/05/2025.
+    Ultima modificación: 30/05/2025.
 */
 
 #[AllowDynamicProperties]
@@ -27,6 +27,8 @@ class Articulo
      public $precio = "";
      public $user_id = "";
      public $vista = ""; // Define el tipo de vista de artículo que va a haber
+     public $vendido = "";
+     public $chk_vendido;
 
      
 
@@ -56,13 +58,9 @@ class Articulo
                }
          }
       
-     public function crearArticulo($titulo, $descripcion, $moneda, $precio, $fotos)
-         {// Inicializo el select del tipo de moneda
-          $aux="sel_{$moneda}";
-          $this->$aux = "selected='selected'";
-          $precio = str_replace(",",".", $precio);
-
-          if($this->validoArticulo($titulo,$descripcion,$precio))
+     public function crearArticulo($titulo, $descripcion, $moneda, $precio, $vendido, $fotos)
+         {
+          if($this->validoArticulo($titulo,$descripcion,$precio,$moneda,$vendido))
              {// Inicio la transacción
                 Utils::startTrans(__FILE__, __LINE__);
 
@@ -78,7 +76,7 @@ class Articulo
                         '$descripcion',
                         '$moneda',
                         '$precio',
-                        'S',
+                        '$vendido',
                         NULL,
                         '{$_SESSION['DML_USER_ID']}',
                         NOW(),
@@ -105,9 +103,9 @@ class Articulo
           
          }
 
-      public function modifArticulo($articulo_id, $titulo, $descripcion, $moneda, $precio, $fotos_actuales, $fotos_nuevas)
+      public function modifArticulo($articulo_id, $titulo, $descripcion, $moneda, $precio, $vendido, $fotos_actuales, $fotos_nuevas)
             {$precio = str_replace(",",".", $precio);
-             if(!$this->validoArticulo($titulo, $descripcion, $precio))
+             if(!$this->validoArticulo($titulo, $descripcion, $precio, $moneda, $vendido))
                   {return false;
                   }
              
@@ -142,6 +140,7 @@ class Articulo
                        descripcion = '$descripcion',
                        moneda = '$moneda',
                        precio = '$precio',
+                       vendido = '$vendido',
                        update_user='{$_SESSION['DML_USER_ID']}',
                        update_datetime=NOW()
                        WHERE articulo_id='$articulo_id'";
@@ -157,8 +156,20 @@ class Articulo
              return true;
             }
 
-      private function validoArticulo($titulo, $descripcion, $precio)
-         {$todo_ok = true;
+      private function validoArticulo($titulo, $descripcion, $precio, $moneda, $vendido)
+         {// Inicializo select y check
+          $aux="sel_{$moneda}";
+          $this->$aux = "selected='selected'";
+          $precio = str_replace(",",".", $precio);
+
+          if($vendido=='S')
+               {$this->chk_vendido="checked='checked'";
+               }
+          else
+               {$this->chk_vendido="";
+               }
+
+          $todo_ok = true;
           $obligatorios = array('titulo', 'descripcion', 'precio');
 
          // Valido los campos obligatorios
@@ -346,7 +357,7 @@ class Articulo
           
           // Trae los datos de un artículo
 
-          $query = "SELECT articulo_id, user_id, titulo, descripcion, moneda, precio
+          $query = "SELECT articulo_id, user_id, titulo, descripcion, moneda, precio, vendido
                     FROM articulo 
                     WHERE articulo_id='$articulo_id'";
 
@@ -363,6 +374,14 @@ class Articulo
           // Inicializo el select del tipo de moneda
           $aux="sel_{$this->moneda}";
           $this->$aux = "selected='selected'";
+
+          if($this->vendido=='S')
+               {$this->chk_vendido="checked='checked'";
+               }
+          else
+               {$this->chk_vendido="";
+               }
+
 
           // Busco las fotos
 
