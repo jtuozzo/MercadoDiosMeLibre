@@ -53,7 +53,7 @@ if($compra->crearCompra($compra->articulo_id))
         {$mensaje.="<h2>El vendedor deberá contactarse para concretar tu compra.</h2>";
         }
      else
-        {$mensaje.="<h2>Te hemos enviado un correo a {$compra->email}</h2>
+        {$mensaje.="<h2>Te hemos enviado un correo a <em>{$compra->email}</em></h2>
                     <h2>Verificá tu casilla la correo para terminar el proceso.</h2>
                     <h2>Si no llegó el mail, revisá la casilla de correo basura.</h2>
                     <h2>En el futuro si querés saltear este paso de verificación, podés crear tu usuario aquí: <a href='usuario.php' target='_blank'>Crear Usuario</a></h2>
@@ -71,7 +71,13 @@ if($compra->crearCompra($compra->articulo_id))
     }
 else
     {// No se pudo procesar la compra
-     $mensaje=Utils::msgError();
+     if($compra->repetida)
+        {$mensaje=Utils::msgError("Ya solicitaste esa compra","Aguardá a que te contacte el vendedor");
+        }
+    else
+        {$mensaje=Utils::msgError();
+        }
+     
     }
 
 require ("articulo_comprar_vista.inc");

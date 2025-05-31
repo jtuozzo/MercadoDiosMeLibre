@@ -422,7 +422,9 @@ Class Compra extends Articulo
     public $st_email = "";
     public $st_whatsapp = "";
     public $st_comentarios = "";
-    
+    public $repetida = false;
+
+    private $comprador_user_id = "";
     private $obligatorios = array('apellidos', 'nombres', 'email', 'whatsapp');
 
     public function __construct() 
@@ -439,21 +441,27 @@ Class Compra extends Articulo
                 $this->apellidos = $_SESSION['DML_APELLIDOS'];
                 $this->nombres = $_SESSION['DML_NOMBRES'];
                 $this->activo = "S";
-                $this->user_id = $_SESSION['DML_USER_ID'];
+                $this->comprador_user_id = $_SESSION['DML_USER_ID'];
                }
+           
+
          }
 
     public function crearCompra()
           {if ($this->validoCompra())
-                 {$query = "INSERT INTO articulo_compra VALUES 
+                 {$apellidos = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->apellidos,ENT_QUOTES,"UTF-8"));
+                  $nombres = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->nombres,ENT_QUOTES,"UTF-8"));
+                  $comentarios = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->comentarios,ENT_QUOTES,"UTF-8"));
+                  
+                  $query = "INSERT INTO articulo_compra VALUES 
                             (NULL,
                              '{$this->articulo_id}',
-                             '{$this->user_id}',
-                             '{$this->apellidos}',
-                             '{$this->nombres}',
+                             '{$this->comprador_user_id}',
+                             '{$apellidos}',
+                             '{$nombres}',
                              '{$this->email}',
                              '{$this->whatsapp}',
-                             '{$this->comentarios}',
+                             '{$comentarios}',
                              '{$this->activo}',
                              NOW(),
                              NOW()
@@ -490,8 +498,29 @@ Class Compra extends Articulo
                 $todo_ok = false;
                }
 
+           // Valido que ni esté la misma compra solicitada
 
+           if(!empty($this->comprador_user_id))
+               {$query = "SELECT articulo_id
+                          FROM articulo_compra
+                          WHERE articulo_id='{$this->articulo_id}'
+                          AND user_id='{$this->comprador_user_id}'";
+               }
+
+           else
+               {$query = "SELECT articulo_id
+                          FROM articulo_compra
+                          WHERE articulo_id='{$this->articulo_id}'
+                          AND email='{$this->email}'";
+               }
                
+           $result = Utils::execute($query, __FILE__, __LINE__);
+
+           if($result->recordCount()>0)
+               {$todo_ok = false;
+                $this->repetida = true;
+               }
+           
            return $todo_ok;
           }      
    }
