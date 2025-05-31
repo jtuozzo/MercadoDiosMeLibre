@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Creación de artículo.
     Fecha de creación: 25/05/2025.
-    Ultima modificación: 30/05/2025.
+    Ultima modificación: 31/05/2025.
 */
 
 session_start();
@@ -47,7 +47,7 @@ for($i=1; $i<=MAX_FOTOS; $i++)
      {$fotos[$i] = $_FILES["foto_$i"]; 
      }
 
-if(!$articulo->crearArticulo($articulo->titulo, $articulo->descripcion, $articulo->moneda, $articulo->precio, $articulo->vendido, $fotos))
+if(!$articulo->crearArticulo($fotos))
         {// No se pudo crear el artículo
          $mensaje=Utils::msgError();
         }

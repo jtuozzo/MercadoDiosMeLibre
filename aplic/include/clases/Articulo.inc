@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de los artículos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 30/05/2025.
+    Ultima modificación: 31/05/2025.
 */
 
 #[AllowDynamicProperties]
@@ -58,14 +58,14 @@ class Articulo
                }
          }
       
-     public function crearArticulo($titulo, $descripcion, $moneda, $precio, $vendido, $fotos)
+     public function crearArticulo($fotos)
          {
-          if($this->validoArticulo($titulo,$descripcion,$precio,$moneda,$vendido))
+          if($this->validoArticulo())
              {// Inicio la transacción
                 Utils::startTrans(__FILE__, __LINE__);
 
-               $titulo = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($titulo,ENT_QUOTES,"UTF-8"));
-               $descripcion = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($descripcion,ENT_QUOTES,"UTF-8"));
+               $titulo = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->titulo,ENT_QUOTES,"UTF-8"));
+               $descripcion = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->descripcion,ENT_QUOTES,"UTF-8"));
    
                // Inserto el artículo en la base de datos
                
@@ -74,9 +74,9 @@ class Articulo
                         '{$_SESSION['DML_USER_ID']}',
                         '$titulo',
                         '$descripcion',
-                        '$moneda',
-                        '$precio',
-                        '$vendido',
+                        '{$this->moneda}',
+                        '{$this->precio}',
+                        '{$this->vendido}',
                         NULL,
                         '{$_SESSION['DML_USER_ID']}',
                         NOW(),
@@ -103,9 +103,8 @@ class Articulo
           
          }
 
-      public function modifArticulo($articulo_id, $titulo, $descripcion, $moneda, $precio, $vendido, $fotos_actuales, $fotos_nuevas)
-            {$precio = str_replace(",",".", $precio);
-             if(!$this->validoArticulo($titulo, $descripcion, $precio, $moneda, $vendido))
+      public function modifArticulo($fotos_actuales, $fotos_nuevas)
+            {if(!$this->validoArticulo())
                   {return false;
                   }
              
@@ -116,7 +115,7 @@ class Articulo
 
              $query ="SELECT articulo_foto_id
                       FROM articulo_foto
-                      WHERE articulo_id='$articulo_id'";
+                      WHERE articulo_id='{$this->articulo_id}'";
 
              $result = Utils::execute($query, __FILE__, __LINE__);
              
@@ -132,37 +131,37 @@ class Articulo
 
 
              // Modifico los datos en la tabla de artículos
-             $titulo = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($titulo,ENT_QUOTES,"UTF-8"));
-             $descripcion = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($descripcion,ENT_QUOTES,"UTF-8"));
+             $titulo = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->titulo,ENT_QUOTES,"UTF-8"));
+             $descripcion = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->descripcion,ENT_QUOTES,"UTF-8"));
              
              $query = "UPDATE articulo SET
                        titulo='$titulo',
                        descripcion = '$descripcion',
-                       moneda = '$moneda',
-                       precio = '$precio',
-                       vendido = '$vendido',
+                       moneda = '{$this->moneda}',
+                       precio = '{$this->precio}',
+                       vendido = '{$this->vendido}',
                        update_user='{$_SESSION['DML_USER_ID']}',
                        update_datetime=NOW()
-                       WHERE articulo_id='$articulo_id'";
+                       WHERE articulo_id='{$this->articulo_id}'";
              
              $query =str_replace("''", "NULL", $query);
              $result = Utils::execute($query, __FILE__, __LINE__);
 
              // Inserto las fotos nuevas
 
-             $this->insertFotos($articulo_id, $fotos_nuevas);
+             $this->insertFotos($this->articulo_id, $fotos_nuevas);
              // Fin de la transacción
              Utils::completeTrans(__FILE__, __LINE__);
              return true;
             }
 
-      private function validoArticulo($titulo, $descripcion, $precio, $moneda, $vendido)
+      private function validoArticulo()
          {// Inicializo select y check
-          $aux="sel_{$moneda}";
+          $aux="sel_{$this->moneda}";
           $this->$aux = "selected='selected'";
-          $precio = str_replace(",",".", $precio);
+          $this->precio = str_replace(",",".", $this->precio);
 
-          if($vendido=='S')
+          if($this->vendido=='S')
                {$this->chk_vendido="checked='checked'";
                }
           else
@@ -181,7 +180,7 @@ class Articulo
                }
             }
 
-          if(!is_numeric($precio) || $precio <= 0)
+          if(!is_numeric($this->precio) || $this->precio <= 0)
              {$this->precio_err = "<span class='error'>El precio debe ser un número positivo.</span>";
               $this->st_precio = "class='st_error'";
               $todo_ok = false;

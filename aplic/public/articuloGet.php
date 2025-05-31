@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Ver / Editar un artículo.
     Fecha de creación: 28/05/2025.
-    Ultima modificación: 30/05/2025.
+    Ultima modificación: 31/05/2025.
 */
 
 session_start();
@@ -54,7 +54,7 @@ if(isset($modificar))
             }
         }
 
-     if($articulo->modifArticulo($articulo->articulo_id, $articulo->titulo, $articulo->descripcion, $articulo->moneda,  $articulo->precio, $articulo->vendido, $fotos_actuales, $fotos_nuevas))
+     if($articulo->modifArticulo($fotos_actuales, $fotos_nuevas))
             {$mensaje="<script language='javascript'>
                         Swal.fire({
                         icon:'success',
