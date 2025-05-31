@@ -12,14 +12,12 @@ session_start();
 
 require("Utils.inc");
 require("Articulo.inc");
-require("Compra.inc");
-$articulo = new Articulo();
 $compra = new Compra();
 
 // Inicializo GETS y POSTS y verifico el acceso al artículo
 
 if(isset($_GET['id']) and isset($_GET['key']))
-    {$articulo->articulo_id = $articulo->validoID($_GET['id'],$_GET['key']);
+    {$compra->articulo_id = $compra->validoID($_GET['id'],$_GET['key']);
      $key=$_GET['key'];
     }
 
@@ -31,11 +29,11 @@ foreach($_POST as $clave => $valor)
           {$$clave=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
           }
       if(isset($id))
-          {$articulo->articulo_id=$id;
+          {$compra->articulo_id=$id;
           }
      }
 
-if(!$articulo->getArticulo($articulo->articulo_id))
+if(!$compra->getArticulo($compra->articulo_id))
     {// No hay artículo
      header("Location: index.php");
      exit;
@@ -47,10 +45,10 @@ if(!isset($_POST['compro']))
      exit;
     }
 
-if($compra->crearCompra($articulo->articulo_id))
+if($compra->crearCompra($compra->articulo_id))
     {$mensaje="<div class='has_comprado'>
                     <h1>Excelente!!</h1>
-                    <h2>Solicitaste comprar: <em>{$articulo->titulo}</em>.</h2>";
+                    <h2>Solicitaste comprar: <em>{$compra->titulo}</em>.</h2>";
      if($compra->registrado)
         {$mensaje.="<h2>El vendedor deberá contactarse para concretar tu compra.</h2>";
         }
@@ -65,7 +63,7 @@ if($compra->crearCompra($articulo->articulo_id))
 
      $mensaje.="
           <div class='volver'>
-                <a href='articuloGet.php?id={$articulo->articulo_id}&key={$key}' title='Volver al artículo'>Volver al artículo</a>
+                <a href='articuloGet.php?id={$compra->articulo_id}&key={$key}' title='Volver al artículo'>Volver al artículo</a>
           </div>
 
             <script type='text/javascript'>ocultoID('form');ocultoID('titulo');</script>
