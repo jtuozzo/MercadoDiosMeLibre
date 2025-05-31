@@ -41,7 +41,7 @@ else
     }
 
 
-if(!isset($_POST['comprar']))    
+if(!isset($_POST['compro']))    
     {$mensaje = "";
      require ("articulo_comprar_vista.inc");
      exit;

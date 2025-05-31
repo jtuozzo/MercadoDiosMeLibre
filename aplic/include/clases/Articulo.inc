@@ -416,9 +416,13 @@ Class Comprador extends Articulo
     public $st_apellidos = "";
     public $st_nombres = "";
     public $st_email = "";
+    public $st_whatsapp = "";
+    public $whatsapp_err = "";
 
     public function __construct() 
-         {if(isset($_SESSION['DML_USER_ID']))
+         {$this->apellidos_err = $this->nombres_err = $this->email_err = "<span class='obligatorio'>(*)</span>";
+          
+          if(isset($_SESSION['DML_USER_ID']))
                {$this->registrado = true;
                 $this->email = $_SESSION['DML_EMAIL'];
                 $this->apellidos = $_SESSION['DML_APELLIDOS'];
@@ -465,6 +469,12 @@ Class Comprador extends Articulo
            if($todo_ok and !filter_var($this->email, FILTER_VALIDATE_EMAIL))
                {$this->email_err = "<span class='error'>Formato inválido</span>";
                 $this->st_email = "class='st_error'";
+                $todo_ok = false;
+               }
+
+           if(strlen($this->whatsapp)>0 and !preg_match("^\+?[1-9]\d{1,14}$",$this->whatsapp))
+               {$this->whatsapp_err = "<span class='error'>Formato inválido</span>";
+                $this->st_whatsapp = "class='st_error'";
                 $todo_ok = false;
                }
 

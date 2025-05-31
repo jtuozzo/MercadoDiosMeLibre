@@ -3,16 +3,12 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 24/05/2025.
-    Ultima modificación: 25/05/2025.
+    Ultima modificación: 31/05/2025.
 */
 
 label {
     display: block;
     margin-top: 1.5em;
-}
-
-input[type="email"] {
-    font-size: 16px;
 }
 
 input[type="submit"] {

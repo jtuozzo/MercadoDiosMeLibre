@@ -6,6 +6,16 @@
     Ultima modificación: 31/05/2025.
 */
 
+label {
+    display: block;
+    margin-top: 0.6em;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
 
 #comprar {
     text-align: center;
@@ -21,6 +31,14 @@
     line-height: 1.3em;
 }
 
+#comprar h3 {
+    margin-top: 0.9em;
+}
+
+#comentarios {
+    width: 100%;
+}
+
 img {
     margin-top: 2em;
     width: 90%;
@@ -29,12 +47,21 @@ img {
 .contenedor {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 2em;
+    justify-content: space-evenly;
+}
+
+.obligatorio {
+    color: crimson;
 
 }
 
 /* -----------------  Tablet y Desktop  ----------------- */
 
 @media(min-width: 760px) {
+    label {
+        display: inline-block;
+    }
 
     #comprar {
         font-size: 16px;
@@ -43,6 +70,22 @@ img {
     img {
         width: 70%;
         max-width: 800px;
+    }
+
+    .formulario {
+        text-align: left;
+    }
+
+    .comentarios {
+        padding-top: 30px;
+        text-align: left;
+        display: flex;
+        align-items: flex-start;
+        column-gap: 20px;
+    }
+
+    .comentarios label {
+        margin-top: 0;
     }
 
 }
