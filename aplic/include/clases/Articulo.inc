@@ -410,11 +410,19 @@ Class Comprador extends Articulo
     public $whatsapp = "";
     public $comentarios = "";
     public $activo = "";
+    public $apellidos_err = "";
+    public $nombres_err = "";
+    public $email_err = "";
+    public $st_apellidos = "";
+    public $st_nombres = "";
+    public $st_email = "";
 
     public function __construct() 
          {if(isset($_SESSION['DML_USER_ID']))
                {$this->registrado = true;
                 $this->email = $_SESSION['DML_EMAIL'];
+                $this->apellidos = $_SESSION['DML_APELLIDOS'];
+                $this->nombres = $_SESSION['DML_NOMBRES'];
                 $this->activo = "S";
                }
          }
@@ -441,5 +449,26 @@ Class Comprador extends Articulo
            return false;
           }
 
+
+    public function validoCompra()
+          {$todo_ok = true;
+           $obligatorios = array('apellidos', 'nombres', 'email');
+
+          // Valido los campos obligatorios
+          foreach($obligatorios as $campo)
+               {if(empty($this->$campo))
+                    {$this->{$campo . '_err'} = "<span class='error'>Campo obligatorio.</span>";
+                     $this->{'st_' . $campo} = "class='st_error'";
+                     $todo_ok = false;
+                    }
+               }
+           if($todo_ok and !filter_var($this->email, FILTER_VALIDATE_EMAIL))
+               {$this->email_err = "<span class='error'>Formato inválido</span>";
+                $this->st_email = "class='st_error'";
+                $todo_ok = false;
+               }
+
+           return $todo_ok;
+          }      
    }
 ?>
