@@ -59,7 +59,7 @@ if(!$comprador->registrado)
 
               <div class='comentarios'>
                         <label for='comentarios'> Comentarios: </label>
-                        <textarea name='comentarios' id='comentarios' rows='5'  required='required'>{$comprador->comentarios}</textarea>
+                        <textarea name='comentarios' id='comentarios' rows='5' >{$comprador->comentarios}</textarea>
               </div>";
 
         }

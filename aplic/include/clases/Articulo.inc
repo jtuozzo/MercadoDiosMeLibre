@@ -350,7 +350,7 @@ class Articulo
          }
 
     public function getArticulo($articulo_id)
-         {if(!is_numeric($articulo_id))
+         {if(!isset($articulo_id) or !is_numeric($articulo_id))
                {return false;
                }
           
@@ -472,7 +472,7 @@ Class Comprador extends Articulo
                 $todo_ok = false;
                }
 
-           if(strlen($this->whatsapp)>0 and !preg_match("^\+?[1-9]\d{1,14}$",$this->whatsapp))
+           if(strlen($this->whatsapp)>0 and !preg_match("^\+?[1-9]\d{1,14}$^",$this->whatsapp))
                {$this->whatsapp_err = "<span class='error'>Formato inválido</span>";
                 $this->st_whatsapp = "class='st_error'";
                 $todo_ok = false;

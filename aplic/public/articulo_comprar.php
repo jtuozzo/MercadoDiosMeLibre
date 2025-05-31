@@ -23,23 +23,22 @@ if(isset($_GET['id']) and isset($_GET['key']))
     }
 
 foreach($_POST as $clave => $valor)
-     {if(isset($articulo->$clave))
-          {$articulo->$clave=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
+     {if(isset($comprador->$clave))
+          {$comprador->$clave=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
           }
       else     
           {$$clave=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
           }
+      if(isset($id))
+          {$articulo->articulo_id=$id;
+          }
      }
 
-if(!isset($articulo->articulo_id))
+if(!$articulo->getArticulo($articulo->articulo_id))
     {// No hay artículo
      header("Location: index.php");
      exit;
     }
-else
-    {$articulo->getArticulo($articulo->articulo_id);
-    }
-
 
 if(!isset($_POST['compro']))    
     {$mensaje = "";
