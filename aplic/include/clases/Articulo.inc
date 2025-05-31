@@ -173,7 +173,7 @@ class Articulo
 
          // Valido los campos obligatorios
          foreach($obligatorios as $campo)
-            {if(empty($$campo))
+            {if(empty($this->$campo))
                {$this->{$campo . '_err'} = "<span class='error'>Campo obligatorio.</span>";
                 $this->{'st_' . $campo} = "class='st_error'";
                 $todo_ok = false;
