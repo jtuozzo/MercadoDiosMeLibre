@@ -36,9 +36,14 @@ if(!isset($articulo->articulo_id))
      header("Location: index.php");
      exit;
     }
+else
+    {$articulo->getArticulo($articulo->articulo_id);
+    }
+
 
 if(!isset($_POST['comprar']))    
-    {require ("articulo_comprar_vista.inc");
+    {$mensaje = "";
+     require ("articulo_comprar_vista.inc");
      exit;
     }
 
