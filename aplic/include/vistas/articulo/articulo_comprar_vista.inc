@@ -35,31 +35,31 @@ echo       "<form enctype='multipart/form-data' action='{$_SERVER['PHP_SELF']}' 
                         <input type='hidden' name='id' value='{$articulo->articulo_id}' />
                         <input type='hidden' name='key' value='$key' />";
 
-if(!$comprador->registrado)
+if(!$compra->registrado)
         {echo "<h3>Tus datos para que el vendedor te contacte</h3>
                 <div>
                     <label for='nombres'>Nombre/s: </label> 
-                    <input type='text' name='nombres' id='nombres' value='{$comprador->nombres}' size='40' maxlength='64' {$comprador->st_nombres} required='required'> {$comprador->nombres_err}
+                    <input type='text' name='nombres' id='nombres' value='{$compra->nombres}' size='40' maxlength='64' {$compra->st_nombres} required='required'> {$compra->nombres_err}
                </div>
 
                <div>
                     <label for='apellidos'>Apellido/s: </label> 
-                    <input type='text' name='apellidos' id='apellidos' value='{$comprador->apellidos}' size='40' maxlength='64' {$comprador->st_apellidos} required='required'> {$comprador->apellidos_err}
+                    <input type='text' name='apellidos' id='apellidos' value='{$compra->apellidos}' size='40' maxlength='64' {$compra->st_apellidos} required='required'> {$compra->apellidos_err}
                </div>
 
                <div>
                     <label for='email'>  E-mail: </label>
-                    <input type='email' name='email' id='email' value='{$comprador->email}' size='40' maxlength='64' {$comprador->st_email} required='required'> {$comprador->email_err} 
+                    <input type='email' name='email' id='email' value='{$compra->email}' size='40' maxlength='64' {$compra->st_email} required='required'> {$compra->email_err} 
               </div>
 
               <div>
                     <label for='whatsapp'>  Whatsapp: </label>
-                    <input type='whatsapp' name='whatsapp' id='whatsapp' value='{$comprador->whatsapp}' size='14' maxlength='14' {$comprador->st_whatsapp} > {$comprador->whatsapp_err} 
+                    <input type='whatsapp' name='whatsapp' id='whatsapp' value='{$compra->whatsapp}' size='14' maxlength='14' {$compra->st_whatsapp} > {$compra->whatsapp_err} 
               </div>
 
               <div class='comentarios'>
                         <label for='comentarios'> Comentarios: </label>
-                        <textarea name='comentarios' id='comentarios' rows='5' >{$comprador->comentarios}</textarea>
+                        <textarea name='comentarios' id='comentarios' rows='5' >{$compra->comentarios}</textarea>
               </div>";
 
         }

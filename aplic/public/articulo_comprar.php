@@ -12,6 +12,7 @@ session_start();
 
 require("Utils.inc");
 require("Articulo.inc");
+require("Compra.inc");
 $articulo = new Articulo();
 $compra = new Compra();
 
