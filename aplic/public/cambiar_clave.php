@@ -4,11 +4,12 @@
     Autor: Julio Tuozzo.
     Función: Controlador cambia la clave.
     Fecha de creación: 24/05/2025.
-    Ultima modificación: 24/05/2025.
+    Ultima modificación: 31/05/2025.
 */
 
 require("Utils.inc");
 require("User.inc");
+$mensaje="";
 
 $mens_error = "<script language='javascript'>
                     Swal.fire({

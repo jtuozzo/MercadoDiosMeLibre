@@ -56,9 +56,18 @@ img {
 
 .obligatorio {
     color: crimson;
-
 }
 
+.has_comprado
+    {color: darkgreen;
+     text-align: center;
+    }
+
+.volver {
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-top: 2em;
+} 
 /* -----------------  Tablet y Desktop  ----------------- */
 
 @media(min-width: 760px) {

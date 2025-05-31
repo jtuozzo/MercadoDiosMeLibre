@@ -10,11 +10,12 @@
 require("Utils.inc");
 require("User.inc");
 
+$email=$st_email=$email_err=$mensaje="";
+
 // Si no se envió el formulario, lo muestro
 
 if(!isset($_POST['enviar']))
-     {$email=$st_email=$email_err=$mensaje="";
-      require("me_olvide_vista.inc");
+     {require("me_olvide_vista.inc");
       exit;
      }
 
@@ -43,7 +44,7 @@ if(strlen($email_err)>0)
 
 $user = new User();
 
-$mensaje="<script type='text/javascript'>ocultoForm();</script>";
+$mensaje="<script type='text/javascript'>ocultoID('form');</script>";
 
 if($user->nuevaClave($email))
      {// Se pudo cambiar la clave y enviar la clave, o el mail no está registrado.

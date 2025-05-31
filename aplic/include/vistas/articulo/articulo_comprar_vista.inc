@@ -16,7 +16,7 @@ echo "
 <script type='text/javascript' src='./js/articulo_comprar.js'></script>
 
 <div id='comprar'>
-    <a href='articuloGet.php?id={$articulo->articulo_id}&key={$key}' title='Volver al artículo'><h2>Vas a solicitar comprar: {$articulo->titulo} por {$articulo->moneda} {$precio}</h2></a>";
+    <a href='articuloGet.php?id={$articulo->articulo_id}&key={$key}' title='Volver al artículo' id='titulo'><h2>Vas a solicitar comprar: {$articulo->titulo} por {$articulo->moneda} {$precio}</h2></a>";
 
 if(isset($articulo->las_fotos[1]))
         {$img_ppal="<img src='getFoto.php?id={$articulo->las_fotos[1]}&key={$key}' alt='SIN FOTO' />"; 

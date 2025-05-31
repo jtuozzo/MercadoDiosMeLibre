@@ -2,15 +2,15 @@
     Autor: Julio Tuozzo
     Función: Javascript principal.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 30/05/2025.
+    Ultima modificación: 31/05/2025.
 */
 
 function toggleMenu() {
     $("#barraNavUl").toggleClass('mostrar');
 }
 
-function ocultoForm() {
-    $("#form").hide();
+function ocultoID(id) {
+    $("#" + id).hide();
 }
 
 function copyClipp(value) {
