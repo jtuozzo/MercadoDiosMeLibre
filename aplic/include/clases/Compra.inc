@@ -26,6 +26,7 @@ Class Compra
     public $st_email = "";
     public $st_whatsapp = "";
     public $st_comentarios = "";
+    public $user_id = "";
     
     private $obligatorios = array('apellidos', 'nombres', 'email', 'whatsapp');
 
@@ -43,9 +44,7 @@ Class Compra
                 $this->apellidos = $_SESSION['DML_APELLIDOS'];
                 $this->nombres = $_SESSION['DML_NOMBRES'];
                 $this->activo = "S";
-               }
-          else
-               {$this->activo = "";
+                $this->user_id = $_SESSION['DML_USER_ID'];
                }
          }
 
@@ -54,6 +53,7 @@ Class Compra
                  {$query = "INSERT INTO articulo_compra VALUES 
                             (NULL,
                              '{$articulo_id}',
+                             '{$this->user_id}',
                              '{$this->apellidos}',
                              '{$this->nombres}',
                              '{$this->email}',
@@ -95,6 +95,8 @@ Class Compra
                 $todo_ok = false;
                }
 
+
+               
            return $todo_ok;
           }      
    }
