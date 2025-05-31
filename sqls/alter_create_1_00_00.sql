@@ -60,7 +60,7 @@ CREATE TABLE articulo_compra (
   articulo_id INT UNSIGNED NOT NULL,
   apellidos VARCHAR(64) NOT NULL,
   nombres VARCHAR(64) NOT NULL,
-  email VARCHAR(64) NULL,
+  email VARCHAR(64) NOT NULL,
   whatsapp VARCHAR(24) NOT NULL,
   comentarios TEXT NOT NULL,
   insert_datetime datetime NOT NULL,

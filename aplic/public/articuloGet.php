@@ -95,7 +95,7 @@ if(isset($_SESSION['DML_USER_ID']) and $_SESSION['DML_USER_ID']==$articulo->user
     }
 else    
     {// Lo puede ver y comprar
-     require("articulo_comprador.inc");
+     require("articulo_comprador_vista.inc");
     }
 
 ?>

@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista del listado de artículos.
     Fecha de creación: 27/05/2025.
-    Ultima modificación: 29/05/2025.
+    Ultima modificación: 31/05/2025.
 */
 
 $css_local = "articulo_list.css";

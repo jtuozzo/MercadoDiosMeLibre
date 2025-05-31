@@ -1,6 +1,6 @@
 <?php
 /*
-    Nombre: articulo_comprador.inc
+    Nombre: articulo_comprador_vista.inc
     Autor: Julio Tuozzo.
     Función: Vista de un artículo, desde el punto de vista del comprador.
     Fecha de creación: 29/05/2025.
