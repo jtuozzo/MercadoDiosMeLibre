@@ -48,26 +48,27 @@ if(!isset($_POST['compro']))
     }
 
 if($compra->crearCompra($articulo->articulo_id))
-    {if($compra->registrado)
-        {
-
+    {$mensaje="<div class='has_comprado'>
+                    <h1>Excelente!!</h1>
+                    <h2>Solicitaste comprar: <em>{$articulo->titulo}</em>.</h2>";
+     if($compra->registrado)
+        {$mensaje.="<h2>El vendedor deberá contactarse para concretar tu compra.</h2>";
         }
      else
-        {$mensaje="<div class='has_comprado'>
-                    <h1>Excelente!!</h1>
-                    <h2>Solicitaste comprar: <em>{$articulo->titulo}</em></h2>
-                    <h2>Te hemos enviado un correo a {$compra->email}</h2>
+        {$mensaje.="<h2>Te hemos enviado un correo a {$compra->email}</h2>
                     <h2>Verificá tu casilla la correo para terminar el proceso.</h2>
                     <h2>Si no llegó el mail, revisá la casilla de correo basura.</h2>
                     <h2>En el futuro si querés saltear este paso de verificación, podés crear tu usuario aquí: <a href='usuario.php' target='_blank'>Crear Usuario</a></h2>
-          </div>
-          <div class='volver'>
-                <a href='articuloGet.php?id={$articulo->articulo_id}&key={$key}' title='Volver al artículo'>Volver al artículo</a>
           </div>";
 
         }
 
-     $mensaje.="<script type='text/javascript'>ocultoID('form');ocultoID('titulo');</script>
+     $mensaje.="
+          <div class='volver'>
+                <a href='articuloGet.php?id={$articulo->articulo_id}&key={$key}' title='Volver al artículo'>Volver al artículo</a>
+          </div>
+
+            <script type='text/javascript'>ocultoID('form');ocultoID('titulo');</script>
          </div>";
     }
 else

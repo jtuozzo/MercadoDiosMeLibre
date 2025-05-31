@@ -58,14 +58,16 @@ CREATE TABLE articulo_foto (
 CREATE TABLE articulo_compra (
   articulo_compra_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   articulo_id INT UNSIGNED NOT NULL,
+  user_id INT UNSIGNED  NULL,
   apellidos VARCHAR(64) NOT NULL,
   nombres VARCHAR(64) NOT NULL,
   email VARCHAR(64) NOT NULL,
   whatsapp VARCHAR(24) NOT NULL,
-  comentarios TEXT NOT NULL,
+  comentarios TEXT NULL,
   activo ENUM("S") NULL DEFAULT NULL,
   insert_datetime datetime NOT NULL,
   update_datetime datetime NOT NULL,
   PRIMARY KEY (articulo_compra_id),
-  CONSTRAINT FOREIGN KEY (articulo_id) REFERENCES articulo (articulo_id)
+  CONSTRAINT FOREIGN KEY (articulo_id) REFERENCES articulo (articulo_id),
+  CONSTRAINT FOREIGN KEY (user_id) REFERENCES user (user_id)
 ) ENGINE=InnoDB;

@@ -33,11 +33,11 @@ echo       "<form enctype='multipart/form-data' action='{$_SERVER['PHP_SELF']}' 
                 </div>
                 <div class ='formulario'>
                         <input type='hidden' name='id' value='{$articulo->articulo_id}' />
-                        <input type='hidden' name='key' value='$key' />";
+                        <input type='hidden' name='key' value='$key' />
+                        <h3>Tus datos para que el vendedor te contacte</h3>";
 
 if(!$compra->registrado)
-        {echo "<h3>Tus datos para que el vendedor te contacte</h3>
-                <div>
+        {echo "<div>
                     <label for='nombres'>Nombre/s: </label> 
                     <input type='text' name='nombres' id='nombres' value='{$compra->nombres}' size='40' maxlength='64' {$compra->st_nombres} required='required'> {$compra->nombres_err}
                </div>
@@ -50,24 +50,21 @@ if(!$compra->registrado)
                <div>
                     <label for='email'>  E-mail: </label>
                     <input type='email' name='email' id='email' value='{$compra->email}' size='40' maxlength='64' {$compra->st_email} required='required'> {$compra->email_err} 
-              </div>
+              </div>";
+        }
 
-              <div>
-                    <label for='whatsapp'>  Whatsapp: </label>
+echo "         <div>
+                    <label for='whatsapp'>  Telefono / Whatsapp: </label>
                     <input type='whatsapp' name='whatsapp' id='whatsapp' value='{$compra->whatsapp}' size='14' maxlength='14' {$compra->st_whatsapp} > {$compra->whatsapp_err} 
               </div>
 
               <div class='comentarios'>
-                        <label for='comentarios'> Comentarios: </label>
-                        <textarea name='comentarios' id='comentarios' rows='5' >{$compra->comentarios}</textarea>
-              </div>";
-
-        }
-
-echo "                        
-                        
-                </div>
-            </div>
+                        <label for='comentarios' {$compra->st_comentarios}> Comentarios: </label>
+                        <textarea name='comentarios' id='comentarios' rows='6' placeholder='Colocá aquí datos adicionales.\nTambién podes hacer preguntas acerca del artículo, ya que esto es una solicitud de compra.\nLa compra la acordás luego directamente con el vendedor.'>{$compra->comentarios}</textarea>{$compra->comentarios_err}
+              </div>
+                                
+           </div>
+         </div>
 
             <input class='boton' type='submit' name='compro' id='compro' value='Comprar' />
 

@@ -19,14 +19,23 @@ Class Compra
     public $apellidos_err = "";
     public $nombres_err = "";
     public $email_err = "";
+    public $whatsapp_err = "";
+    public $comentarios_err = "";
     public $st_apellidos = "";
     public $st_nombres = "";
     public $st_email = "";
     public $st_whatsapp = "";
-    public $whatsapp_err = "";
+    public $st_comentarios = "";
+    
+    private $obligatorios = array('apellidos', 'nombres', 'email', 'whatsapp');
 
     public function __construct() 
-         {$this->apellidos_err = $this->nombres_err = $this->email_err = "<span class='obligatorio'>(*)</span>";
+         {foreach($this->obligatorios as $valor)
+               {$valor = $valor."_err";
+                $this->$valor = "<span class='obligatorio'>(*)</span>";
+               }
+          
+          
           
           if(isset($_SESSION['DML_USER_ID']))
                {$this->registrado = true;
@@ -65,10 +74,9 @@ Class Compra
 
     public function validoCompra()
           {$todo_ok = true;
-           $obligatorios = array('apellidos', 'nombres', 'email');
 
           // Valido los campos obligatorios
-          foreach($obligatorios as $campo)
+          foreach($this->obligatorios as $campo)
                {if(empty($this->$campo))
                     {$this->{$campo . '_err'} = "<span class='error'>Campo obligatorio.</span>";
                      $this->{'st_' . $campo} = "class='st_error'";
