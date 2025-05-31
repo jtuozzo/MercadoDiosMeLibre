@@ -402,4 +402,44 @@ class Articulo
          }
    }
     
+Class Comprador extends Articulo
+   {public $registrado = false;
+    public $apellidos = "";
+    public $nombres = "";
+    public $email = "";
+    public $whatsapp = "";
+    public $comentarios = "";
+    public $activo = "";
+
+    public function __construct() 
+         {if(isset($_SESSION['DML_USER_ID']))
+               {$this->registrado = true;
+                $this->email = $_SESSION['DML_EMAIL'];
+                $this->activo = "S";
+               }
+         }
+
+    public function crearCompra()
+          {if ($this->validoCompra())
+                 {$query = "INSERT INTO articulo_compra VALUES 
+                            (NULL,
+                             {$this->articulo_id},
+                             {$this->apellidos},
+                             {$this->nombres},
+                             {$this->email},
+                             {$this->whatsapp},
+                             {$this->comentarios},
+                             {$this->activo},
+                             NOW(),
+                             NOW()
+                            )";
+                   $query =str_replace("''", "NULL", $query);
+                   $result = Utils::execute($query, __FILE__, __LINE__);
+
+                   return true;
+                 }
+           return false;
+          }
+
+   }
 ?>

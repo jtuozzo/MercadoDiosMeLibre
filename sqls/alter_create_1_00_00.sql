@@ -63,6 +63,7 @@ CREATE TABLE articulo_compra (
   email VARCHAR(64) NOT NULL,
   whatsapp VARCHAR(24) NOT NULL,
   comentarios TEXT NOT NULL,
+  activo ENUM("S") NULL DEFAULT NULL,
   insert_datetime datetime NOT NULL,
   update_datetime datetime NOT NULL,
   PRIMARY KEY (articulo_compra_id),
