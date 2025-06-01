@@ -11,8 +11,8 @@ require("Utils.inc");
 require("Articulo.inc");
 
 
-foreach($_GET as $key => $valor)
-     {$$key=trim($valor);
+foreach($_GET as $clave => $valor)
+     {$$clave=trim($valor);
      }
 
 $compra = new Compra();
@@ -24,7 +24,7 @@ if(isset($id) and isset($key) and isset($email)) // Llegaron los datos, confirmo
                         Swal.fire({
                         icon:'success',
                         title:'Compra confirmada',
-                        text:'Hemos enviado un e-mail a $email para que puedas hacer el seguimiento.',
+                        text:'Ahora tenés que esperar a que el vendedor te contacte.',
                         confirmButtonColor: '#63676c',
                         confirmButtonText: 'Continuar'
                         })
@@ -35,12 +35,12 @@ if(isset($id) and isset($key) and isset($email)) // Llegaron los datos, confirmo
            
           }
       else
-          {// Se pudo confirmar la compra
+          {// No se pudo confirmar la compra
            $mensaje="<script language='javascript'>
                     Swal.fire({
                     icon:'error',
                     title:'Ooops!!',
-                    text:'Error en el link de confirmación de compra',
+                    text:'Error en el link de confirmación de compra.',
                     confirmButtonColor: '#D22518',
                     })
                	  .then(function() {
@@ -53,6 +53,7 @@ else // Si no se enviaron los parámetros va al index
      {header("Location: index.php");
       exit();
      }
-
-require("articulo_comprar_vista.inc");
+require("head.inc");
+     echo $mensaje;
+require("foot.inc");
 ?>

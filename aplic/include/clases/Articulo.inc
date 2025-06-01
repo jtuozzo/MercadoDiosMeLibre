@@ -551,10 +551,12 @@ Class Compra extends Articulo
           {// Envío el e-mail de confirmación
            $mail = new Mail;
            $link=substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/confirmar_compra.php?id={$this->articulo_compra_id}&key={$this->articulo_id}&email={$this->email}";
+           $link_user=substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/usuario.php";
                
                $body = "Has solicitado comprar: <strong>{$this->titulo}.</strong> <br /><br />
                          
-                         Para confirmar la compra, hac&eacute; click en el siguiente link: <a href='$link'>$link</a> <br /><br />
+                         Para confirmar la compra, hac&eacute; click en el siguiente link: <a href='$link' target='_blank'>$link</a> <br /><br />
+                         En el futuro si querés saltear este paso de verificación, podés crear tu usuario aquí: <a href='$link_user' target='_blank'>$link_user</a><br /><br />
                          
                          Muchas gracias! <br />";
                
@@ -586,6 +588,24 @@ Class Compra extends Articulo
                     Muchas gracias! <br />";
           
            return $mail->sendMail($result->fields['email'], "Tenés una nueva compra!", $body);
+          }
+
+      public function confirmarCompra($id, $key, $email)
+          {$query = "UPDATE articulo_compra
+                     SET activo='S',
+                     update_datetime = NOW()
+                     WHERE articulo_compra_id='$id'
+                     AND articulo_id='$key'
+                     AND email='$email'"; 
+           
+           $result= Utils::execute($query,__FILE__,__LINE__);
+
+           if(Utils::$dbase->db->affected_rows() == 1)
+                {return true;
+                }
+           else
+                {return false;
+                }
           }
      }
 
