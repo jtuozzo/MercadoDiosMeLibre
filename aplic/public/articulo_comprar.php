@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Compra un artículo.
     Fecha de creación: 31/05/2025.
-    Ultima modificación: 31/05/2025.
+    Ultima modificación: 01/06/2025.
 */
 
 session_start();
@@ -45,7 +45,7 @@ if(!isset($_POST['compro']))
      exit;
     }
 
-if($compra->crearCompra($compra->articulo_id))
+if($compra->crearCompra())
     {$mensaje="<div class='has_comprado'>
                     <h1>Excelente!!</h1>
                     <h2>Solicitaste comprar: <em>{$compra->titulo}</em>.</h2>";
@@ -71,7 +71,10 @@ if($compra->crearCompra($compra->articulo_id))
     }
 else
     {// No se pudo procesar la compra
-     if($compra->repetida)
+    if(!$compra->salio_email)
+        {$mensaje=Utils::msgError("Error de conexión","Intente en unos minutos");
+        }
+    elseif($compra->repetida)
         {$mensaje=Utils::msgError("Ya solicitaste esa compra","Aguardá a que te contacte el vendedor");
         }
     else

@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo
     Función: Clase que maneja el envío de e-mails
     Fecha de creación: 23/05/2025.
-    Ultima modificación: 24/08/2025.
+    Ultima modificación: 24/05/2025.
 */
 
 use PHPMailer\PHPMailer\PHPMailer;

@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de los artículos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 31/05/2025.
+    Ultima modificación: 01/06/2025.
 */
 
 #[AllowDynamicProperties]
@@ -29,6 +29,7 @@ class Articulo
      public $vista = ""; // Define el tipo de vista de artículo que va a haber
      public $vendido = "";
      public $chk_vendido;
+     public $token = "";
 
      
 
@@ -51,7 +52,8 @@ class Articulo
           $result = Utils::execute($query, __FILE__, __LINE__);
 
           if($result->recordCount()==1)
-               {return $articulo_id;
+               {$this->token = $token;
+                return $articulo_id;
                }
           else
                {return null;
@@ -406,6 +408,7 @@ class Articulo
     
 Class Compra extends Articulo
    {public $registrado = false;
+    public $articulo_compra_id = 0;
     public $apellidos = "";
     public $nombres = "";
     public $email = "";
@@ -423,6 +426,7 @@ Class Compra extends Articulo
     public $st_whatsapp = "";
     public $st_comentarios = "";
     public $repetida = false;
+    public $salio_email = true;
 
     private $comprador_user_id = "";
     private $obligatorios = array('apellidos', 'nombres', 'email', 'whatsapp');
@@ -469,7 +473,25 @@ Class Compra extends Articulo
                    $query =str_replace("''", "NULL", $query);
                    $result = Utils::execute($query, __FILE__, __LINE__);
 
-                   return true;
+                   $this->articulo_compra_id = mysqli_insert_id(Utils::$dbase->db->_connectionID);
+
+                   if(!$this->registrado )
+                         {if(!$this->envioMailConfirmacion()) 
+                              {// No pudo enviar el mail con el aviso, invalida la compra
+                               $query = "UPDATE articulo_compra
+                                         SET email = 'INVALID_{{$this->email}}'
+                                         WHERE articulo_compra_id='{$this->articulo_compra_id}'";
+                               $result = Utils::execute($query, __FILE__, __LINE__);
+
+                               $this->salio_email = false;
+                               return false;
+                              }
+                         }
+                   else
+                         {$this->envioMailCompra();
+                          return true;
+                         }
+                   
                  }
            return false;
           }
@@ -498,7 +520,7 @@ Class Compra extends Articulo
                 $todo_ok = false;
                }
 
-           // Valido que ni esté la misma compra solicitada
+           // Valido que no esté la misma compra solicitada
 
            if(!empty($this->comprador_user_id))
                {$query = "SELECT articulo_id
@@ -522,6 +544,48 @@ Class Compra extends Articulo
                }
            
            return $todo_ok;
-          }      
-   }
+          }
+          
+     private function envioMailConfirmacion()
+          {// Envío el e-mail de confirmación
+           $mail = new Mail;
+           $link=substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/confirmar_compra.php?id={$this->articulo_compra_id}&key={$this->articulo_id}&email={$this->email}";
+               
+               $body = "Has solicitado comprar: <strong>{$this->titulo}.</strong> <br /><br />
+                         
+                         Para confirmar la compra, hac&eacute; click en el siguiente link: <a href='$link'>$link</a> <br /><br />
+                         
+                         Muchas gracias! <br />";
+               
+               return $mail->sendMail($this->email, "Confirmación de compra", $body);
+
+          }
+          
+     private function envioMailCompra()
+          {// Busco el mail del dueño del artículo
+
+           $query = "SELECT email
+                     FROM user us
+                     JOIN articulo art ON art.user_id=us.user_id
+                     WHERE art.articulo_id='{$this->articulo_id}'";
+
+           $result = Utils::execute($query,__FILE__,__LINE__);
+           if($result->recordCount()!=1)
+               {return false;
+               }
+           
+           // Envío el e-mail de confirmación
+           $mail = new Mail;
+           $link=substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/articuloGet.php?id={$this->articulo_id}&key={$this->token}";
+                   
+          $body = "Han solicitado comprar: <strong>{$this->titulo}.</strong> <br /><br />
+                    
+                    Podés ver la compra haciendo click en el siguiente link: <a href='$link'>$link</a> <br /><br />
+                    
+                    Muchas gracias! <br />";
+          
+           return $mail->sendMail($result->fields['email'], "Tenés una nueva compra!", $body);
+          }
+     }
+
 ?>
