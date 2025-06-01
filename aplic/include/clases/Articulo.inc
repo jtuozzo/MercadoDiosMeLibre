@@ -486,6 +486,7 @@ Class Compra extends Articulo
                                $this->salio_email = false;
                                return false;
                               }
+                          return true;
                          }
                    else
                          {$this->envioMailCompra();
@@ -557,7 +558,7 @@ Class Compra extends Articulo
                          
                          Muchas gracias! <br />";
                
-               return $mail->sendMail($this->email, "Confirmación de compra", $body);
+               return $mail->sendMail($this->email, "Confirmá la compra", $body);
 
           }
           

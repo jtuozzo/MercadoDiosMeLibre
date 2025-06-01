@@ -17,8 +17,9 @@ $compra = new Compra();
 // Inicializo GETS y POSTS y verifico el acceso al artículo
 
 if(isset($_GET['id']) and isset($_GET['key']))
-    {$compra->articulo_id = $compra->validoID($_GET['id'],$_GET['key']);
-     $key=$_GET['key'];
+    {foreach($_GET as $clave => $valor)
+        {$$clave=$valor;
+        }
     }
 
 foreach($_POST as $clave => $valor)
@@ -28,10 +29,9 @@ foreach($_POST as $clave => $valor)
       else     
           {$$clave=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
           }
-      if(isset($id))
-          {$compra->articulo_id=$id;
-          }
      }
+
+$compra->articulo_id = $compra->validoID($id,$key);
 
 if(!$compra->getArticulo($compra->articulo_id))
     {// No hay artículo
@@ -54,7 +54,7 @@ if($compra->crearCompra())
         }
      else
         {$mensaje.="<h2>Te hemos enviado un correo a <em>{$compra->email}</em></h2>
-                    <h2>Verificá tu casilla la correo para terminar el proceso.</h2>
+                    <h2>Verificá tu casilla de correo para terminar el proceso.</h2>
                     <h2>Si no llegó el mail, revisá la casilla de correo basura.</h2>
                     <h2>En el futuro si querés saltear este paso de verificación, podés crear tu usuario aquí: <a href='usuario.php' target='_blank'>Crear Usuario</a></h2>
           </div>";

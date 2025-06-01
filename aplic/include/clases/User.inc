@@ -4,10 +4,8 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de manejo de usuarios.
     Fecha de creación: 23/05/2025.
-    Ultima modificación: 29/05/2025.
+    Ultima modificación: 01/06/2025.
 */
-
-require("Mail.inc");
 
 class User
     {public $st_clave = "";

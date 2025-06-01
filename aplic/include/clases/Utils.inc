@@ -44,6 +44,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 ini_set('default_charset', 'utf-8');
 
 
+require("Mail.inc");
 require("DBConecto.inc");
 
 class Utils 
