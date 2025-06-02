@@ -7,11 +7,13 @@
 
 
 function sin_articulos() {
-    let header = $('#header').height();
-    let alt = $(window).height() - header - 15;
-    $('#list_articulos').css({ 'height': alt + 'px', 'overflow-y': 'auto' });
-    $('#list_articulos').css('background-color', '#f0f0f0');
-    $('.link').hide();
-    $('h2').css('background-color', '#f0f0f0');
+    window.onload = function () {
+        setAlto('list_articulos');
+        $('#list_articulos').css('background-color', '#f0f0f0');
+        $('.link').hide();
+        $('h2').css('background-color', '#f0f0f0');
+
+    }
+
 }
 

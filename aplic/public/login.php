@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Controlador del login del usuario.
     Fecha de creación: 20/05/2025.
-    Ultima modificación: 25/05/2025.
+    Ultima modificación: 01/06/2025.
 */
 
 session_start();
@@ -52,6 +52,7 @@ if(!isset($mensaje)) // Hasta acá no hubo errores, valido el usuario y la clave
         {$st_email="class='st_error'";
         $st_clave="class='st_error'";
         $email_err="<br/><span class='error'>Usuario o clave incorrectos</span>";
+        $clave_err="";
         $mensaje=Utils::msgError();
         }
 

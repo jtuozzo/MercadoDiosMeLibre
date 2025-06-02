@@ -2,14 +2,12 @@
     Autor: Julio Tuozzo
     Función: Javascript del artículo.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 29/05/2025.
+    Ultima modificación: 01/06/2025.
 */
 
 
 window.onload = function () {
-    let header = $('#header').height();
-    let alt = $(window).height() - header - 10;
-    $('#articulo').css({ 'height': alt + 'px', 'overflow-y': 'auto' });
+    setAlto('articulo');
 }
 
 window.addEventListener('beforeunload', function (event) {

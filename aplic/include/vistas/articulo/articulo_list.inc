@@ -62,5 +62,5 @@ while(!$result->EOF)
 
 echo "</div>";
 echo Utils::paginador($pagina,$q_registros,$orden,$sentido,$id);
-require_once('foot.inc');
+require('foot.inc');
 ?>

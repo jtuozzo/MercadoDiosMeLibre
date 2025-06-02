@@ -2,14 +2,12 @@
     Autor: Julio Tuozzo
     Función: Javascript de la compra del artículo.
     Fecha de creación: 31/05/2025.
-    Ultima modificación: 31/05/2025.
+    Ultima modificación: 01/06/2025.
 */
 
 
 window.onload = function () {
-    let header = $('#header').height();
-    let alt = $(window).height() - header - 10;
-    $('#comprar').css({ 'height': alt + 'px', 'overflow-y': 'auto' });
+    setAlto('comprar');
 }
 
 window.addEventListener('beforeunload', function (event) {

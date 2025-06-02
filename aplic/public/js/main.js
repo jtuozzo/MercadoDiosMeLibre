@@ -2,7 +2,7 @@
     Autor: Julio Tuozzo
     Función: Javascript principal.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 31/05/2025.
+    Ultima modificación: 01/06/2025.
 */
 
 function toggleMenu() {
@@ -28,3 +28,19 @@ function copyClipp(value) {
     }
 
 };
+
+function setMail() {
+
+    let eMail = 'mercadodiosmelibre.com.ar';
+    eMail = 'info' + '@' + eMail;
+    $('#emailTo').html('<a href="mailto:' + eMail +'">'+ eMail + '</a>'); 
+}
+
+function setAlto(seccion)
+    {let header = $('#header').height()+15;
+     let footer = $('#footer').height()+15;
+     let alt=$(window).height()-header-footer; 
+     $('#' + seccion).css({'height':alt+'px', 'overflow-y':'auto'}); 
+
+
+    }
