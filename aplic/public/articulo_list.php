@@ -2,7 +2,7 @@
 /*
     Nombre: articulo_list.php
     Autor: Julio Tuozzo.
-    Función: Listadode de artículos.
+    Función: Listado de artículos.
     Fecha de creación: 27/05/2025.
     Ultima modificación: 29/05/2025.
 */

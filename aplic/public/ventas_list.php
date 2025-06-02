@@ -1,0 +1,62 @@
+<?php
+/*
+    Nombre: ventas_list.php
+    Autor: Julio Tuozzo.
+    Función: Listado de artículos que tienen oferta de compra.
+    Fecha de creación: 02/06/2025.
+    Ultima modificación: 02/06/2025.
+*/
+
+session_start();
+
+require("Utils.inc");
+require("Articulo.inc");
+
+// Acá accede con la sesión del usuario
+
+if(!isset($_SESSION['DML_NIVEL']) or $_SESSION['DML_NIVEL'] < 2)
+     {// No tiene permisos para listar los artículos
+      header("Location: index.php");
+      exit;
+     }
+
+// Guardo los datos en variables
+
+foreach($_GET as $clave => $valor)
+     {$$clave=trim(htmlentities($valor,ENT_QUOTES,'UTF-8'));
+     }
+
+$ventas = new Ventas();
+
+if(!isset($pagina))
+     {// No está paginando, es un query nuevo
+      $pagina = 1;
+      $sentido ="DESC";
+      $orden = "articulo_compra_id";
+      $q_registros = $ventas->countVentas($_SESSION['DML_USER_ID']);
+     }
+
+$desde = ($pagina - 1) * MAX_ARTICULOS;
+
+// Armo y ejecuto la consulta
+
+$query = $ventas->queryVentas($_SESSION['DML_USER_ID'], $orden, $sentido);
+
+$result = Utils::selectLimit($query, $desde,__FILE__, __LINE__); 
+
+
+if($sentido=="DESC")
+        {$_aux_var="arr_$orden";
+         $$_aux_var="&nbsp; &#9660;";
+         $_aux_var="sen_$orden";
+         $$_aux_var="ASC";
+        }
+else
+        {$_aux_var="arr_$orden";
+         $$_aux_var="&nbsp; &#9650;";
+         $_aux_var="sen_$orden";
+         $$_aux_var="DESC";
+        }
+
+require("ventas_list.inc");
+?>
