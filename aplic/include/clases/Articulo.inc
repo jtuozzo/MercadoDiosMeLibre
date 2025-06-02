@@ -626,14 +626,23 @@ Class Ventas extends Compra
           }
 
       public function queryVentas($user_id, $orden, $sentido="ASC")
-          {return "SELECT ac.apellidos, ac.nombres, ac.email, ac.whatsapp, ac.comentarios, ac.insert_datetime, 
-                   art.titulo, art.moneda, art.precio, art.vendido, af.articulo_foto_id, art.articulo_id
+          {return "SELECT DISTINCT art.titulo, art.moneda, art.precio, art.vendido, af.articulo_foto_id, art.articulo_id
                    FROM articulo_compra ac
                    JOIN articulo art ON art.articulo_id=ac.articulo_id
                    LEFT JOIN articulo_foto af ON af.articulo_id=art.articulo_id AND af.principal='S'
                    WHERE art.user_id='$user_id'
                    AND ac.activo='S'
                    ORDER BY $orden $sentido";
+          }
+
+      public function getCompradores($articulo_id)
+          {
+           $query = "SELECT ac.apellidos, ac.nombres, ac.email, ac.whatsapp, ac.comentarios, ac.insert_datetime
+                     FROM articulo_compra ac
+                     WHERE ac.articulo_id='$articulo_id'
+                     AND ac.activo='S'";
+
+           return Utils::execute($query,__FILE__,__LINE__);
           }
      }
 

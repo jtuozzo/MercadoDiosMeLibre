@@ -24,7 +24,7 @@ if($result->recordCount()==0)
 
 while(!$result->EOF)
     {foreach($result->fields as $clave=>$valor)
-            {$$clave=$valor; 
+            {$$clave=nl2br(htmlentities($valor,ENT_QUOTES,'UTF-8'));
             }
      
     if($vendido=="S")
@@ -45,9 +45,18 @@ while(!$result->EOF)
                     <div class='titulo'>$titulo</div>
                     <div class='precio'>$moneda $precio</div>
                     </div>
-                    <div class='comprador'>
-                    $nombres $apellidos $email $whatsapp $comentarios
-                    </div>
+                    <div class='comprador'>";
+       $compradores = $ventas->getCompradores($articulo_id);
+
+       while(!$compradores->EOF)
+            {foreach($compradores->fields as $clave=>$valor)
+                    {$$clave=nl2br(htmlentities($valor,ENT_QUOTES,'UTF-8'));
+                    }
+             echo "<div>$nombres $apellidos $email $whatsapp $comentarios</div>";
+             $compradores->moveNext();
+            }
+                       
+echo                    "</div>
             </div>";
 
      $result->moveNext();

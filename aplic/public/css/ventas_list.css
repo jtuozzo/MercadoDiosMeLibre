@@ -15,7 +15,6 @@ h2 {
     padding: 0.5em;
     background-color: #ffffff;
     font-size: 18px;
-    gap: 0.7em;
 }
 
 .vendido {
@@ -56,11 +55,13 @@ h2 {
     align-items: center;
     justify-content: center;
     width: 100%;
+    margin-bottom: 1em;
 }
 
 .comprador {
     text-align: left;
     width: 70%;
+    padding: 1.2em;
 }
 
 .articulo {
@@ -106,11 +107,16 @@ h2 {
 @media(min-width: 760px) {
     #list_ventas {
         font-size: 16px;
+        padding: 1em;
     }
 
     .articulo {
         width: 20%;
         min-width: 360px;
+    }
+
+    .comprador {
+        width: 80%;
     }
 
     .sin h1 {
