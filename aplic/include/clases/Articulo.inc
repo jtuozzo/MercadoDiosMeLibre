@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de los artículos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 01/06/2025.
+    Ultima modificación: 02/06/2025.
 */
 
 #[AllowDynamicProperties]
@@ -579,11 +579,10 @@ Class Compra extends Articulo
            
            // Envío el e-mail de confirmación
            $mail = new Mail;
-           $link=substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/articuloGet.php?id={$this->articulo_id}&key={$this->token}";
-                   
-          $body = "Han solicitado comprar: <strong>{$this->titulo}.</strong> <br /><br />
+                             
+           $body = "Han solicitado comprar: <strong>{$this->titulo}.</strong> <br /><br />
                     
-                    Podés ver la compra haciendo click en el siguiente link: <a href='$link'>$link</a> <br /><br />
+                    Podés verla en <strong>Mis ventas</strong>.<br /><br />
                     
                     Muchas gracias! <br />";
           
@@ -601,7 +600,9 @@ Class Compra extends Articulo
            $result= Utils::execute($query,__FILE__,__LINE__);
 
            if(Utils::$dbase->db->affected_rows() == 1)
-                {return true;
+                {$this->getArticulo($key);
+                 $this->envioMailCompra();
+                 return true;
                 }
            else
                 {return false;
