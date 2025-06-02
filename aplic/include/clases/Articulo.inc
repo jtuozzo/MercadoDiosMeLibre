@@ -608,6 +608,30 @@ Class Compra extends Articulo
                 {return false;
                 }
           }
+
+     }
+
+Class Ventas extends Compra 
+     {public function countVentas($user_id)
+          {$query = "SELECT articulo_compra_id
+                     FROM articulo_compra ac
+                     JOIN articulo art ON art.articulo_id=ac.articulo_id
+                     WHERE art.user_id='$user_id'";
+
+           $result = Utils::execute($query,__FILE__,__LINE__);
+
+           return $result->recordCount();
+
+          }
+
+      public function queryVentas($user_id, $orden, $sentido="ASC")
+          {return "SELECT ac.apellidos, ac.nombres, ac.email, ac.whatsapp, ac.comentarios, ac.insert_datetime, 
+                   art.titulo, art.moneda, art.precio
+                   FROM articulo_compra ac
+                   JOIN articulo art ON art.articulo_id=ac.articulo_id
+                   WHERE ac.activo='S'
+                   ORDER BY $orden $sentido";
+          }
      }
 
 ?>
