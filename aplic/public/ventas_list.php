@@ -44,7 +44,6 @@ $query = $ventas->queryVentas($_SESSION['DML_USER_ID'], $orden, $sentido);
 
 $result = Utils::selectLimit($query, $desde,__FILE__, __LINE__); 
 
-
 if($sentido=="DESC")
         {$_aux_var="arr_$orden";
          $$_aux_var="&nbsp; &#9660;";

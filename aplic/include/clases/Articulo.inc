@@ -616,7 +616,8 @@ Class Ventas extends Compra
           {$query = "SELECT articulo_compra_id
                      FROM articulo_compra ac
                      JOIN articulo art ON art.articulo_id=ac.articulo_id
-                     WHERE art.user_id='$user_id'";
+                     WHERE art.user_id='$user_id'
+                     AND ac.activo='S'";
 
            $result = Utils::execute($query,__FILE__,__LINE__);
 
@@ -626,10 +627,12 @@ Class Ventas extends Compra
 
       public function queryVentas($user_id, $orden, $sentido="ASC")
           {return "SELECT ac.apellidos, ac.nombres, ac.email, ac.whatsapp, ac.comentarios, ac.insert_datetime, 
-                   art.titulo, art.moneda, art.precio
+                   art.titulo, art.moneda, art.precio, art.vendido, af.articulo_foto_id, art.articulo_id
                    FROM articulo_compra ac
                    JOIN articulo art ON art.articulo_id=ac.articulo_id
-                   WHERE ac.activo='S'
+                   LEFT JOIN articulo_foto af ON af.articulo_id=art.articulo_id AND af.principal='S'
+                   WHERE art.user_id='$user_id'
+                   AND ac.activo='S'
                    ORDER BY $orden $sentido";
           }
      }
