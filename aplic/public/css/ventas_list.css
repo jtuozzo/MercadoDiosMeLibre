@@ -12,11 +12,9 @@ h2 {
 }
 
 #list_ventas {
-    padding: 1em;
+    padding: 0.5em;
     background-color: #ffffff;
     font-size: 18px;
-    display: flex;
-    flex-wrap: wrap;
     gap: 0.7em;
 }
 
@@ -37,7 +35,7 @@ h2 {
 .propietario:hover {
     box-shadow: 10px 10px 30px -2px rgba(0, 0, 0, 0.46);
     opacity: 60%;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .sin {
@@ -53,10 +51,22 @@ h2 {
     font-size: 2.5em;
 }
 
+.renglon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.comprador {
+    text-align: left;
+    width: 70%;
+}
+
 .articulo {
-    padding: 0.8em;
+    padding: 0.3em;
     width: 30%;
-    min-width: 280px;
+    min-width: 250px;
     margin: auto;
     background-color: #ececec;
     border-radius: 12px;
@@ -65,7 +75,7 @@ h2 {
 .en_venta:hover {
     box-shadow: 10px 10px 30px -2px rgba(0, 0, 0, 0.46);
     opacity: 60%;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .articulo img {
@@ -75,20 +85,21 @@ h2 {
 
 .titulo {
     text-align: center;
-    font-size: 1.2em;
 }
 
 .precio {
     margin-top: 0.3em;
     text-align: center;
+    font-size: 0.8em;
 }
 
 .link {
     padding: 0.6em;
     cursor: pointer;
     display: flex;
-    align-items:center;
+    align-items: center;
 }
+
 
 /* -----------------  Tablet y Desktop  ----------------- */
 
