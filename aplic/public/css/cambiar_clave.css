@@ -3,7 +3,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 24/05/2025.
-    Ultima modificación: 24/05/2025.
+    Ultima modificación: 03/06/2025.
 */
 
 label {
@@ -37,6 +37,14 @@ input[type="submit"] {
     display: none;
 }
 
+#ver_nueva_clave img {
+    cursor: pointer;
+}
+
+
+#ver_nueva_clave img {
+    vertical-align: text-bottom;
+}
 /* -----------------  Tablet y Desktop  ----------------- */
 
 @media(min-width: 760px) {

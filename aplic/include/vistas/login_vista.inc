@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista del login.
     Fecha de creación: 20/05/2025.
-    Ultima modificación: 25/05/2025.
+    Ultima modificación: 03/06/2025.
 */
 
 $css_local = "login.css";
@@ -23,8 +23,10 @@ echo "
         </div>
 
         <div>
+
             <label for='clave'> Clave: </label>
-            <input type='password' name='clave' id='clave' size='20' maxlength='20' $st_clave> $clave_err 
+            <input type='password' name='clave' id='clave' size='20' maxlength='20' {$st_clave}> <span onClick='changeClave()' id='ver_clave'><img src='./images/ver.png' id='ver_clave_img'></span>{$clave_err} 
+
             <div class='verifique'>(Verifique no tener activada la tecla \"BLOQ MAYUS\" al ingresar la clave)</div>
         </div>
 
