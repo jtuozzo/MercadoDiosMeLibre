@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista del listado de artículos vendidos.
     Fecha de creación: 02/06/2025.
-    Ultima modificación: 02/06/2025.
+    Ultima modificación: 03/06/2025.
 */
 
 $css_local = "ventas_list.css";
@@ -22,7 +22,8 @@ if($result->recordCount()==0)
     {echo "<div class='sin'>
                     <img src='./images/estanteria.png' />
                     <h1>Sin artículos vendidos</h1>
-          </div>";
+          </div>
+          <script type='text/javascript'>ocultarEncabezado()</script>";
     }
 
 while(!$result->EOF)
