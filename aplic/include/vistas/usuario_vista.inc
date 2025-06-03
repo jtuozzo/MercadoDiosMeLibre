@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista del nuevo usuario.
     Fecha de creación: 24/05/2025.
-    Ultima modificación: 24/05/2025.
+    Ultima modificación: 03/06/2025.
 */
 
 $css_local = "usuario.css";
@@ -35,7 +35,7 @@ echo "
 
         <div>
             <label for='clave'> Clave: </label>
-            <input type='password' name='clave' id='clave' size='20' maxlength='20' {$user->st_clave}> {$user->clave_err} 
+            <input type='password' name='clave' id='clave' size='20' maxlength='20' {$user->st_clave}> <span onClick='changeClave()' id='ver_clave'><img src='./images/ver.png' id='ver_clave_img'></span>{$user->clave_err} 
             <div id='tips' >Debe tener como mínimo 8 dígitos. Pueden ser letras, números o símbolos.</div>
             <div class='verifique'>(Verifique no tener activada la tecla \"BLOQ MAYUS\" al ingresar la clave)</div>
         </div>

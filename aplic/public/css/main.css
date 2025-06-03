@@ -2,7 +2,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos general
     Fecha de creación: 17/05/2025.
-    Ultima modificación: 31/05/2025.
+    Ultima modificación: 03/06/2025.
 */
 
 * {
@@ -114,6 +114,14 @@ header {
     cursor: pointer;
 }
 
+#ver_clave img {
+    cursor: pointer;
+}
+
+
+#ver_clave img {
+    vertical-align: text-bottom;
+}
 
 .li_derecha {
     float: right;
