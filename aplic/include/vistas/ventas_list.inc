@@ -12,7 +12,10 @@ $css_local = "ventas_list.css";
 require_once('head.inc');
 echo "
 <script type='text/javascript' src='./js/ventas_list.js'></script>
-<h2>Mis Ventas</h2>
+<div class='encabezado'>
+    <h2 class='encabezado_h2'>Mis Ventas</h2>
+    <h2>Comprador/es</h2>
+</div>
 <div id='list_ventas'>";
 
 if($result->recordCount()==0)
@@ -52,7 +55,14 @@ while(!$result->EOF)
             {foreach($compradores->fields as $clave=>$valor)
                     {$$clave=nl2br(htmlentities($valor,ENT_QUOTES,'UTF-8'));
                     }
-             echo "<div>$nombres $apellidos $email $whatsapp $comentarios</div>";
+             echo "<div>
+                    <div class = 'un_comprador'>
+                            <div>$nombres $apellidos</div> 
+                            <div>$email</div> 
+                            <div>$whatsapp</div> 
+                            <div>$comentarios</div>
+                    </div>
+                  </div>";
              $compradores->moveNext();
             }
                        
