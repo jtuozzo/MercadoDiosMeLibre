@@ -215,6 +215,7 @@ class Articulo
                               if(($extension=="jpg" or $extension=="jpeg") and exif_imagetype($tmp[$i])==IMAGETYPE_JPEG)
                                  {$nombre_tmp="adjunto_".date("Y_m_d_H_i_s").".jpg";
                                  $im = imagecreatefromjpeg($tmp[$i]);
+                                 $im = imagescale($im,800,-1,IMG_BILINEAR_FIXED);
 
                                  // Arreglo la orientación de la imagen
                                  $exif = @exif_read_data($tmp[$i]);
@@ -232,7 +233,7 @@ class Articulo
                                          }
                                     }
 
-                                 imagejpeg($im,TMP.$nombre_tmp,20);
+                                 imagejpeg($im,TMP.$nombre_tmp);
                                  $fp = fopen(TMP.$nombre_tmp, "rb");
                                  $foto[$i] = fread($fp,filesize(TMP.$nombre_tmp));
                                  $foto[$i] = addslashes($foto[$i]);
@@ -242,7 +243,8 @@ class Articulo
                               elseif($extension=="png" and exif_imagetype($tmp[$i])==IMAGETYPE_PNG)
                                  {$nombre_tmp="adjunto_".date("Y_m_d_H_i_s").".png";
                                   $im = imagecreatefrompng($tmp[$i]);
-                                  imagepng($im,TMP.$nombre_tmp,9);
+                                  $im = imagescale($im,700,-1,IMG_BILINEAR_FIXED);
+                                  imagepng($im,TMP.$nombre_tmp);
                                   $fp = fopen(TMP.$nombre_tmp, "rb");
                                   $foto[$i] = fread($fp,filesize(TMP.$nombre_tmp));
                                   $foto[$i] = addslashes($foto[$i]);
