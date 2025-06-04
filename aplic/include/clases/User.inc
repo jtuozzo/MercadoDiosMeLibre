@@ -391,7 +391,8 @@ class User
              $query = "SELECT siguiendo_id
                        FROM siguiendo sig
                        JOIN user us ON us.user_id = sig.siguiendo_a AND us.token='$token'
-                       WHERE user_id='{$_SESSION['DML_USER_ID']}'";
+                       WHERE sig.user_id='{$_SESSION['DML_USER_ID']}'
+                       AND activo='S'";
 
              $result = Utils::execute($query, __FILE__, __LINE__);
 
