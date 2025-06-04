@@ -9,7 +9,8 @@
 ?>
 
 <div id='footer'>
-No lo testeamos ni un poco. Si encontrás algo raro, escribinos    <div id='emailTo'><img src='./images/mail_to.png'></div>
+    <div>No lo testeamos ni un poco. Si encontrás algo raro, escribinos &nbsp; </div>
+    <div id='emailTo'><img src='./images/mail_to.png'></div>
 </div>
 <script type='text/javascript'>setMail()</script>
 </body>

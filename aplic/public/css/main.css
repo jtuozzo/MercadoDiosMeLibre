@@ -47,6 +47,10 @@ header {
 
 
 #footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     background-color: #282828;
     color: white;
     width: 100%;
@@ -245,10 +249,7 @@ header {
     }
 
     #footer {
-        display: flex;
         flex-wrap: nowrap;
-        justify-content: center;
-        align-items: center;
         font-size: 0.8em;
     }
 
