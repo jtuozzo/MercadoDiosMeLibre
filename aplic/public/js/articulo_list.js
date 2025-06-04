@@ -2,9 +2,8 @@
     Autor: Julio Tuozzo
     Función: Javascript del listado de artículos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 31/05/2025.
+    Ultima modificación: 03/06/2025.
 */
-
 
 function sin_articulos() {
     window.onload = function () {
@@ -16,4 +15,3 @@ function sin_articulos() {
     }
 
 }
-

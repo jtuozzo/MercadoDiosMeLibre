@@ -33,7 +33,7 @@ function setMail() {
 
     let eMail = 'mercadodiosmelibre.com.ar';
     eMail = 'info' + '@' + eMail;
-    $('#emailTo').html('<a href="mailto:' + eMail +'">'+ eMail + '</a>'); 
+    $('#emailTo').html($('#emailTo').html() + '<a href="mailto:' + eMail +'">'+ eMail + '</a>'); 
 }
 
 function setAlto(seccion)
