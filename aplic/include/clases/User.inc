@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de manejo de usuarios.
     Fecha de creación: 23/05/2025.
-    Ultima modificación: 01/06/2025.
+    Ultima modificación: 04/06/2025.
 */
 
 class User
@@ -379,6 +379,32 @@ class User
              else
                 {return false;
                 }
+            }
+
+      public function siguiendo($token)
+            {// Indica si un usuario está siguiendo las publicaciones de otro.
+
+             if(!isset($_SESSION['DML_USER_ID']))
+                  {return false;
+                  }
+
+             $query = "SELECT siguiendo_id
+                       FROM siguiendo sig
+                       JOIN user us ON us.user_id = sig.siguiendo_a AND us.token='$token'
+                       WHERE user_id='{$_SESSION['DML_USER_ID']}'";
+
+             $result = Utils::execute($query, __FILE__, __LINE__);
+
+             if($result->recordCount() == 1)
+                  {foreach($result->fields as $clave=>$valor)
+                        {$this->$clave=htmlentities($valor,ENT_QUOTES,"UTF-8");
+                        }
+                     
+                  return true;
+                  }
+             else
+                  {return false;
+                  }
             }
     }
 ?>

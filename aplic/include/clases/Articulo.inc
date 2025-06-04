@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de los artículos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 02/06/2025.
+    Ultima modificación: 04/06/2025.
 */
 
 #[AllowDynamicProperties]

@@ -78,7 +78,7 @@ if(!isset($_SESSION['DML_TOKEN']) or $_SESSION['DML_TOKEN']!=$token)
      {$cabecera="<div class='cabecera'>
                          <h2>Artículos de {$usuario->nombres}</h2>";
 
-      if($articulo->siguiendo($token))
+      if($usuario->siguiendo($token))
                {$cabecera.="<input type='button' class='boton seguir' value='Dejar de seguir' onClick=\"window.location='no_seguir.php?id=$token'\"/>";
                }
       else
