@@ -1,2 +1,14 @@
 * 1.00
 - Versión inicial.
+
+* 1.00.01
+- Botón "Seguir nuevas publicaciones".
+- Seteo de nivel de errores.
+
+TO DO
+
+Estado de los articulos: En venta, vendido, oculto
+Hacer de la moneda una tabla o vector para que no sea un kilombo incorporar otras monedas.
+Que el usario pueda modificar sus datos
+Mejorar el link de compra: Que verifique si el artículo siga en venta y frene cuando hace muchos clicks.
+Seguimiento de listado de artículos en venta

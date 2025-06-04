@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Listado de artículos.
     Fecha de creación: 27/05/2025.
-    Ultima modificación: 29/05/2025.
+    Ultima modificación: 04/06/2025.
 */
 
 session_start();
@@ -75,7 +75,18 @@ else
         }
 
 if(!isset($_SESSION['DML_TOKEN']) or $_SESSION['DML_TOKEN']!=$token)
-     {$cabecera="<h2>Artículos de {$usuario->nombres}</h2>";
+     {$cabecera="<div class='cabecera'>
+                         <h2>Artículos de {$usuario->nombres}</h2>";
+
+      if($articulo->siguiendo($token))
+               {$cabecera.="<input type='button' class='boton seguir' value='Dejar de seguir' onClick=\"window.location='no_seguir.php?id=$token'\"/>";
+               }
+      else
+               {$cabecera.="<input type='button' class='boton seguir' value='Seguir publicaciones' onClick=\"window.location='seguir.php?id=$token'\"/>";
+
+               }
+                         
+      $cabecera.="</div>";
      }
 else 
      {$link=$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."?id=".$_SESSION['DML_TOKEN'];

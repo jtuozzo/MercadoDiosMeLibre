@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos estáticos de uso global.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 29/05/2025.
+    Ultima modificación: 04/06/2025.
 */
 
 // Datos de la instalación
@@ -39,9 +39,11 @@ define('MAX_ARTICULOS', 20);
 
 require("config_data.inc");
 
-// Seteo zona horaria
+// Seteos varios
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 ini_set('default_charset', 'utf-8');
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+
 
 
 require("Mail.inc");
