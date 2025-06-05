@@ -38,7 +38,7 @@ if($usuario->seguirA($token))
      {$mensaje="<script language='javascript'>
                           Swal.fire({
                           icon:'success',
-                          title:'Siguiendo a {$usuario->nombres}.',
+                          text:'Estás siguiendo las nuevas publicaciones de {$usuario->nombres}.',
                           confirmButtonColor: '#63676c',
                           })
                       .then(function() {

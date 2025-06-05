@@ -439,6 +439,7 @@ class User
                                  NOW(),
                                  NOW())";
                   }
+             $result = Utils::execute($query, __FILE__, __LINE__);
              return true;
             }
     }
