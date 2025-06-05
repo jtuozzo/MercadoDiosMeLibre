@@ -407,5 +407,39 @@ class User
                   {return false;
                   }
             }
+
+      public function seguirA($token)
+            {if(!isset($_SESSION['DML_USER_ID']) or !$this->tokenValido($token))
+                  {return false;
+                  }
+
+             // Primero valido que no lo haya seguido antes
+
+             $query = "SELECT siguiendo_id
+                       FROM siguiendo sig
+                       WHERE sig.user_id='{$_SESSION['DML_USER_ID']}'
+                       AND siguiendo_a = '{$this->user_id}'";
+
+             $result = Utils::execute($query, __FILE__, __LINE__);
+
+             if($result->recordCount() == 1)
+                  {$query = "UPDATE siguiendo
+                             SET activo = 'S',
+                             update_datetime=NOW(),
+                             WHERE sig.user_id='{$_SESSION['DML_USER_ID']}'
+                             AND siguiendo_a = '{$this->user_id}'";
+                  }
+             else 
+                  {$query = "INSERT INTO siguiendo VALUES (
+                                 NULL,
+                                 '{$_SESSION['DML_USER_ID']}',
+                                 '{$this->user_id}',
+                                 'S',
+                                 NULL,
+                                 NOW(),
+                                 NOW())";
+                  }
+             return true;
+            }
     }
 ?>

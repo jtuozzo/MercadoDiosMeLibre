@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Controlador de seguimiento de publicaciones de otro usuario.
     Fecha de creación: 04/06/2025.
-    Ultima modificación: 04/06/2025.
+    Ultima modificación: 05/06/2025.
 */
 
 session_start();
@@ -26,11 +26,18 @@ if(!isset($id) or !$usuario->tokenValido($token))
       header("Location: index.php");
       exit;
      }        
-
+$mensaje="";
 if(!isset($_POST['seguir']))
      {require("seguir.inc");
       exit;
      }
-ACÁ QUEDÉ
 
-Hay dos opciones, que el usuario esté sesionado, entonces solo confirma el seguimiento. Si no, crea el usuario o se sesiona y sigue con el seguimiento
+// Actualizo el seguimiento
+
+if($usuario->seguirA($token))
+     {$mensaje="";
+     }
+else 
+     {$mensaje="";
+     }
+require("seguir.inc");
