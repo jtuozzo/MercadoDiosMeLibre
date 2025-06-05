@@ -1,0 +1,39 @@
+/*  
+    Nombre: seguir.css
+    Autor: Julio Tuozzo
+    Función: Hoja de estilos.
+    Fecha de creación: 05/06/2025.
+    Ultima modificación: 05/06/2025.
+*/
+
+
+#seguir {
+    text-align: center;
+    padding: 2em;
+    background-color: #f0f0f0;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+#seguir a {
+    text-decoration: none;
+    color: Dimgray;
+}
+
+
+#seguir h2,
+#seguir h3 {
+    margin-top: 1.2em;
+    line-height: 1.2em;
+}
+
+/* -----------------  Tablet y Desktop  ----------------- */
+
+@media(min-width: 760px) {
+
+    #seguir {
+        font-size: 16px;
+    }
+
+
+}

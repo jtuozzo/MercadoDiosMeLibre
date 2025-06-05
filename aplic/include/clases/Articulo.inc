@@ -552,8 +552,8 @@ Class Compra extends Articulo
      private function envioMailConfirmacion()
           {// Envío el e-mail de confirmación
            $mail = new Mail;
-           $link=substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/confirmar_compra.php?id={$this->articulo_compra_id}&key={$this->articulo_id}&email={$this->email}";
-           $link_user=substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/usuario.php";
+           $link=Utils::host()."confirmar_compra.php?id={$this->articulo_compra_id}&key={$this->articulo_id}&email={$this->email}";
+           $link_user=Utils::host()."usuario.php";
                
                $body = "Has solicitado comprar: <strong>{$this->titulo}.</strong> <br /><br />
                          

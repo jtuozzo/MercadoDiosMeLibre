@@ -2,7 +2,7 @@
     Autor: Julio Tuozzo
     Función: Javascript del artículo.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 01/06/2025.
+    Ultima modificación: 05/06/2025.
 */
 
 
@@ -45,7 +45,7 @@ function delHayFoto(i) {
 
     Swal.fire({
         title: 'Elimina la foto??',
-        icon: 'warning',
+        icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#1b998b',
         cancelButtonColor: '#d7263d',

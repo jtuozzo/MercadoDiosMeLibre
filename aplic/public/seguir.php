@@ -27,17 +27,36 @@ if(!isset($id) or !$usuario->tokenValido($token))
       exit;
      }        
 $mensaje="";
-if(!isset($_POST['seguir']))
-     {require("seguir.inc");
+if(!isset($seguir))
+     {require("seguir_vista.inc");
       exit;
      }
 
 // Actualizo el seguimiento
 
 if($usuario->seguirA($token))
-     {$mensaje="";
+     {$mensaje="<script language='javascript'>
+                          Swal.fire({
+                          icon:'success',
+                          title:'Siguiendo a {$usuario->nombres}.',
+                          confirmButtonColor: '#63676c',
+                          })
+                      .then(function() {
+                                  window.location = 'articulo_list.php?id=$token';
+                              });
+                       </script>";
      }
 else 
-     {$mensaje="";
+     {$mensaje="<script language='javascript'>
+                          Swal.fire({
+                          icon:'error',
+                          title:'Oooppsss!!',
+                          text: 'Hubo un error, intentá más tarde'
+                          confirmButtonColor: '#D22518',
+                          })
+                      .then(function() {
+                                  window.location = 'articulo_list.php?id=$token';
+                              });
+                       </script>";
      }
-require("seguir.inc");
+require("seguir_vista.inc");

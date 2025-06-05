@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de manejo de usuarios.
     Fecha de creación: 23/05/2025.
-    Ultima modificación: 04/06/2025.
+    Ultima modificación: 05/06/2025.
 */
 
 class User
@@ -93,7 +93,7 @@ class User
         
          // Armo el texto del e-mail con la nueva clave
 
-         $link=substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/cambiar_clave.php?id=$email";
+         $link=Utils::host()."cambiar_clave.php?id=$email";
 
          $body = "Generaste una clave de acceso. <br />
                   Tu clave es: <strong>$clave</strong> <br /><br />
@@ -279,7 +279,7 @@ class User
                 {// Envío el e-mail de confirmación
                    $mail = new Mail;
                    
-                   $link=substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/confirmar_usuario.php?id=$email";
+                   $link=Utils::host()."confirmar_usuario.php?id=$email";
                    
                    $body = "Te registraste en el sitio <strong>Mercado Dios Me Libre de las cosas que tengo en casa y no uso.</strong> <br /><br />
                             
@@ -371,7 +371,7 @@ class User
 
              if($result->recordCount() == 1)
                 {foreach($result->fields as $clave=>$valor)
-                     {$this->$clave=htmlentities($valor,ENT_QUOTES,"UTF-8");
+                     {$this->$clave=$valor;
                      }
                   
                  return true;

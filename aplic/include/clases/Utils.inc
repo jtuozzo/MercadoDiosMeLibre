@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos estáticos de uso global.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 04/06/2025.
+    Ultima modificación: 05/06/2025.
 */
 
 // Datos de la instalación
@@ -234,7 +234,17 @@ class Utils
 
 
          }
-         
+     
+     static public function host() 
+         {if (isset($_SERVER['HTTP_REFERER']))
+            {return substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],"/"))."/";
+            }
+          else
+            {return $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME']."/";
+            }
+
+          
+         }
     }
 
 
