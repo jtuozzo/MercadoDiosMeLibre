@@ -2,7 +2,7 @@
     Autor: Julio Tuozzo
     Función: Javascript principal.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 03/06/2025.
+    Ultima modificación: 06/06/2025.
 */
 
 function toggleMenu() {
@@ -16,7 +16,12 @@ function ocultoID(id) {
 function copyClipp(value) {
     try {
         navigator.clipboard.writeText(value);
-        window.alert('Copiado!');
+        Swal.fire({
+                  title: "Copiado!",
+                  timer: 3000,
+                  showConfirmButton: false,
+                  timerProgressBar: true
+                });
     }
     catch (e) {
         $('.link').html(function (i, origText) {
