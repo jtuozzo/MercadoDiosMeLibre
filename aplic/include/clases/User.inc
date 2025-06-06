@@ -442,5 +442,20 @@ class User
              $result = Utils::execute($query, __FILE__, __LINE__);
              return true;
             }
+
+      public function noSeguirA($token)
+            {if(!isset($_SESSION['DML_USER_ID']) or !$this->tokenValido($token))
+                  {return false;
+                  }
+
+             $query = "UPDATE siguiendo
+                       SET activo = 'N',
+                       update_datetime=NOW()
+                       WHERE user_id='{$_SESSION['DML_USER_ID']}'
+                       AND siguiendo_a = '{$this->user_id}'";
+
+             $result = Utils::execute($query, __FILE__, __LINE__);
+             return true;
+            }
     }
 ?>

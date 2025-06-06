@@ -17,6 +17,7 @@ function copyClipp(value) {
     try {
         navigator.clipboard.writeText(value);
         Swal.fire({
+                  icon:'success',
                   title: "Copiado!",
                   timer: 3000,
                   showConfirmButton: false,
@@ -29,7 +30,11 @@ function copyClipp(value) {
         });
         $('.link').removeAttr('onclick');
         $('.link').css({ 'cursor' : 'default'});
-        window.alert('No se pudo copiar, cópielo manualmente');
+                Swal.fire({
+                  icon:'warning',
+                  text: "No se pudo copiar, cópielo manualmente",
+                  confirmButtonColor: '#63676c'
+                });
     }
 
 };

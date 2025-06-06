@@ -4,10 +4,16 @@
     Autor: Julio Tuozzo.
     Función: Controlador para dejar de seguir publicaciones de otro usuario.
     Fecha de creación: 05/06/2025.
-    Ultima modificación: 05/06/2025.
+    Ultima modificación: 06/06/2025.
 */
 
 session_start();
+
+if(!isset($_SESSION['DML_NIVEL']) or $_SESSION['DML_NIVEL']<2)
+     {// No está sesionado, se va
+      header("Location: index.php");
+      exit;
+     }
 
 require("Utils.inc");
 require("User.inc");
@@ -27,8 +33,9 @@ if(!isset($id) or !$usuario->tokenValido($token))
       exit;
      }        
 $mensaje="";
-if(!isset($seguir))
-     {require("seguir_vista.inc");
+
+if(!isset($no_seguir))
+     {require("no_seguir_vista.inc");
       exit;
      }
 
@@ -59,4 +66,4 @@ else
                               });
                        </script>";
      }
-require("seguir_vista.inc");
+require("no_seguir_vista.inc");
