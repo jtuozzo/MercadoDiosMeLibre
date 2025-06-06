@@ -425,8 +425,8 @@ class User
              if($result->recordCount() == 1)
                   {$query = "UPDATE siguiendo
                              SET activo = 'S',
-                             update_datetime=NOW(),
-                             WHERE sig.user_id='{$_SESSION['DML_USER_ID']}'
+                             update_datetime=NOW()
+                             WHERE user_id='{$_SESSION['DML_USER_ID']}'
                              AND siguiendo_a = '{$this->user_id}'";
                   }
              else 
