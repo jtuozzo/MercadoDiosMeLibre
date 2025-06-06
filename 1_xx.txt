@@ -11,4 +11,4 @@ Estado de los articulos: En venta, vendido, oculto
 Hacer de la moneda una tabla o vector para que no sea un kilombo incorporar otras monedas.
 Que el usario pueda modificar sus datos
 Mejorar el link de compra: Que verifique si el artículo siga en venta y frene cuando hace muchos clicks.
-Seguimiento de listado de artículos en venta
+Proceso que avisa a los que hacen el seguimiento de listado de artículos en venta
