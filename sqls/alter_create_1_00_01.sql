@@ -11,3 +11,5 @@ CREATE TABLE siguiendo (
   CONSTRAINT FOREIGN KEY (user_id) REFERENCES user (user_id),
   CONSTRAINT FOREIGN KEY (siguiendo_a) REFERENCES user (user_id) 
 ) ENGINE=InnoDB;
+
+HASTA ACÁ EN PRODUCCIÓN

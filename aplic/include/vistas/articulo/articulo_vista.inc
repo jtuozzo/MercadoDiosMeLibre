@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista de un artículo.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 29/05/2025.
+    Ultima modificación: 07/06/2025.
 */
 
 $css_local = "articulo.css";
@@ -23,7 +23,7 @@ switch ($articulo->vista)
                 <div class='link' onClick=copyClipp('{$link}')><img src='./images/copy.png' />  Copiar link del artículo</div>";
 
                 $cerrar="<input type='button' class='boton' value='Cerrar' onClick='window.close()' />";
-        $guardar="<input class='boton' type='submit' name='modificar' id='crear' value='Modificar artículo' />";
+        $guardar="<input class='boton' type='submit' name='modificar' id='crear' value='Guardar' />";
         break;
     }
 
