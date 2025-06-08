@@ -14,6 +14,7 @@ if (isset($_SESSION['DML_NIVEL']) and $_SESSION['DML_NIVEL'] > 0)
     {$menu_bar = "<li><a href='articulo_nuevo.php'>Nuevo artículo</a></li>
                   <li><a href='articulo_list.php'>Mis artículos</a></li>
                   <li><a href='ventas_list.php'>Mis ventas</a></li>
+                  <li><a href='usuario.php'>Mi perfil</a></li>
                   <li class='li_derecha'><a href='salir.php'>Salir</a></li>";
     
     if(isset($_SESSION['DML_NOMBRES']))

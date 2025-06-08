@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista del nuevo usuario.
     Fecha de creación: 24/05/2025.
-    Ultima modificación: 03/06/2025.
+    Ultima modificación: 08/06/2025.
 */
 
 $css_local = "usuario.css";
@@ -20,17 +20,17 @@ echo "
 
         <div>
             <label for='nombres'>  Nombre/s: </label>
-            <input type='text' name='nombres' id='nombres' value='$nombres' size='40' maxlength='64' {$user->st_nombres}> {$user->nombres_err} 
+            <input class='usuario' type='text' name='nombres' id='nombres' value='$nombres' size='40' maxlength='64' {$user->st_nombres}> {$user->nombres_err} 
         </div>
 
         <div>
             <label for='apellidos'>  Apellido/s: </label>
-            <input type='text' name='apellidos' id='apellidos' value='$apellidos' size='40' maxlength='64' {$user->st_apellidos}> {$user->apellidos_err} 
+            <input type='text'  class='usuario' name='apellidos' id='apellidos' value='$apellidos' size='40' maxlength='64' {$user->st_apellidos}> {$user->apellidos_err} 
         </div>
 
         <div>
             <label for='email'>  E-mail: </label>
-            <input type='text' name='email' id='email' value='$email' size='40' maxlength='64' {$user->st_email}> {$user->email_err} 
+            <input type='text'  class='usuario' name='email' id='email' value='$email' size='40' maxlength='64' {$user->st_email}> {$user->email_err} 
         </div>
 
         <div>
