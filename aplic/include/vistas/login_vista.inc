@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista del login.
     Fecha de creación: 20/05/2025.
-    Ultima modificación: 03/06/2025.
+    Ultima modificación: 08/06/2025.
 */
 
 $css_local = "login.css";
@@ -19,7 +19,7 @@ echo "
     <form action='{$_SERVER['PHP_SELF']}' method='post'>
         <div>
             <label for='email'>  E-mail: </label>
-            <input type='email' name='email' id='email' value='$email' size='40' maxlength='64' $st_email> $email_err 
+            <input type='email' name='email' id='email' value='$email' maxlength='64' $st_email> $email_err 
         </div>
 
         <div>
