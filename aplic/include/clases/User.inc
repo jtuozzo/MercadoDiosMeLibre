@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de manejo de usuarios.
     Fecha de creación: 23/05/2025.
-    Ultima modificación: 05/06/2025.
+    Ultima modificación: 08/06/2025.
 */
 
 class User
@@ -24,6 +24,8 @@ class User
      public $msg_error = "";
      public $user_id;
      public $nombres;
+     public $apellidos;
+     public $email;
         
      static public function getUser($email, $clave)
         {$query = "SELECT user_id, apellidos, nombres, email, nivel, clave, token 
@@ -200,32 +202,32 @@ class User
             return true;
             }
 
-      public function crearUsuario($nombres, $apellidos, $email, $clave, $reingresa)
+      public function crearUsuario($clave, $reingresa)
             {// Crea un nuevo usuario
              $todo_ok=true;
              // Verifico que el nombre no esté vacío
-             if(strlen($nombres) == 0)
+             if(strlen($this->nombres) == 0)
                   {$this->st_nombres="class='st_error'";
                    $this->nombres_err="<br/><span class='error'>Debe ingresar un nombre</span>";
                    $todo_ok = false;
                   }
 
              // Verifico que el apellido no esté vacío
-             if(strlen($apellidos) == 0)
+             if(strlen($this->apellidos) == 0)
                   {$this->st_apellidos="class='st_error'";
                    $this->apellidos_err="<br/><span class='error'>Debe ingresar un apellido</span>";
                    $todo_ok = false;
                   }
 
              // Verifico que el e-mail no esté vacío
-             if(strlen($email) == 0)
+             if(strlen($this->email) == 0)
                   {$this->st_email="class='st_error'";
                    $this->email_err="<br/><span class='error'>Debe ingresar un e-mail</span>";
                    $todo_ok = false;
                   }
 
              // Verifico que el e-mail sea válido
-             elseif(!filter_var($email, FILTER_VALIDATE_EMAIL))
+             elseif(!filter_var($this->email, FILTER_VALIDATE_EMAIL))
                 {$this->st_email="class='st_error'";
                  $this->email_err="<br/><span class='error'>Formato de e-mail incorrecto</span>";
                  $todo_ok = false;
@@ -234,7 +236,7 @@ class User
              // Verifico que el e-mail no exista
              $query = "SELECT user_id 
                        FROM user 
-                       WHERE email='$email'";
+                       WHERE email='{$this->email}'";
 
              $result = Utils::execute($query, __FILE__, __LINE__);
 
@@ -279,7 +281,7 @@ class User
                 {// Envío el e-mail de confirmación
                    $mail = new Mail;
                    
-                   $link=Utils::host()."confirmar_usuario.php?id=$email";
+                   $link=Utils::host()."confirmar_usuario.php?id={$this->email}";
                    
                    $body = "Te registraste en el sitio <strong>Mercado Dios Me Libre de las cosas que tengo en casa y no uso.</strong> <br /><br />
                             
@@ -287,15 +289,15 @@ class User
                             
                             Muchas gracias por registrarte! <br />";
                    
-                    if(!$mail->sendMail($email, "Confirmación de registro", $body))
+                    if(!$mail->sendMail($this->email, "Confirmación de registro", $body))
                         {// Si no se pudo enviar el e-mail, muestro un mensaje de error
                         $todo_ok = false;
                         $this->send_mail_err="No se pudo crear el usuario.";
                         }
                    else
                       {// Se envió el e-mail, guardo el usuario en la base de datos
-                        $nombres=mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($nombres,ENT_QUOTES,"UTF-8"));
-                        $apellidos=mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($apellidos,ENT_QUOTES,"UTF-8"));
+                        $nombres=mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->nombres,ENT_QUOTES,"UTF-8"));
+                        $apellidos=mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->apellidos,ENT_QUOTES,"UTF-8"));
                         $clave=html_entity_decode($clave,ENT_QUOTES,"UTF-8");
                         $clave_sha = hash("sha512", $clave);
 
@@ -303,7 +305,7 @@ class User
                                  (NULL,
                                  '$apellidos', 
                                  '$nombres', 
-                                 '$email', 
+                                 '{$this->email}', 
                                  10,
                                  '$clave_sha', 
                                  ADDDATE(NOW(), INTERVAL 90 DAY),

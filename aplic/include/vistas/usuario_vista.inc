@@ -20,17 +20,17 @@ echo "
 
         <div>
             <label for='nombres'>  Nombre/s: </label>
-            <input class='usuario' type='text' name='nombres' id='nombres' value='$nombres'  maxlength='64' {$user->st_nombres}> {$user->nombres_err} 
+            <input class='usuario' type='text' name='nombres' id='nombres' value='{$user->nombres}'  maxlength='64' {$user->st_nombres}> {$user->nombres_err} 
         </div>
 
         <div>
             <label for='apellidos'>  Apellido/s: </label>
-            <input type='text'  class='usuario' name='apellidos' id='apellidos' value='$apellidos'  maxlength='64' {$user->st_apellidos}> {$user->apellidos_err} 
+            <input type='text'  class='usuario' name='apellidos' id='apellidos' value='{$user->apellidos}'  maxlength='64' {$user->st_apellidos}> {$user->apellidos_err} 
         </div>
 
         <div>
             <label for='email'>  E-mail: </label>
-            <input type='text'  class='usuario' name='email' id='email' value='$email'  maxlength='64' {$user->st_email}> {$user->email_err} 
+            <input type='text'  class='usuario' name='email' id='email' value='{$user->email}'  maxlength='64' {$user->st_email}> {$user->email_err} 
         </div>
 
         <div>
