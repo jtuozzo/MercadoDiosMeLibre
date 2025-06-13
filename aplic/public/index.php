@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: index.
     Fecha de creación: 17/05/2025.
-    Ultima modificación: 19/05/2025.
+    Ultima modificación: 13/06/2025.
 */
 
 session_start();
@@ -12,10 +12,12 @@ session_start();
 require("Utils.inc");
 require("User.inc");
 
+$user = new User;
+
 // Veo si el usuario está guardado en el dispositivo
 
 if(!isset($_SESSION['DML_NIVEL']) and isset($_COOKIE['DML_EMAIL']) and isset($_COOKIE['DML_CLAVE']))
-    {$hay_usuario=User::getUser($_COOKIE['DML_EMAIL'], $_COOKIE['DML_CLAVE']);
+    {$hay_usuario=$user->getUser($_COOKIE['DML_EMAIL'], $_COOKIE['DML_CLAVE'], true);
      
      if($hay_usuario)
         {// Prorrogo por 30 días la cookie

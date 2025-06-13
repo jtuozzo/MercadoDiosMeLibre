@@ -3,7 +3,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 25/05/2025.
-    Ultima modificación: 25/05/2025.
+    Ultima modificación: 13/06/2025.
 */
 
 
@@ -25,8 +25,8 @@ h2 {
     font-size: 1.4em;
 }
 
-a {
-    color: #05183c;
+#index a {
+    color: darkgreen;
     text-decoration: none;
     font-weight: bold;
 }

@@ -48,7 +48,7 @@ if(strlen($clave)==0)
 if(!isset($mensaje)) // Hasta acá no hubo errores, valido el usuario y la clave
      {$clave = hash("sha512", $clave);
 
-      $hay_usuario=$user->getUser($email, $clave);
+      $hay_usuario=$user->getUser($email, $clave, true);
 
      if(!$hay_usuario)
         {$st_email="class='st_error'";

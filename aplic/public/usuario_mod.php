@@ -15,8 +15,7 @@ require("User.inc");
 $user = new User();
 
 if(!$user->getUser($_SESSION['DML_EMAIL'],$_SESSION['DML_CLAVE']))
-     {// No está bien sesionado, se va
-      header("Location: login.php");
+     {header("Location: login.php");
       exit;
      }
 
