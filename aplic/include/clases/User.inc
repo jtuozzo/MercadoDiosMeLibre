@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de manejo de usuarios.
     Fecha de creación: 23/05/2025.
-    Ultima modificación: 08/06/2025.
+    Ultima modificación: 13/06/2025.
 */
 
 class User
@@ -22,12 +22,13 @@ class User
      public $email_err = "";
      public $send_mail_err = "";
      public $msg_error = "";
-     public $user_id;
-     public $nombres;
-     public $apellidos;
-     public $email;
+     public $user_id = 0;
+     public $nombres = "";
+     public $apellidos = "";
+     public $email = "";
+     public $vista = "";
         
-     static public function getUser($email, $clave)
+     public function getUser($email, $clave)
         {$query = "SELECT user_id, apellidos, nombres, email, nivel, clave, token 
               FROM user 
               WHERE email='$email' 
@@ -41,10 +42,11 @@ class User
             {return false;
             }
 
-        // Inicializo las variables de sesión del usuario
+        // Inicializo las variables de sesión y atributos del usuario
 
         foreach($result->fields as $key => $valor)
             {$_SESSION["DML_".strtoupper($key)]=$valor;
+             $this->$key=$valor;
             }
         
          // Guardo la última sesión

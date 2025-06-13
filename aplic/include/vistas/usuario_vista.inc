@@ -4,17 +4,37 @@
     Autor: Julio Tuozzo.
     Función: Vista del nuevo usuario.
     Fecha de creación: 24/05/2025.
-    Ultima modificación: 08/06/2025.
+    Ultima modificación: 13/06/2025.
 */
 
 $css_local = "usuario.css";
+
+switch ($user->vista) {
+    case "A":
+        $titulo="Crear usuario";
+        $sub_tips="Debe tener como mínimo 8 dígitos. Pueden ser letras, números o símbolos.";
+        $top_tips="";
+        $reingresa = " <div>
+            <label for='reingresa'> Reingresá la clave: </label>
+            <input type='password' name='reingresa' id='reingresa' size='20' maxlength='20' {$user->st_reingresa}> {$user->reingresa_err} 
+        </div>";
+        break;
+    case "M":
+        $titulo="Mis perfil";
+        $top_tips="Debe ingresar su clave para modificar los datos del perfil.<br />Si quiere cambiar la clave, presione <em>Me olvidé la clave.</em>";
+        $sub_tips="";
+        $reingresa = "<p class='me_olvide'> 
+                        <a href='me_olvide.php'><img src='./images/el_grito_negro.png' align='middle' /> Me olvidé la clave</a>
+                      </p>";
+
+}
 
 require_once('head.inc');
 echo "
 <script type='text/javascript' src='./js/usuario.js'></script>
 
 <div id='usuario'>
-    <h1>Crear usuario</h1>
+    <h1>$titulo</h1>
       
     <form action='{$_SERVER['PHP_SELF']}' method='post' id='form'>
 
@@ -34,16 +54,14 @@ echo "
         </div>
 
         <div>
+            <div class='tips top_tips'>$top_tips</div>    
             <label for='clave'> Clave: </label>
             <input type='password' name='clave' id='clave' size='20' maxlength='20' {$user->st_clave}> <span onClick='changeClave()' id='ver_clave'><img src='./images/ver.png' id='ver_clave_img'></span>{$user->clave_err} 
-            <div id='tips' >Debe tener como mínimo 8 dígitos. Pueden ser letras, números o símbolos.</div>
+            <div class='tips'>$sub_tips</div>
             <div class='verifique'>(Verifique no tener activada la tecla \"BLOQ MAYUS\" al ingresar la clave)</div>
         </div>
 
-        <div>
-            <label for='reingresa'> Reingresá la clave: </label>
-            <input type='password' name='reingresa' id='reingresa' size='20' maxlength='20' {$user->st_reingresa}> {$user->reingresa_err} 
-        </div>
+        $reingresa
 
         <input class='boton' type='submit' name='crear' value='Crear usuario' onClick=\"this.value='Aguarde . . .'\"/>
 

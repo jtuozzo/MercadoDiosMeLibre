@@ -3,7 +3,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 24/05/2025.
-    Ultima modificación: 08/06/2025.
+    Ultima modificación: 13/06/2025.
 */
 
 label {
@@ -15,10 +15,6 @@ input[type="submit"] {
     margin-top: 2em;
 }
 
-#tips {
-    font-size: 0.9em;
-    font-style: italic;
-}
 
 #usuario {
     text-align: center;
@@ -33,6 +29,21 @@ input[type="submit"] {
     margin-top: 0.5em;
 }
 
+#usuario a {
+    text-decoration: none;
+    color: #000;
+}
+
+.tips {
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+.top_tips {
+    margin-top: 1.2em;
+    margin-bottom: -1.2em;
+    line-height: 1.2em;
+}
 .usuario  {
     width: 100%;
     max-width: 440px;

@@ -2,7 +2,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos general
     Fecha de creación: 17/05/2025.
-    Ultima modificación: 03/06/2025.
+    Ultima modificación: 13/06/2025.
 */
 
 * {
@@ -184,6 +184,17 @@ header {
     justify-content: space-between;
     line-height: 22px;
     margin: 15px 50px 15px 50px;
+}
+
+.me_olvide {
+    cursor: pointer;
+    margin-top: 30px;
+    font-size: 1.4em;
+}
+
+.me_olvide img {
+    width: 15%;
+    max-width: 70px;
 }
 
 

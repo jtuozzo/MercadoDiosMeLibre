@@ -40,7 +40,7 @@ echo "
 
    </form>
 
-   <p id='me_olvide'> 
+   <p class='me_olvide'> 
         <a href='me_olvide.php'><img src='./images/el_grito_negro.png' align='middle' /> Me olvidé la clave</a>
     </p>
 
