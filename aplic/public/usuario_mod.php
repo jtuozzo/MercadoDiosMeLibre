@@ -31,7 +31,6 @@ foreach($_POST as $key => $valor)
           }
      }
 
-
 if(!isset($_POST['guardar']))
      {$mensaje="";
       require("usuario_vista.inc");
@@ -40,8 +39,17 @@ if(!isset($_POST['guardar']))
 
 if($user->modifUsuario($clave))
           {// Se pudo modificar el usuario
-          $mensaje="<div class='creado'>Nuevo usuario creado.<br/> <br/>Verificá tu casilla de correo <em>{$user->email}</em> para terminar el proceso.<br/> <br/>Si no llegó el mail, revisá la casilla de correo basura.</div>
-          <script type='text/javascript'>ocultoID('form');</script>";
+          $mensaje="<script language='javascript'>
+                        Swal.fire({
+                        icon:'success',
+                        title:'Usuario modificado',
+                        confirmButtonColor: '#63676c',
+                        confirmButtonText: 'Continuar'
+                        })
+                       .then(function() {
+        	                window.location='index.php';
+                    });
+                     </script>";
           }
      else
           {// No se pudo modificar el usuario

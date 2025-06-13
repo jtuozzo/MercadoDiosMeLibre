@@ -46,7 +46,10 @@ class User
 
         foreach($result->fields as $key => $valor)
             {$_SESSION["DML_".strtoupper($key)]=$valor;
-             $this->$key=$valor;
+             if(isset($this->$key))
+                  {$this->$key=$valor;
+                  }
+                  
             }
         
          
@@ -217,6 +220,33 @@ class User
             {// Crea un nuevo usuario
              $todo_ok=$this->validoUsuario();
 
+             // Verifico que el e-mail no esté vacío
+             if(strlen($this->email) == 0)
+                  {$this->st_email="class='st_error'";
+                   $this->email_err="<br/><span class='error'>Debe ingresar un e-mail</span>";
+                   $todo_ok = false;
+                  }
+
+             // Verifico que el e-mail sea válido
+             elseif(!filter_var($this->email, FILTER_VALIDATE_EMAIL))
+                {$this->st_email="class='st_error'";
+                 $this->email_err="<br/><span class='error'>Formato de e-mail incorrecto</span>";
+                 $todo_ok = false;
+                }
+
+             // Verifico que el e-mail no exista
+             $query = "SELECT user_id 
+                       FROM user 
+                       WHERE email='{$this->email}'";
+
+             $result = Utils::execute($query, __FILE__, __LINE__);
+
+             if($result->recordCount() > 0)
+                {$this->st_email="class='st_error'";
+                 $this->email_err="<br/><span class='error'>El e-mail ya está registrado</span>";
+                 $todo_ok = false;
+                }
+
            if(strlen($clave) == 0)
                 {// Verifico que la clave no esté vacía
                  $this->st_clave="class='st_error'";
@@ -313,7 +343,7 @@ class User
               // Valido la clave
 
               $query = "SELECT user_id
-                        FROM usuario
+                        FROM user
                         WHERE clave='$clave_sha'
                         AND user_id='{$this->user_id}'";
             
@@ -332,12 +362,13 @@ class User
                  $query = "UPDATE user SET
                            apellidos='$apellidos', 
                            nombres='$nombres', 
-                           email='{$this->email}',
-                           udpate_user='{$this->user_id}',
-                           update_datetime=NOW())
+                           update_user='{$this->user_id}',
+                           update_datetime=NOW()
                            WHERE user_id='{$this->user_id}'";
 
-                        $result = Utils::execute($query, __FILE__, __LINE__);
+                 $result = Utils::execute($query, __FILE__, __LINE__);
+
+                 $this->getUser($this->email,$clave_sha);
 
                 }
 
@@ -345,8 +376,8 @@ class User
             }
 
       private function validoUsuario()
-            {// Valida datos del usuario
-                          // Verifico que el nombre no esté vacío
+            {$todo_ok = true;
+             // Verifico que el nombre no esté vacío
              if(strlen($this->nombres) == 0)
                   {$this->st_nombres="class='st_error'";
                    $this->nombres_err="<br/><span class='error'>Debe ingresar un nombre</span>";
@@ -359,36 +390,7 @@ class User
                    $this->apellidos_err="<br/><span class='error'>Debe ingresar un apellido</span>";
                    $todo_ok = false;
                   }
-
-             // Verifico que el e-mail no esté vacío
-             if(strlen($this->email) == 0)
-                  {$this->st_email="class='st_error'";
-                   $this->email_err="<br/><span class='error'>Debe ingresar un e-mail</span>";
-                   $todo_ok = false;
-                  }
-
-             // Verifico que el e-mail sea válido
-             elseif(!filter_var($this->email, FILTER_VALIDATE_EMAIL))
-                {$this->st_email="class='st_error'";
-                 $this->email_err="<br/><span class='error'>Formato de e-mail incorrecto</span>";
-                 $todo_ok = false;
-                }
-
-             // Verifico que el e-mail no exista
-             $query = "SELECT user_id 
-                       FROM user 
-                       WHERE email='{$this->email}'
-                       AND user_id!='{$this->user_id}'";
-
-             $result = Utils::execute($query, __FILE__, __LINE__);
-
-             if($result->recordCount() > 0)
-                {$this->st_email="class='st_error'";
-                 $this->email_err="<br/><span class='error'>El e-mail ya está registrado</span>";
-                 $todo_ok = false;
-                }
-
-
+             return $todo_ok;
             }
 
       public function confirmarUsuario($email)

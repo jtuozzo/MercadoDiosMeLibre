@@ -12,6 +12,10 @@ $css_local = "usuario.css";
 switch ($user->vista) {
     case "A":
         $titulo="Crear usuario";
+        $email = "<div>
+                     <label for='email'>  E-mail: </label>
+                     <input type='text'  class='usuario' name='email' id='email' value='{$user->email}'  maxlength='64' {$user->st_email}> {$user->email_err} 
+                  </div>";
         $sub_tips="Debe tener como mínimo 8 dígitos. Pueden ser letras, números o símbolos.";
         $top_tips="";
         $reingresa = " <div>
@@ -24,6 +28,7 @@ switch ($user->vista) {
     case "M":
         $titulo="Mis perfil";
         $top_tips="Debe ingresar su clave para modificar los datos del perfil.";
+        $email ="";
         $sub_tips="";
         $reingresa = "<p id='cambiar_clave'> 
                         <a href='cambiar_clave.php'><img src='./images/llave.png' align='middle' /> Cambiar la clave </a>
@@ -51,10 +56,7 @@ echo "
             <input type='text'  class='usuario' name='apellidos' id='apellidos' value='{$user->apellidos}'  maxlength='64' {$user->st_apellidos}> {$user->apellidos_err} 
         </div>
 
-        <div>
-            <label for='email'>  E-mail: </label>
-            <input type='text'  class='usuario' name='email' id='email' value='{$user->email}'  maxlength='64' {$user->st_email}> {$user->email_err} 
-        </div>
+        $email
 
         <div>
             <div class='tips top_tips'>$top_tips</div>    
