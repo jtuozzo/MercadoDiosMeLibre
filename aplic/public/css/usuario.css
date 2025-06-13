@@ -34,6 +34,11 @@ input[type="submit"] {
     color: #000;
 }
 
+#cambiar_clave {
+    font-weight: bold;
+    margin-top: 1em;
+}
+
 .tips {
     font-size: 0.9em;
     font-style: italic;

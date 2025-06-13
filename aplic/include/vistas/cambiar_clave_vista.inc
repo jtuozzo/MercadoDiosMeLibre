@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista del cambio de clave.
     Fecha de creación: 24/05/2025.
-    Ultima modificación: 03/06/2025.
+    Ultima modificación: 13/06/2025.
 */
 
 $css_local = "cambiar_clave.css";
@@ -17,6 +17,7 @@ echo "
     <h1>Cambiar clave</h1>
       
     <form action='{$_SERVER['PHP_SELF']}' method='post'>
+    <input type='hidden' name='email' value='$email' />
 
         <div>
             <label for='clave'> Clave: </label>

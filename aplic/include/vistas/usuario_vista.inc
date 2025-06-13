@@ -23,10 +23,10 @@ switch ($user->vista) {
         break;
     case "M":
         $titulo="Mis perfil";
-        $top_tips="Debe ingresar su clave para modificar los datos del perfil.<br />Si quiere cambiar la clave, presione <em>Me olvidé la clave.</em>";
+        $top_tips="Debe ingresar su clave para modificar los datos del perfil.";
         $sub_tips="";
-        $reingresa = "<p class='me_olvide'> 
-                        <a href='me_olvide.php'><img src='./images/el_grito_negro.png' align='middle' /> Me olvidé la clave</a>
+        $reingresa = "<p id='cambiar_clave'> 
+                        <a href='cambiar_clave.php'><img src='./images/llave.png' align='middle' /> Cambiar la clave </a>
                       </p>";
         $boton = "<input class='boton' type='submit' name='guardar' value='Modificar datos' onClick=\"this.value='Aguarde . . .'\"/>";
 

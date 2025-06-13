@@ -4,8 +4,9 @@
     Autor: Julio Tuozzo.
     Función: Controlador cambia la clave.
     Fecha de creación: 24/05/2025.
-    Ultima modificación: 31/05/2025.
+    Ultima modificación: 13/06/2025.
 */
+session_start();
 
 require("Utils.inc");
 require("User.inc");
@@ -33,6 +34,7 @@ foreach($_POST as $key => $valor)
      }
 $user = new User();
 
+
 if(isset($id)) // Si se envió el id por GET, lo valido
      {if(!filter_var($id, FILTER_VALIDATE_EMAIL))
          {$mensaje=$mens_error;
@@ -50,12 +52,16 @@ if(isset($id)) // Si se envió el id por GET, lo valido
       if($result->recordCount() == 0)
             {$mensaje=$mens_error;
             }
+      else
+            {// El e-mail está bien, lo guardo en la variable
+            $email = $id;
+            }
        
      }
 elseif(isset($clave)) // Se envió la clave por POST, llamo al método de User para cambiar la clave
      {
 
-      if($user->cambiarClave($clave, $nueva_clave, $reingresa))
+      if($user->cambiarClave($clave, $nueva_clave, $reingresa, $email))
             {// Se pudo cambiar la clave
              $mensaje="<script language='javascript'>
                           Swal.fire({
@@ -73,11 +79,16 @@ elseif(isset($clave)) // Se envió la clave por POST, llamo al método de User p
              $mensaje=Utils::msgError();
             }
      }
-else // Si no se envió ni el id ni la clave, va a index
+elseif(!isset($_SESSION['DML_EMAIL']))
+ // Si no se envió ni el id ni la clave, va a index
      {header("Location: index.php");
       exit();
      }
+else
+     {// Está seteada la variable global del mail, lo guardo en la variable
+      $email = $_SESSION['DML_EMAIL'];
 
+     }
 require("cambiar_clave_vista.inc");
 
 ?>

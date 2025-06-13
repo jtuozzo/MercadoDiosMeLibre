@@ -131,7 +131,7 @@ class User
 
     // Método que cambia la clave
 
-      public function cambiarClave($clave, $nueva_clave, $reingresa)
+      public function cambiarClave($clave, $nueva_clave, $reingresa,$email)
             {   
              if(strlen($clave)==0)
                 {
@@ -143,8 +143,9 @@ class User
             // Verifico que la clave actual sea correcta
             $clave_sha = hash("sha512", $clave);
             $query = "SELECT user_id 
-                  FROM user 
-                  WHERE clave='$clave_sha'";
+                      FROM user 
+                      WHERE clave='$clave_sha'
+                      AND email='$email'";
 
             $result = Utils::execute($query, __FILE__, __LINE__);
    
@@ -197,7 +198,8 @@ class User
                   expira_clave=DATE_ADD(NOW(), INTERVAL 90 DAY),
                   update_datetime=NOW(),
                   update_user=user_id
-                  WHERE clave='$clave_sha'";
+                  WHERE clave='$clave_sha'
+                  AND email='$email'";
       
             $result = Utils::execute($query, __FILE__, __LINE__);
             
