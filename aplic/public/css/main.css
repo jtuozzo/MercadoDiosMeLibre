@@ -186,18 +186,6 @@ header {
     margin: 15px 50px 15px 50px;
 }
 
-.me_olvide {
-    cursor: pointer;
-    margin-top: 30px;
-    font-size: 1.4em;
-}
-
-.me_olvide img {
-    width: 15%;
-    max-width: 70px;
-}
-
-
 /* -----------------  Tablet y Desktop  ----------------- */
 
 @media(min-width: 760px) {

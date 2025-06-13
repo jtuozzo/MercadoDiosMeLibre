@@ -23,6 +23,20 @@ input[type="submit"] {
     display: none;
 }
 
+
+#me_olvide {
+    cursor: pointer;
+    margin-top: 30px;
+    font-size: 1.4em;
+}
+
+#me_olvide img {
+    width: 15%;
+    max-width: 70px;
+}
+
+
+
 #login {
     text-align: center;
     padding: 2em;
