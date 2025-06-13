@@ -4,13 +4,15 @@
     Autor: Julio Tuozzo.
     Función: Controlador del login del usuario.
     Fecha de creación: 20/05/2025.
-    Ultima modificación: 01/06/2025.
+    Ultima modificación: 13/06/2025.
 */
 
 session_start();
 
 require("Utils.inc");
 require("User.inc");
+
+$user = new User;
 
 // Vacío las variables de sesión y las cookies donde están los datos del usuario
 
@@ -46,7 +48,7 @@ if(strlen($clave)==0)
 if(!isset($mensaje)) // Hasta acá no hubo errores, valido el usuario y la clave
      {$clave = hash("sha512", $clave);
 
-      $hay_usuario=User::getUser($email, $clave);
+      $hay_usuario=$user->getUser($email, $clave);
 
      if(!$hay_usuario)
         {$st_email="class='st_error'";

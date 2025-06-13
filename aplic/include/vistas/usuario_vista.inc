@@ -18,6 +18,8 @@ switch ($user->vista) {
             <label for='reingresa'> Reingresá la clave: </label>
             <input type='password' name='reingresa' id='reingresa' size='20' maxlength='20' {$user->st_reingresa}> {$user->reingresa_err} 
         </div>";
+
+        $boton = "<input class='boton' type='submit' name='crear' value='Crear usuario' onClick=\"this.value='Aguarde . . .'\"/>";
         break;
     case "M":
         $titulo="Mis perfil";
@@ -26,6 +28,7 @@ switch ($user->vista) {
         $reingresa = "<p class='me_olvide'> 
                         <a href='me_olvide.php'><img src='./images/el_grito_negro.png' align='middle' /> Me olvidé la clave</a>
                       </p>";
+        $boton = "<input class='boton' type='submit' name='guardar' value='Modificar datos' onClick=\"this.value='Aguarde . . .'\"/>";
 
 }
 
@@ -63,7 +66,7 @@ echo "
 
         $reingresa
 
-        <input class='boton' type='submit' name='crear' value='Crear usuario' onClick=\"this.value='Aguarde . . .'\"/>
+        $boton
 
    </form>
 $mensaje
