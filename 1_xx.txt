@@ -8,7 +8,7 @@
 
 * 1.00.02
 - Se le agrega al artículo el orden en el que aparecen en el listado.
-- Al estado de los articulos se agrega "oculto". Entonces un artículo puede estar: en venta, vendido y oculto.
+- Se agrega un nuevo atributo a los artículos: Que sea visible o no en el listado.
 
 
 TO DO

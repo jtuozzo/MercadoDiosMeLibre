@@ -3,7 +3,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 30/05/2025.
+    Ultima modificación: 17/06/2025.
 */
 
 label {
@@ -135,8 +135,8 @@ p {
     align-items: center;
 }
 
-.vendido {
-    font-size: 1.3em;
+.checks {
+    font-size: 1.1em;
     font-weight: bold;
 }
 

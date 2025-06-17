@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista de un artículo.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 07/06/2025.
+    Ultima modificación: 17/06/2025.
 */
 
 $css_local = "articulo.css";
@@ -56,7 +56,13 @@ echo "
                 <input type='text' name='precio' id='precio' value='{$articulo->precio}' size='10' maxlength='16' {$articulo->st_precio} required='required'> {$articulo->precio_err}
             </div>
             <div>
-                <label for='vendido' class='vendido'><input type='checkbox' name='vendido' id='vendido' value='S' {$articulo->chk_vendido} /> Vendido </label>
+                <label for='vendido' class='checks'><input type='checkbox' name='vendido' id='vendido' value='S' {$articulo->chk_vendido} /> Vendido </label>
+            </div>
+            <div>
+                <label for='oculto' class='checks'><input type='checkbox' name='oculto' id='oculto' value='S' {$articulo->chk_oculto} /> Oculto </label>
+            </div>
+            <div>
+                <label for='orden'><input type='text' name='orden' id='orden' value='{$articulo->orden}' size='3' maxlength='3' {$articulo->st_orden} /> {$articulo->orden_err} </label>
             </div>
         </div>   
         

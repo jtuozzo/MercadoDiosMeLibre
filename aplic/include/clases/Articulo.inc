@@ -21,17 +21,22 @@ class Articulo
      public $st_titulo = "";
      public $st_descripcion = "";
      public $st_precio = "";
+     public $st_orden = "";
      public $sel_ARS = "";
      public $sel_USD = "";
      public $titulo_err = "";
      public $descripcion_err = "";
      public $precio_err = "";
+     public $orden_err = "";
      public $foto = "";
      public $foto_tipo_file = "";
      public $las_fotos = array();
      public $vista = ""; // Define el tipo de vista de artículo que va a haber
      public $chk_vendido;
+     public $chk_oculto;
      public $token = "";
+
+     private $campos_check = array("vendido", "oculto");
 
      
 
@@ -169,12 +174,17 @@ class Articulo
           $this->$aux = "selected='selected'";
           $this->precio = str_replace(",",".", $this->precio);
 
-          if($this->vendido=='S')
-               {$this->chk_vendido="checked='checked'";
+          foreach($this->campos_check as $campo)
+               {$aux="chk_".$campo;
+                if($this->$campo=='S')
+                    {$this->$aux="checked='checked'";
+                    }
+               else
+                    {$this->$aux="";
+                    }
+
                }
-          else
-               {$this->chk_vendido="";
-               }
+          
 
           $todo_ok = true;
           $obligatorios = array('titulo', 'descripcion', 'precio');
@@ -319,9 +329,18 @@ class Articulo
 
 
     public function countArticulos($user_id)
-         {$query = "SELECT articulo_id
+         {// Si es el usuario que está sesionado cuenta todos los artículos, si no, excluye los ocultos
+          if(isset($_SESSION['DML_USER_ID']) and $user_id==$_SESSION['DML_USER_ID'])
+               {$excluyo_ocultos="";
+               }
+          else
+               {$excluyo_ocultos="AND oculto IS NULL";
+               }
+
+          $query = "SELECT articulo_id
                     FROM articulo
-                    WHERE user_id='$user_id'";
+                    WHERE user_id='$user_id'
+                    $excluyo_ocultos";
 
           $result = Utils::execute($query,__FILE__,__LINE__);
 
@@ -329,10 +348,19 @@ class Articulo
          }
     
     public function queryArticulos($user_id, $orden, $sentido) 
-         {return "SELECT DISTINCT ar.articulo_id, ar.titulo, ar.descripcion, ar.moneda, ar.precio, ar.vendido, ar.vendido_el, af.articulo_foto_id, ar.oculto, ar.orden
+         {// Si es el usuario que está sesionado cuenta todos los artículos, si no, excluye los ocultos
+          if(isset($_SESSION['DML_USER_ID']) and $user_id==$_SESSION['DML_USER_ID'])
+               {$excluyo_ocultos="";
+               }
+          else
+               {$excluyo_ocultos="AND oculto IS NULL";
+               }
+
+          return "SELECT DISTINCT ar.articulo_id, ar.titulo, ar.descripcion, ar.moneda, ar.precio, ar.vendido, ar.vendido_el, af.articulo_foto_id, ar.oculto, ar.orden
                   FROM articulo ar
                   LEFT JOIN articulo_foto af ON af.articulo_id=ar.articulo_id AND af.principal='S'
                   WHERE user_id='$user_id'
+                  $excluyo_ocultos
                   ORDER BY $orden $sentido";
          }
 
