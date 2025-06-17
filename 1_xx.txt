@@ -6,10 +6,13 @@
 - Seteo de nivel de errores.
 - Modificación de datos del usuario.
 
+* 1.00.02
+- Se le agrega al artículo el orden en el que aparecen en el listado.
+- Al estado de los articulos se agrega "oculto". Entonces un artículo puede estar: en venta, vendido y oculto.
+
 
 TO DO
 
-Estado de los articulos: En venta, vendido, oculto
 Hacer de la moneda una tabla o vector para que no sea un kilombo incorporar otras monedas.
 Mejorar el link de compra: Que verifique si el artículo siga en venta y frene cuando hace muchos clicks.
 Proceso que avisa a los que hacen el seguimiento de listado de artículos en venta.

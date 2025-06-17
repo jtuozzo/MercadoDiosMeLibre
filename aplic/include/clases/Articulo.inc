@@ -4,12 +4,20 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de los artículos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 04/06/2025.
+    Ultima modificación: 17/06/2025.
 */
 
 #[AllowDynamicProperties]
 class Articulo
     {public $articulo_id = 0;
+     public $titulo = "";
+     public $descripcion = "";
+     public $moneda = "";
+     public $precio = "";
+     public $user_id = "";
+     public $vendido = "";
+     public $orden = 0;
+     public $oculto = "";
      public $st_titulo = "";
      public $st_descripcion = "";
      public $st_precio = "";
@@ -21,13 +29,7 @@ class Articulo
      public $foto = "";
      public $foto_tipo_file = "";
      public $las_fotos = array();
-     public $titulo = "";
-     public $descripcion = "";
-     public $moneda = "";
-     public $precio = "";
-     public $user_id = "";
      public $vista = ""; // Define el tipo de vista de artículo que va a haber
-     public $vendido = "";
      public $chk_vendido;
      public $token = "";
 
@@ -79,7 +81,9 @@ class Articulo
                         '{$this->moneda}',
                         '{$this->precio}',
                         '{$this->vendido}',
-                        NULL,
+                         NULL,
+                        '{$this->oculto}',
+                        '{$this->orden}',
                         '{$_SESSION['DML_USER_ID']}',
                         NOW(),
                         '{$_SESSION['DML_USER_ID']}',
@@ -142,6 +146,8 @@ class Articulo
                        moneda = '{$this->moneda}',
                        precio = '{$this->precio}',
                        vendido = '{$this->vendido}',
+                       orden = '{$this->orden}',
+                       oculto = '{$this->oculto}',
                        update_user='{$_SESSION['DML_USER_ID']}',
                        update_datetime=NOW()
                        WHERE articulo_id='{$this->articulo_id}'";
@@ -323,7 +329,7 @@ class Articulo
          }
     
     public function queryArticulos($user_id, $orden, $sentido) 
-         {return "SELECT DISTINCT ar.articulo_id, ar.titulo, ar.descripcion, ar.moneda, ar.precio, ar.vendido, ar.vendido_el, af.articulo_foto_id
+         {return "SELECT DISTINCT ar.articulo_id, ar.titulo, ar.descripcion, ar.moneda, ar.precio, ar.vendido, ar.vendido_el, af.articulo_foto_id, ar.oculto, ar.orden
                   FROM articulo ar
                   LEFT JOIN articulo_foto af ON af.articulo_id=ar.articulo_id AND af.principal='S'
                   WHERE user_id='$user_id'
@@ -360,7 +366,7 @@ class Articulo
           
           // Trae los datos de un artículo
 
-          $query = "SELECT articulo_id, user_id, titulo, descripcion, moneda, precio, vendido
+          $query = "SELECT articulo_id, user_id, titulo, descripcion, moneda, precio, vendido, oculto, orden
                     FROM articulo 
                     WHERE articulo_id='$articulo_id'";
 

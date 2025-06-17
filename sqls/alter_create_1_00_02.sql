@@ -1,0 +1,3 @@
+ALTER TABLE articulo
+ADD orden SMALLINT UNSIGNED NOT NULL DEFAULT 0 AFTER vendido_el,
+ADD oculto ENUM('S') NULL DEFAULT NULL AFTER vendido_el;
