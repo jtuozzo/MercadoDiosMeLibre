@@ -417,11 +417,17 @@ class Articulo
           $aux="sel_{$this->moneda}";
           $this->$aux = "selected='selected'";
 
-          if($this->vendido=='S')
-               {$this->chk_vendido="checked='checked'";
-               }
-          else
-               {$this->chk_vendido="";
+
+          // Inicializo los checks
+          foreach($this->campos_check as $campo)
+               {$aux="chk_".$campo;
+                if($this->$campo=='S')
+                    {$this->$aux="checked='checked'";
+                    }
+               else
+                    {$this->$aux="";
+                    }
+
                }
 
 

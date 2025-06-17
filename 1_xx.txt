@@ -11,6 +11,8 @@
 - Se agrega un nuevo atributo a los artículos: Que sea visible o no en el listado.
 
 
+QUEDÉ EN EL LISTADO DE ARTÍCULOS, NO FUNCIONA EL ORDEN APARENTEMENTE. ESTÁ PUESTO EL FILTRO DE OCULTO, HAY QUE PROBARLO
+
 TO DO
 
 Hacer de la moneda una tabla o vector para que no sea un kilombo incorporar otras monedas.
