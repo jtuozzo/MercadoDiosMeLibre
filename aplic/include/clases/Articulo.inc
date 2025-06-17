@@ -352,7 +352,7 @@ class Articulo
           return $result->recordCount();
          }
     
-    public function queryArticulos($user_id, $orden, $sentido) 
+    public function queryArticulos($user_id, $el_orden, $sentido) 
          {// Si es el usuario que está sesionado cuenta todos los artículos, si no, excluye los ocultos
           if(isset($_SESSION['DML_USER_ID']) and $user_id==$_SESSION['DML_USER_ID'])
                {$excluyo_ocultos="";
@@ -366,7 +366,7 @@ class Articulo
                   LEFT JOIN articulo_foto af ON af.articulo_id=ar.articulo_id AND af.principal='S'
                   WHERE user_id='$user_id'
                   $excluyo_ocultos
-                  ORDER BY $orden $sentido";
+                  ORDER BY $el_orden $sentido";
          }
 
     public function getFoto($articulo_foto_id=0,$token="")
@@ -666,14 +666,14 @@ Class Ventas extends Compra
 
           }
 
-      public function queryVentas($user_id, $orden, $sentido="ASC")
+      public function queryVentas($user_id, $el_orden, $sentido="ASC")
           {return "SELECT DISTINCT art.titulo, art.moneda, art.precio, art.vendido, af.articulo_foto_id, art.articulo_id
                    FROM articulo_compra ac
                    JOIN articulo art ON art.articulo_id=ac.articulo_id
                    LEFT JOIN articulo_foto af ON af.articulo_id=art.articulo_id AND af.principal='S'
                    WHERE art.user_id='$user_id'
                    AND ac.activo='S'
-                   ORDER BY $orden $sentido";
+                   ORDER BY $el_orden $sentido";
           }
 
       public function getCompradores($articulo_id)

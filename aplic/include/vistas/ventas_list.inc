@@ -74,6 +74,6 @@ echo                    "</div>
     }
 
 echo "</div>";
-echo Utils::paginador($pagina,$q_registros,$orden,$sentido,0);
+echo Utils::paginador($pagina,$q_registros,$el_orden,$sentido,0);
 require('foot.inc');
 ?>

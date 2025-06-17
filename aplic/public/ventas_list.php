@@ -32,7 +32,7 @@ if(!isset($pagina))
      {// No está paginando, es un query nuevo
       $pagina = 1;
       $sentido ="DESC";
-      $orden = "articulo_compra_id";
+      $el_orden = "articulo_compra_id";
       $q_registros = $ventas->countVentas($_SESSION['DML_USER_ID']);
      }
 
@@ -40,20 +40,20 @@ $desde = ($pagina - 1) * MAX_ARTICULOS;
 
 // Armo y ejecuto la consulta
 
-$query = $ventas->queryVentas($_SESSION['DML_USER_ID'], $orden, $sentido);
+$query = $ventas->queryVentas($_SESSION['DML_USER_ID'], $el_orden, $sentido);
 
 $result = Utils::selectLimit($query, $desde,__FILE__, __LINE__); 
 
 if($sentido=="DESC")
-        {$_aux_var="arr_$orden";
+        {$_aux_var="arr_$el_orden";
          $$_aux_var="&nbsp; &#9660;";
-         $_aux_var="sen_$orden";
+         $_aux_var="sen_$el_orden";
          $$_aux_var="ASC";
         }
 else
-        {$_aux_var="arr_$orden";
+        {$_aux_var="arr_$el_orden";
          $$_aux_var="&nbsp; &#9650;";
-         $_aux_var="sen_$orden";
+         $_aux_var="sen_$el_orden";
          $$_aux_var="DESC";
         }
 

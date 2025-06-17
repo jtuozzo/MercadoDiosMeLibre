@@ -48,7 +48,7 @@ if(!isset($pagina))
      {// No está paginando, es un query nuevo
       $pagina = 1;
       $sentido ="ASC";
-      $orden = "orden";
+      $el_orden = "orden";
       $q_registros = $articulo->countArticulos($usuario->user_id);
      }
 
@@ -56,21 +56,21 @@ $desde = ($pagina - 1) * MAX_ARTICULOS;
 
 // Armo y ejecuto la consulta
 
-$query = $articulo->queryArticulos($usuario->user_id, $orden, $sentido);
+$query = $articulo->queryArticulos($usuario->user_id, $el_orden, $sentido);
 
 $result = Utils::selectLimit($query, $desde,__FILE__, __LINE__); 
 
 
 if($sentido=="DESC")
-        {$_aux_var="arr_$orden";
+        {$_aux_var="arr_$el_orden";
          $$_aux_var="&nbsp; &#9660;";
-         $_aux_var="sen_$orden";
+         $_aux_var="sen_$el_orden";
          $$_aux_var="ASC";
         }
 else
-        {$_aux_var="arr_$orden";
+        {$_aux_var="arr_$el_orden";
          $$_aux_var="&nbsp; &#9650;";
-         $_aux_var="sen_$orden";
+         $_aux_var="sen_$el_orden";
          $$_aux_var="DESC";
         }
 

@@ -61,6 +61,6 @@ while(!$result->EOF)
     }
 
 echo "</div>";
-echo Utils::paginador($pagina,$q_registros,$orden,$sentido,$id);
+echo Utils::paginador($pagina,$q_registros,$el_orden,$sentido,$id);
 require('foot.inc');
 ?>

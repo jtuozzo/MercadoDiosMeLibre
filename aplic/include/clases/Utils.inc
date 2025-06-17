@@ -169,10 +169,10 @@ class Utils
          }
 
 
-     static function paginador($pagina,$q_registros,$orden,$sentido,$id)
+     static function paginador($pagina,$q_registros,$el_orden,$sentido,$id)
          {# $pagina: Página que estoy mostrando.
           # $q_registros: cantidad de registros de la consulta.
-          # $orden: orden de los registros.
+          # $el_orden: orden de los registros.
           # $sentido: Sentido ascendente o descendente.
           # $id: ID del llamador.
 
@@ -184,9 +184,9 @@ class Utils
 
          if ($pagina>1)
             { $pag=$pagina-1;
-               $paginador.= "<strong><a href='{$_SERVER['PHP_SELF']}?pagina=1&q_registros=$q_registros&orden=$orden&sentido=$sentido&id=$id'>
+               $paginador.= "<strong><a href='{$_SERVER['PHP_SELF']}?pagina=1&q_registros=$q_registros&el_orden=$el_orden&sentido=$sentido&id=$id'>
                <img src='./images/go-first.png' alt='<<||' border='0' /></a> &nbsp;
-               <a href='{$_SERVER['PHP_SELF']}?pagina=$pag&q_registros=$q_registros&orden=$orden&sentido=$sentido&id=$id'>
+               <a href='{$_SERVER['PHP_SELF']}?pagina=$pag&q_registros=$q_registros&el_orden=$el_orden&sentido=$sentido&id=$id'>
                <img src='./images/go-previous.png' alt='< Ant.|' border='0' /></strong></a>";
             }
 
@@ -207,7 +207,7 @@ class Utils
                      {$paginador.= "<strong>&nbsp;<big> $pag </big>&nbsp;</strong>";
                      }
                else
-                     {$paginador.= "<a href='{$_SERVER['PHP_SELF']}?pagina=$pag&q_registros=$q_registros&orden=$orden&sentido=$sentido&id=$id'> $pag </a> &nbsp; \n";
+                     {$paginador.= "<a href='{$_SERVER['PHP_SELF']}?pagina=$pag&q_registros=$q_registros&el_orden=$el_orden&sentido=$sentido&id=$id'> $pag </a> &nbsp; \n";
                      }
 
                if ($pag-$pag_desde>14)
@@ -222,9 +222,9 @@ class Utils
             {$pag=$pagina+1;
              $ultima=intval(($q_registros-1)/MAX_ARTICULOS)+1;
              $paginador.= "&nbsp;
-                  <a href='{$_SERVER['PHP_SELF']}?pagina=$pag&q_registros=$q_registros&orden=$orden&sentido=$sentido&id=$id'><strong>
+                  <a href='{$_SERVER['PHP_SELF']}?pagina=$pag&q_registros=$q_registros&el_orden=$el_orden&sentido=$sentido&id=$id'><strong>
                   <img src='./images/go-next.png' alt='|Sig.>' border='0' /></a> &nbsp;
-                  <a href='{$_SERVER['PHP_SELF']}?pagina=$ultima&q_registros=$q_registros&orden=$orden&sentido=$sentido&id=$id'>
+                  <a href='{$_SERVER['PHP_SELF']}?pagina=$ultima&q_registros=$q_registros&el_orden=$el_orden&sentido=$sentido&id=$id'>
                   <img src='./images/go-last.png' alt='||>>' border='0' /></strong></a>";
             }
 
