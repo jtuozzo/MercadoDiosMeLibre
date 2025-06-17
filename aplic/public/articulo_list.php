@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Listado de artículos.
     Fecha de creación: 27/05/2025.
-    Ultima modificación: 04/06/2025.
+    Ultima modificación: 17/06/2025.
 */
 
 session_start();
@@ -48,7 +48,7 @@ if(!isset($pagina))
      {// No está paginando, es un query nuevo
       $pagina = 1;
       $sentido ="ASC";
-      $orden = "articulo_id";
+      $orden = "orden";
       $q_registros = $articulo->countArticulos($usuario->user_id);
      }
 

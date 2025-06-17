@@ -62,7 +62,9 @@ echo "
                 <label for='oculto' class='checks'><input type='checkbox' name='oculto' id='oculto' value='S' {$articulo->chk_oculto} /> Oculto </label>
             </div>
             <div>
-                <label for='orden'><input type='text' name='orden' id='orden' value='{$articulo->orden}' size='3' maxlength='3' {$articulo->st_orden} /> {$articulo->orden_err} </label>
+                <label for='orden'>Orden: </label>
+                <input type='text' name='orden' id='orden' value='{$articulo->orden}' size='3' maxlength='3' {$articulo->st_orden} /> {$articulo->orden_err} 
+                <br/><em>Indica en que orden aparecen los artículos en el listado.</em>
             </div>
         </div>   
         

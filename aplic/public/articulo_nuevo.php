@@ -61,6 +61,7 @@ if(!$articulo->crearArticulo($fotos))
                         confirmButtonText: 'Continuar'
                         })
                      </script>";
+        
         foreach($_POST as $clave => $valor)
             {if(isset($articulo->$clave))
                     {$articulo->$clave="";
@@ -69,6 +70,7 @@ if(!$articulo->crearArticulo($fotos))
                     {$$clave="";
                     }
             }
+         $articulo->orden = 0;   
         }
 
 require("articulo_vista.inc");

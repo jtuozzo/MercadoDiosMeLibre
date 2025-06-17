@@ -47,7 +47,7 @@ class Articulo
                 $this->$foto_err = "";
                 $this->$st_foto = "";
                }
-
+          $this->orden = 0;
          }
       
      public function validoID($articulo_id, $token)
@@ -198,15 +198,20 @@ class Articulo
                }
             }
 
-          if(!is_numeric($this->precio) || $this->precio <= 0)
+          if(!is_numeric($this->precio) or $this->precio <= 0)
              {$this->precio_err = "<span class='error'>El precio debe ser un número positivo.</span>";
               $this->st_precio = "class='st_error'";
               $todo_ok = false;
              }
 
-          return $todo_ok;
-         }
+          if(!is_numeric($this->orden) or $this->orden < 0)
+               {$this->orden_err = "<span class='error'>Debe ser un número positivo.</span>";
+               $this->st_orden = "class='st_error'";
+               $todo_ok = false;
+               }
 
+           return $todo_ok;
+          }
       private function armoFotos($fotos)
          {$tmp = array();
           $foto_tamanio = array();
