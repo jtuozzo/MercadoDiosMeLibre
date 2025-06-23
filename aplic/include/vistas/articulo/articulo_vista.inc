@@ -50,9 +50,9 @@ echo "
 
                 <select name='moneda' id='moneda' >";
 
-                foreach (Utils::$moneda as $key => $value) 
-                    {$selected = ($articulo->moneda == $key) ? "selected='selected'" : "";
-                     echo "<option value='{$key}' {$selected}>{$value}</option>";
+                foreach (Utils::$moneda as $clave => $value) 
+                    {$selected = ($articulo->moneda == $clave) ? "selected='selected'" : "";
+                     echo "<option value='{$clave}' {$selected}>{$value}</option>";
                     }
 echo "          </select> 
 
