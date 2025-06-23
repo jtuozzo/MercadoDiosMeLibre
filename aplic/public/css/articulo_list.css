@@ -3,7 +3,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 27/05/2025.
-    Ultima modificación: 04/06/2025.
+    Ultima modificación: 23/06/2025.
 */
 
 h2 {
@@ -17,6 +17,8 @@ h2 {
     font-size: 18px;
     display: flex;
     flex-wrap: wrap;
+    gap: 10px;
+
 }
 
 .vendido {
