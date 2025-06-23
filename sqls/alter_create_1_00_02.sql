@@ -1,3 +1,4 @@
 ALTER TABLE articulo
 ADD orden SMALLINT UNSIGNED NOT NULL DEFAULT 0 AFTER vendido_el,
-ADD oculto ENUM('S') NULL DEFAULT NULL AFTER vendido_el;
+ADD oculto ENUM('S') NULL DEFAULT NULL AFTER vendido_el,
+CHANGE moneda moneda ENUM('ARS','USD','EUR') NOT NULL DEFAULT 'ARS';
