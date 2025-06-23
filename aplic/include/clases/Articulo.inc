@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de los artículos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 17/06/2025.
+    Ultima modificación: 23/06/2025.
 */
 
 #[AllowDynamicProperties]
@@ -22,8 +22,6 @@ class Articulo
      public $st_descripcion = "";
      public $st_precio = "";
      public $st_orden = "";
-     public $sel_ARS = "";
-     public $sel_USD = "";
      public $titulo_err = "";
      public $descripcion_err = "";
      public $precio_err = "";
@@ -169,9 +167,7 @@ class Articulo
             }
 
       private function validoArticulo()
-         {// Inicializo select y check
-          $aux="sel_{$this->moneda}";
-          $this->$aux = "selected='selected'";
+         {// Inicializo precio y check
           $this->precio = str_replace(",",".", $this->precio);
 
           foreach($this->campos_check as $campo)
@@ -412,10 +408,6 @@ class Articulo
           foreach($result->fields as $campo=>$valor)
                {$this->$campo=htmlentities($valor,ENT_QUOTES,"UTF-8");
                }
-
-          // Inicializo el select del tipo de moneda
-          $aux="sel_{$this->moneda}";
-          $this->$aux = "selected='selected'";
 
 
           // Inicializo los checks

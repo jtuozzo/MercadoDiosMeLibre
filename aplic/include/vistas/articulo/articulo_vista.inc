@@ -48,10 +48,13 @@ echo "
             <div>
                 <label for='precio'>  Precio: </label>
 
-                <select name='moneda' id='moneda' >
-                    <option value='ARS' {$articulo->sel_ARS}>ARS - Pesos</option>
-                    <option value='USD' {$articulo->sel_USD}>USD - Dólares</option>
-                </select> 
+                <select name='moneda' id='moneda' >";
+
+                foreach (Utils::$moneda as $key => $value) 
+                    {$selected = ($articulo->moneda == $key) ? "selected='selected'" : "";
+                     echo "<option value='{$key}' {$selected}>{$value}</option>";
+                    }
+echo "          </select> 
 
                 <input type='text' name='precio' id='precio' value='{$articulo->precio}' size='10' maxlength='16' {$articulo->st_precio} required='required'> {$articulo->precio_err}
             </div>
