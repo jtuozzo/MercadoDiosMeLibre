@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista del listado de artículos.
     Fecha de creación: 27/05/2025.
-    Ultima modificación: 31/05/2025.
+    Ultima modificación: 23/06/2025.
 */
 
 $css_local = "articulo_list.css";
@@ -12,6 +12,7 @@ $css_local = "articulo_list.css";
 require_once('head.inc');
 echo "
 <script type='text/javascript' src='./js/articulo_list.js'></script>
+
 $cabecera
 <div id='list_articulos'>";
 
@@ -47,10 +48,19 @@ while(!$result->EOF)
              $class_vendido="en_venta";
             }
 
+     if($oculto=="S")
+            {$class_vendido="vendido";
+             $oculto="<p class='oculto'>OCULTO</p>";
+            }
+    else
+            {$oculto="";
+            }
+
       $precio=number_format($precio,2,",",".");
       echo "<div class='un_articulo $class_vendido' $onClick>
                  $label_vendido
                 <img src='getFoto.php?id=$articulo_foto_id&key=$token' alt='$titulo'>
+                $oculto
 
             <div class='titulo'>$titulo</div>
             <div class='precio'>$moneda $precio</div>
