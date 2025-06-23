@@ -36,7 +36,7 @@ if(!isset($pagina))
       $q_registros = $ventas->countVentas($_SESSION['DML_USER_ID']);
      }
 
-$desde = ($pagina - 1) * MAX_ARTICULOS;
+$desde = ($pagina - 1) * Utils::$max_articulos;
 
 // Armo y ejecuto la consulta
 

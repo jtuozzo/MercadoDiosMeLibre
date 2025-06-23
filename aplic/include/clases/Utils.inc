@@ -29,9 +29,6 @@ define('LOGS', '../carpeta/');
 # Carpeta de archivos temporales
 define('TMP', '../tmp/');
 
-# Cantidad máxima de artículos por página
-define('MAX_ARTICULOS', 20);
-
 */
 
 require("config_data.inc");
@@ -48,7 +45,8 @@ require("DBConecto.inc");
 
 class Utils 
     {static public $dbase;
-     static public $max_fotos = 10;
+     static public $max_fotos = 10; // Cantidad máxima de fotos por artículo.
+     static public $max_articulos = 8; // Cantidad máxima de artículos por página.
 
 
       // Funcióm que ejecuta una consulta SQL y devuelve el resultado.
@@ -75,7 +73,7 @@ class Utils
             }
 
          try 
-            {$result = self::$dbase->db->selectLimit($query, MAX_ARTICULOS, $desde);
+            {$result = self::$dbase->db->selectLimit($query, Utils::$max_articulos, $desde);
             } 
          catch (Exception $e) 
             {self::$dbase->db_error($e->getMessage(),$file,$line,$query);
@@ -174,7 +172,7 @@ class Utils
           # $sentido: Sentido ascendente o descendente.
           # $id: ID del llamador.
 
-         if($q_registros<=MAX_ARTICULOS)
+         if($q_registros<=Utils::$max_articulos)
             {return "";
             }
 
@@ -200,7 +198,7 @@ class Utils
             {$pag_desde=1;
             }
 
-         for ($I=MAX_ARTICULOS*($pag_desde-1), $pag=$pag_desde ; $I<$q_registros; $I=$I+MAX_ARTICULOS, $pag++)
+         for ($I=Utils::$max_articulos*($pag_desde-1), $pag=$pag_desde ; $I<$q_registros; $I=$I+Utils::$max_articulos, $pag++)
             { if ($pag==$pagina)
                      {$paginador.= "<strong>&nbsp;<big> $pag </big>&nbsp;</strong>";
                      }
@@ -216,9 +214,9 @@ class Utils
             }
 
 
-         if ($pagina<($q_registros/MAX_ARTICULOS))
+         if ($pagina<($q_registros/Utils::$max_articulos))
             {$pag=$pagina+1;
-             $ultima=intval(($q_registros-1)/MAX_ARTICULOS)+1;
+             $ultima=intval(($q_registros-1)/Utils::$max_articulos)+1;
              $paginador.= "&nbsp;
                   <a href='{$_SERVER['PHP_SELF']}?pagina=$pag&q_registros=$q_registros&el_orden=$el_orden&sentido=$sentido&id=$id'><strong>
                   <img src='./images/go-next.png' alt='|Sig.>' border='0' /></a> &nbsp;

@@ -52,7 +52,7 @@ if(!isset($pagina))
       $q_registros = $articulo->countArticulos($usuario->user_id);
      }
 
-$desde = ($pagina - 1) * MAX_ARTICULOS;
+$desde = ($pagina - 1) * Utils::$max_articulos;
 
 // Armo y ejecuto la consulta
 
