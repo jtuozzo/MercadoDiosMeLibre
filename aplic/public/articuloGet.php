@@ -41,7 +41,7 @@ if(isset($modificar))
     {// Armo los array de fotos
     $fotos_actuales = array();
     $fotos_nuevas = array();
-    for($i=1; $i<=MAX_FOTOS; $i++)
+    for($i=1; $i<=Utils::$max_fotos; $i++)
         {$aux="articulo_foto_id_{$i}";
          if(isset($$aux))
             {$fotos_actuales[$i]=$$aux;

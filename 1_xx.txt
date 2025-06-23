@@ -9,7 +9,7 @@
 * 1.00.02
 - Se le agrega al artículo el orden en el que aparecen en el listado.
 - Se agrega un nuevo atributo a los artículos: Que sea visible o no en el listado.
-
+- La moneda es un array constante global.
 
 TO DO
 

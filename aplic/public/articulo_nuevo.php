@@ -43,7 +43,7 @@ if(!isset($_POST['crear']))
 
 // Armo el array de fotos
 $fotos = array();
-for($i=1; $i<=MAX_FOTOS; $i++)
+for($i=1; $i<=Utils::$max_fotos; $i++)
      {$fotos[$i] = $_FILES["foto_$i"]; 
      }
 

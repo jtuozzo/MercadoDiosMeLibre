@@ -24,7 +24,7 @@ echo "<div id='foto'>
                     }
             }
 
-        if ($i>MAX_FOTOS)
+        if ($i>Utils::$max_fotos)
             {$style="style='display:none'";
             }
         else 
@@ -33,11 +33,11 @@ echo "<div id='foto'>
 
         echo "</div>
         <label>
-            <input id='nueva_foto' type='button' onclick='addFoto(".MAX_FOTOS.")' title='Agregar fotos' $style>
+            <input id='nueva_foto' type='button' onclick='addFoto(".Utils::$max_fotos.")' title='Agregar fotos' $style>
             <strong>Fotos</strong> 
-            <span class='nota'> (Máximo ".MAX_FOTOS." fotos) </span>
+            <span class='nota'> (Máximo ".Utils::$max_fotos." fotos) </span>
         </label>";
-        for($i = $i; $i <= MAX_FOTOS; $i++)
+        for($i = $i; $i <= Utils::$max_fotos; $i++)
             {$foto = "foto_$i";
              $foto_err = "foto_err_{$i}";
              $st_foto = "st_foto_$i";

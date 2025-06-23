@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos estáticos de uso global.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 05/06/2025.
+    Ultima modificación: 23/06/2025.
 */
 
 // Datos de la instalación
@@ -29,9 +29,6 @@ define('LOGS', '../carpeta/');
 # Carpeta de archivos temporales
 define('TMP', '../tmp/');
 
-# Cantidad máxima de fotos por artículo
-define('MAX_FOTOS', 10);
-
 # Cantidad máxima de artículos por página
 define('MAX_ARTICULOS', 20);
 
@@ -51,6 +48,7 @@ require("DBConecto.inc");
 
 class Utils 
     {static public $dbase;
+     static public $max_fotos = 10;
 
 
       // Funcióm que ejecuta una consulta SQL y devuelve el resultado.
