@@ -49,7 +49,7 @@ while(!$result->EOF)
             }
 
      if($oculto=="S")
-            {$class_vendido="vendido";
+            {$class_vendido="vendido  propietario ";
              $oculto="<p class='oculto'>OCULTO</p>";
             }
     else

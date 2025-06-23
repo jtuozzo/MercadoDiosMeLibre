@@ -3,7 +3,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 17/06/2025.
+    Ultima modificación: 23/06/2025.
 */
 
 label {
@@ -140,9 +140,9 @@ p {
     font-weight: bold;
 }
 
-/* -----------------  Tablet y Desktop  ----------------- */
+/* -----------------  Tablet  ----------------- */
 
-@media(min-width: 760px) {
+@media(min-width: 780px) {
     label {
         display: inline-block;
     }
@@ -162,7 +162,7 @@ p {
 
     .linea_1 {
         display: flex;
-        column-gap: 35px;
+        column-gap: 10px;
     }
 
     .linea_2 {
@@ -188,4 +188,12 @@ p {
         min-width: 90px;
     }
 
+}
+
+/* -----------------  Desktop  ----------------- */
+
+@media(min-width: 1400px) {
+    .linea_1 {
+        column-gap: 40px;
+    }
 }
