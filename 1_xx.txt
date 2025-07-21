@@ -13,6 +13,7 @@
 
 * 1.00.03
 - Cambia "mysqli_real_escape_string" por "Quote" de AdoDB, así no hay llamados a "mysqli".
+- Setea el aviso de seguimiento en caso de agregados y/o modificaciones a los artículos en venta.
 
 TO DO
 

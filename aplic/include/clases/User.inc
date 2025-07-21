@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de manejo de usuarios.
     Fecha de creación: 23/05/2025.
-    Ultima modificación: 13/06/2025.
+    Ultima modificación: 21/07/2025.
 */
 
 class User
@@ -520,7 +520,7 @@ class User
                   }
 
              $query = "UPDATE siguiendo
-                       SET activo = 'N',
+                       SET activo = NULL,
                        update_datetime=NOW()
                        WHERE user_id='{$_SESSION['DML_USER_ID']}'
                        AND siguiendo_a = '{$this->user_id}'";

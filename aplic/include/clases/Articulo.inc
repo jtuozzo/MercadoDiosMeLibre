@@ -100,6 +100,9 @@ class Articulo
                // Guarda las fotos
                $this->insertFotos($articulo_id, $fotos);
               
+               // Informa que hubo novedades en el artículo de ese usuario.
+
+               $this->hayNovedades();
 
                // Fin de la transacción
                Utils::completeTrans(__FILE__, __LINE__);
