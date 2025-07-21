@@ -14,9 +14,10 @@
 * 1.00.03
 - Cambia "mysqli_real_escape_string" por "Quote" de AdoDB, así no hay llamados a "mysqli".
 - Setea el aviso de seguimiento en caso de agregados y/o modificaciones a los artículos en venta.
+- Proceso que avisa a los que hacen el seguimiento de listado de artículos en venta.
+
 
 TO DO
 
 Mejorar el link de compra: Que verifique si el artículo siga en venta y frene cuando hace muchos clicks.
-Proceso que avisa a los que hacen el seguimiento de listado de artículos en venta.
 En la tabla "user" el campo "expira_clave" está seteada / harcodeada en 90 días.
