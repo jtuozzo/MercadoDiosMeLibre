@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos estáticos de uso global.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 23/06/2025.
+    Ultima modificación: 21/07/2025.
 */
 
 // Datos de la instalación
@@ -239,9 +239,48 @@ class Utils
           else
             {return $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME']."/";
             }
-
-          
          }
+
+     static public function hayNovedades()
+         {// Busca si hay novedades que no se avisaron y envía un mensaje a los usuarios.
+
+          $query = "SELECT sig.siguiendo_id, sigo_a.nombres, sigo_a.apellidos, usr.email
+                    FROM siguiendo sig
+                    JOIN user sigo_a ON sigo_a.user_id = sig.siguiendo_a
+                    JOIN user usr ON usr.user_id = sig.user_id
+                    WHERE sig.activo='S'
+                    AND sig.avisar_novedades='S'";
+          
+          $result = self::execute($query, __FILE__, __LINE__);
+
+          if($result->recordCount() > 0)
+               {$mail = new Mail;
+                while(!$result->EOF)
+                     {foreach($result->fields as $clave => $valor)
+                           {$$clave = htmlentities($valor,ENT_QUOTES,"UTF-8");
+                           }
+                     $result->moveNext();
+   
+                     // Envío el mensaje de novedades
+                     
+                     $body = "Hola!!,<br /><br />
+                              Hay novedades en los artículos que estás siguiendo de $nombres $apellidos. <br /><br />
+                              Ingresá a <a href='".Utils::host()."index.php'>MercadoDiosMeLibre</a> para verlos.<br />";
+                     
+                     
+                      if($mail->sendMail($email, "Novedades en artículos", $body))
+                           {// Actualizo el aviso de novedades
+                            $query = "UPDATE siguiendo 
+                                      SET avisar_novedades=NULL,
+                                      update_datetime=NOW()
+                                      WHERE siguiendo_id='$siguiendo_id'";
+                            
+                            $update = self::execute($query, __FILE__, __LINE__);
+                           }
+                     }
+               }
+
+         }    
     }
 
 

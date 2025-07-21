@@ -101,7 +101,6 @@ class Articulo
                $this->insertFotos($articulo_id, $fotos);
               
                // Informa que hubo novedades en el artículo de ese usuario.
-
                $this->hayNovedades();
 
                // Fin de la transacción
@@ -162,12 +161,27 @@ class Articulo
              $result = Utils::execute($query, __FILE__, __LINE__);
 
              // Inserto las fotos nuevas
-
              $this->insertFotos($this->articulo_id, $fotos_nuevas);
+
+             // Informa que hubo novedades en el artículo de ese usuario.
+             $this->hayNovedades();
+
              // Fin de la transacción
              Utils::completeTrans(__FILE__, __LINE__);
              return true;
             }
+
+      private function hayNovedades()
+         {// Informa que hubo novedades en el artículo de ese usuario.
+          $query = "UPDATE siguiendo    
+                    SET avisar_novedades = 'S',
+                    update_datetime=NOW()
+                    WHERE siguiendo_a='{$_SESSION['DML_USER_ID']}'
+                    AND activo='S'";
+
+          $result = Utils::execute($query, __FILE__, __LINE__);
+          return;
+         }
 
       private function validoArticulo()
          {// Inicializo precio y check

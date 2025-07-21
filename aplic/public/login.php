@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Controlador del login del usuario.
     Fecha de creación: 20/05/2025.
-    Ultima modificación: 13/06/2025.
+    Ultima modificación: 21/07/2025.
 */
 
 session_start();
@@ -75,6 +75,10 @@ else
      {setcookie("DML_EMAIL", "", time()-3600);
       setcookie("DML_CLAVE", "", time()-3600);
      }
+
+// Llamo al método que avisa si hay novedades en los artículos.
+
+Utils::hayNovedades();
 
 // Voy a la página de inicio
 header("Location: index.php");
