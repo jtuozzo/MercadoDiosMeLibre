@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de los artículos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 23/06/2025.
+    Ultima modificación: 21/07/2025.
 */
 
 #[AllowDynamicProperties]
@@ -71,16 +71,16 @@ class Articulo
              {// Inicio la transacción
                 Utils::startTrans(__FILE__, __LINE__);
 
-               $titulo = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->titulo,ENT_QUOTES,"UTF-8"));
-               $descripcion = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->descripcion,ENT_QUOTES,"UTF-8"));
+               $titulo = Utils::$dbase->db->Quote(html_entity_decode($this->titulo,ENT_QUOTES,"UTF-8"));
+               $descripcion = Utils::$dbase->db->Quote(html_entity_decode($this->descripcion,ENT_QUOTES,"UTF-8"));
    
                // Inserto el artículo en la base de datos
                
                $query = "INSERT INTO articulo VALUES
                         (NULL,
                         '{$_SESSION['DML_USER_ID']}',
-                        '$titulo',
-                        '$descripcion',
+                        $titulo,
+                        $descripcion,
                         '{$this->moneda}',
                         '{$this->precio}',
                         '{$this->vendido}',
@@ -92,7 +92,7 @@ class Articulo
                         '{$_SESSION['DML_USER_ID']}',
                         NOW())";
                
-               $query =str_replace("''", "NULL", $query);
+               $query =str_replace("''", "NULL", $query); 
                $result = Utils::execute($query, __FILE__, __LINE__);
 
                $articulo_id = mysqli_insert_id(Utils::$dbase->db->_connectionID);
@@ -140,12 +140,12 @@ class Articulo
 
 
              // Modifico los datos en la tabla de artículos
-             $titulo = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->titulo,ENT_QUOTES,"UTF-8"));
-             $descripcion = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->descripcion,ENT_QUOTES,"UTF-8"));
+             $titulo = Utils::$dbase->db->Quote(html_entity_decode($this->titulo,ENT_QUOTES,"UTF-8"));
+             $descripcion = Utils::$dbase->db->Quote(html_entity_decode($this->descripcion,ENT_QUOTES,"UTF-8"));
              
              $query = "UPDATE articulo SET
-                       titulo='$titulo',
-                       descripcion = '$descripcion',
+                       titulo=$titulo,
+                       descripcion = $descripcion,
                        moneda = '{$this->moneda}',
                        precio = '{$this->precio}',
                        vendido = '{$this->vendido}',
@@ -492,19 +492,19 @@ Class Compra extends Articulo
 
     public function crearCompra()
           {if ($this->validoCompra())
-                 {$apellidos = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->apellidos,ENT_QUOTES,"UTF-8"));
-                  $nombres = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->nombres,ENT_QUOTES,"UTF-8"));
-                  $comentarios = mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->comentarios,ENT_QUOTES,"UTF-8"));
+                 {$apellidos = Utils::$dbase->db->Quote(html_entity_decode($this->apellidos,ENT_QUOTES,"UTF-8"));
+                  $nombres = Utils::$dbase->db->Quote(html_entity_decode($this->nombres,ENT_QUOTES,"UTF-8"));
+                  $comentarios = Utils::$dbase->db->Quote(html_entity_decode($this->comentarios,ENT_QUOTES,"UTF-8"));
                   
                   $query = "INSERT INTO articulo_compra VALUES 
                             (NULL,
                              '{$this->articulo_id}',
                              '{$this->comprador_user_id}',
-                             '{$apellidos}',
-                             '{$nombres}',
+                             $apellidos,
+                             $nombres,
                              '{$this->email}',
                              '{$this->whatsapp}',
-                             '{$comentarios}',
+                             $comentarios,
                              '{$this->activo}',
                              NOW(),
                              NOW()

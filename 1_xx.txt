@@ -11,6 +11,9 @@
 - Se agrega un nuevo atributo a los artículos: Que sea visible o no en el listado.
 - La moneda es un array constante global.
 
+* 1.00.03
+- Cambia "mysqli_real_escape_string" por "Quote" de AdoDB, así no hay llamados a "mysqli".
+
 TO DO
 
 Mejorar el link de compra: Que verifique si el artículo siga en venta y frene cuando hace muchos clicks.

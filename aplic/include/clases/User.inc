@@ -297,15 +297,15 @@ class User
                         }
                    else
                       {// Se envió el e-mail, guardo el usuario en la base de datos
-                        $nombres=mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->nombres,ENT_QUOTES,"UTF-8"));
-                        $apellidos=mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->apellidos,ENT_QUOTES,"UTF-8"));
+                        $nombres=Utils::$dbase->db->Quote(html_entity_decode($this->nombres,ENT_QUOTES,"UTF-8"));
+                        $apellidos=Utils::$dbase->db->Quote(html_entity_decode($this->apellidos,ENT_QUOTES,"UTF-8"));
                         $clave=html_entity_decode($clave,ENT_QUOTES,"UTF-8");
                         $clave_sha = hash("sha512", $clave);
 
                         $query = "INSERT INTO user VALUES 
                                  (NULL,
-                                 '$apellidos', 
-                                 '$nombres', 
+                                 $apellidos, 
+                                 $nombres, 
                                  '{$this->email}', 
                                  10,
                                  '$clave_sha', 
@@ -357,11 +357,11 @@ class User
              // Si todo está bien, modifico el usuario
  
              if($todo_ok)
-                {$nombres=mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->nombres,ENT_QUOTES,"UTF-8"));
-                 $apellidos=mysqli_real_escape_string(Utils::$dbase->db->_connectionID,html_entity_decode($this->apellidos,ENT_QUOTES,"UTF-8"));
+                {$nombres=Utils::$dbase->db->Quote(html_entity_decode($this->nombres,ENT_QUOTES,"UTF-8"));
+                 $apellidos=Utils::$dbase->db->Quote(html_entity_decode($this->apellidos,ENT_QUOTES,"UTF-8"));
                  $query = "UPDATE user SET
-                           apellidos='$apellidos', 
-                           nombres='$nombres', 
+                           apellidos=$apellidos, 
+                           nombres=$nombres, 
                            update_user='{$this->user_id}',
                            update_datetime=NOW()
                            WHERE user_id='{$this->user_id}'";
