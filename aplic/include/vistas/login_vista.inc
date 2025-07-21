@@ -36,7 +36,7 @@ echo "
         </div>
 
 
-        <input class='boton' type='submit' name='ingresar' value='Iniciar sesión'/>
+        <input class='boton' type='submit' name='ingresar' value='Iniciar sesión' onclick=\"this.value='Aguarde . . .'\" />
 
    </form>
 

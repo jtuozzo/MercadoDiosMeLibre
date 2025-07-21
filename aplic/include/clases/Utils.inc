@@ -244,7 +244,7 @@ class Utils
      static public function hayNovedades()
          {// Busca si hay novedades que no se avisaron y envía un mensaje a los usuarios.
 
-          $query = "SELECT sig.siguiendo_id, sigo_a.nombres, sigo_a.apellidos, usr.email
+          $query = "SELECT sig.siguiendo_id, sigo_a.nombres, sigo_a.apellidos, sigo_a.token, usr.email
                     FROM siguiendo sig
                     JOIN user sigo_a ON sigo_a.user_id = sig.siguiendo_a
                     JOIN user usr ON usr.user_id = sig.user_id
@@ -265,7 +265,7 @@ class Utils
                      
                      $body = "Hola!!,<br /><br />
                               Hay novedades en los artículos que estás siguiendo de $nombres $apellidos. <br /><br />
-                              Ingresá a <a href='".Utils::host()."index.php'>MercadoDiosMeLibre</a> para verlos.<br />";
+                              Ingresá a <a href='".Utils::host()."articulo_list.php?id=$token'>MercadoDiosMeLibre</a> para verlos.<br />";
                      
                      
                       if($mail->sendMail($email, "Novedades en artículos", $body))
