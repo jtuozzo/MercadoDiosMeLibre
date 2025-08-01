@@ -8,7 +8,7 @@
 */
 
 $css_local = "articulo.css";
-$precio = number_format($articulo->precio,2,",",".");
+$precio = number_format((float)$articulo->precio,2,",",".");
 $descripcion = nl2br($articulo->descripcion);
 
 require_once('head.inc');
