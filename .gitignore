@@ -2,5 +2,5 @@
 /aplic/logs
 /aplic/tmp
 /aplic/public/vendor
-/aplic/public/error_log
+/aplic/public/php_error.log
 /aplic/include/config_data.inc
