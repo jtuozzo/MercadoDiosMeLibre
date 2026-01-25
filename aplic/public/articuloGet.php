@@ -93,7 +93,7 @@ if(isset($_SESSION['DML_USER_ID']) and $_SESSION['DML_USER_ID']==$articulo->user
      $articulo->vista="M";
      require("articulo_vista.inc");
     }
-elseif($articulo->oculto=="N" and $articulo->vendido=="N")
+elseif(empty($articulo->oculto) and empty($articulo->vendido))
     {// Lo puede ver y comprar
      require("articulo_comprador_vista.inc");
     }

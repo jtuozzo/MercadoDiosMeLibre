@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de manejo de usuarios.
     Fecha de creación: 23/05/2025.
-    Ultima modificación: 21/07/2025.
+    Ultima modificación: 25/01/2026.
 */
 
 class User
@@ -201,7 +201,7 @@ class User
             $nueva_clave_sha = hash("sha512", $nueva_clave);
             $query = "UPDATE user 
                   SET clave='$nueva_clave_sha',
-                  expira_clave=DATE_ADD(NOW(), INTERVAL 90 DAY),
+                  expira_clave=DATE_ADD(NOW(), INTERVAL 360 DAY),
                   update_datetime=NOW(),
                   update_user=user_id
                   WHERE clave='$clave_sha'
