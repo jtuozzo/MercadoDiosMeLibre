@@ -16,7 +16,8 @@ function ocultarEncabezado() {
 
 function compraDelete(articulo_compra_id, nombres, apellidos) {
     Swal.fire({
-        text: 'Elimina la compra de ' + nombres + ' ' + apellidos + '??',
+        title: 'Elimina la compra de ' + nombres + ' ' + apellidos + '??',
+        text: 'Esta acción no se puede deshacer.',
         icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#1b998b',
