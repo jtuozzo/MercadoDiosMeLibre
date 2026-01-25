@@ -67,7 +67,7 @@ while(!$result->EOF)
                   }
 
              echo "<div class='renglon_comprador'>
-                    <div class='elimina_comprador' onClick=\"compraDelete($articulo_compra_id, '{$compradores->fields['nombres']}', '{$compradores->fields['apellidos']}')\"><img src='./images/eliminar.png'/></div>  
+                    <div class='elimina_comprador' onClick=\"compraDelete($articulo_compra_id, '{$compradores->fields['nombres']}', '{$compradores->fields['apellidos']}')\"><img src='./images/eliminar_32.png'/></div>  
                     <div class = 'un_comprador $confirmado_class'>
                             $confirmado_label
                             <div><strong>$fecha</strong></div> 
