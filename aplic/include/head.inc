@@ -51,6 +51,7 @@ echo "
     <script type='text/javascript' src='./sweetalert/sweetalert2.all.min.js'></script>
     {$css_local}
     <script type='text/javascript' src='./js/jquery-3.7.1.min.js'></script>
+    <script type='text/javascript' src='./js/jquery.blockUI.js'></script>
     <script type='text/javascript' src='./js/main.js'></script>
     <title>Mercado Dios Me Libre</title>
 </head>

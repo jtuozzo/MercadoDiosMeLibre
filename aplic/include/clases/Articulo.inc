@@ -691,7 +691,7 @@ Class Ventas extends Compra
 
       public function getCompradores($articulo_id)
           {
-           $query = "SELECT ac.apellidos, ac.nombres, ac.email, ac.whatsapp, ac.comentarios, ac.confirmado, ac.insert_datetime
+           $query = "SELECT ac.articulo_compra_id, ac.apellidos, ac.nombres, ac.email, ac.whatsapp, ac.comentarios, ac.confirmado, ac.insert_datetime
                      FROM articulo_compra ac
                      WHERE ac.articulo_id='$articulo_id'";
 

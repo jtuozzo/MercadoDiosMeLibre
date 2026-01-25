@@ -56,6 +56,16 @@ h2 {
     margin-bottom: 1em;
 }
 
+.renglon_comprador {
+    display: flex;
+}
+
+.elimina_comprador {
+    display: flex; 
+    align-items: center;
+    padding-right: 15px;
+}
+
 .comprador {
     text-align: left;
     width: 70%;
