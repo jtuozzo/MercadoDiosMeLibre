@@ -384,7 +384,20 @@ class Utils
             }
          }
 
-    }
 
+     static public function error_log($mensaje,$programa,$linea)
+         {// Log de errores generales
+            
+          $fecha=date("d/m/Y H:i:s");
+          $error_msg="\n$fecha Error programa: $programa, línea $linea
+mensaje: $mensaje          
+============================================================================================================";
+         
+         file_put_contents(LOGS."error_log.txt", $error_msg, FILE_APPEND | LOCK_EX);
+				
+			require("DBConecto_vista.inc");
+			exit();         
+         }
+    } 
 
 ?>

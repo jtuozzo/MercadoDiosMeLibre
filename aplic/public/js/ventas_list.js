@@ -37,7 +37,7 @@ function compraDelete(articulo_compra_id, nombres, apellidos) {
                                { alert('Estado: ' + status);
                                }
                          else if(data.length>0)
-                                    {window.alert(data)
+                                    {$('html').html(data);
                                     }
                                else
                                     {window.location.reload();

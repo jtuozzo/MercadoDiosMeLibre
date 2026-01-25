@@ -697,6 +697,13 @@ Class Ventas extends Compra
 
            return Utils::execute($query,__FILE__,__LINE__);
           }
+
+      public function deleteComprador($articulo_compra_id)
+          {$query = "DELETE FROM articulo_compra
+                     WHERE articulo_compra_id='$articulo_compra_id' ODPAPA";
+
+           return Utils::execute($query,__FILE__,__LINE__);
+          }   
      }
 
 ?>
