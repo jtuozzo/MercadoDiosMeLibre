@@ -56,7 +56,7 @@ $(document).ajaxStart(function () {
     $.blockUI({
         message: "<img src='./images/loading_136_136.gif'  />",
         css: {
-            padding: '20px',
+            padding: '10px',
             border: 'none',
             width: '160px',
             left: ($(window).width() - 160) / 2 + 'px',
