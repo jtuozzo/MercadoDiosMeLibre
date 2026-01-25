@@ -16,6 +16,11 @@
 - Setea el aviso de seguimiento en caso de agregados y/o modificaciones a los artículos en venta.
 - Proceso que avisa a los que hacen el seguimiento de listado de artículos en venta.
 
+* 1.00.04
+- Si no está logueado el link de acceso al artículo funciona solo si está en venta, si no, dice artículo fuera de la venta.
+- Muestra las intenciones de compra sin confirmar.
+- Se pueden eliminar las solicitudes de compra.
+
 
 TO DO
 

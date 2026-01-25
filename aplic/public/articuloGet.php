@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Ver / Editar un artículo.
     Fecha de creación: 28/05/2025.
-    Ultima modificación: 31/05/2025.
+    Ultima modificación: 25/01/2026.
 */
 
 session_start();
@@ -93,9 +93,13 @@ if(isset($_SESSION['DML_USER_ID']) and $_SESSION['DML_USER_ID']==$articulo->user
      $articulo->vista="M";
      require("articulo_vista.inc");
     }
-else    
+elseif($articulo->oculto=="N" and $articulo->vendido=="N")
     {// Lo puede ver y comprar
      require("articulo_comprador_vista.inc");
+    }
+else
+    {// El artículo no está disponible
+     require("articulo_no_disponible_vista.inc");
     }
 
 ?>
