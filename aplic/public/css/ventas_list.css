@@ -3,7 +3,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 02/06/2025.
-    Ultima modificación: 03/06/2025.
+    Ultima modificación: 25/01/2026.
 */
 
 h2 {
@@ -42,6 +42,10 @@ h2 {
 
 .sin h1 {
     font-size: 2.5em;
+}
+
+.no_confirmado {
+    font-style: italic;
 }
 
 .renglon {

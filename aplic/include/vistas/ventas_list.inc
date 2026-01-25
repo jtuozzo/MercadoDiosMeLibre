@@ -56,8 +56,18 @@ while(!$result->EOF)
             {foreach($compradores->fields as $clave=>$valor)
                     {$$clave=nl2br(htmlentities($valor,ENT_QUOTES,'UTF-8'));
                     }
+
+             if(empty($confirmado))
+                  {$confirmado_class="no_confirmado";
+                   $confirmado_label="<div><strong>(Sin confirmar)</strong></div>";
+                  }
+             else
+                  {$confirmado_class=$confirmado_label="";
+                  }
+
              echo "<div>
-                    <div class = 'un_comprador'>
+                    <div class = 'un_comprador $confirmado_class'>
+                            $confirmado_label
                             <div>$nombres $apellidos</div> 
                             <div>$email</div> 
                             <div>$whatsapp</div> 

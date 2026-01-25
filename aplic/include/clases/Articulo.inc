@@ -522,7 +522,7 @@ Class Compra extends Articulo
                              '{$this->email}',
                              '{$this->whatsapp}',
                              $comentarios,
-                             '{$this->activo}',
+                             '{$this->confirmado}',
                              NOW(),
                              NOW()
                             )";
@@ -647,7 +647,7 @@ Class Compra extends Articulo
 
       public function confirmarCompra($id, $key, $email)
           {$query = "UPDATE articulo_compra
-                     SET activo='S',
+                     SET confirmado='S',
                      update_datetime = NOW()
                      WHERE articulo_compra_id='$id'
                      AND articulo_id='$key'
@@ -669,15 +669,14 @@ Class Compra extends Articulo
 
 Class Ventas extends Compra 
      {public function countVentas($user_id)
-          {$query = "SELECT articulo_compra_id
+          {$query = "SELECT COUNT(DISTINCT art.articulo_id) as cuantos
                      FROM articulo_compra ac
                      JOIN articulo art ON art.articulo_id=ac.articulo_id
-                     WHERE art.user_id='$user_id'
-                     AND ac.activo='S'";
+                     WHERE art.user_id='$user_id'";
 
            $result = Utils::execute($query,__FILE__,__LINE__);
 
-           return $result->recordCount();
+           return $result->fields['cuantos'];
 
           }
 
