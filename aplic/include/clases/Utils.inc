@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos estáticos de uso global.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 21/07/2025.
+    Ultima modificación: 25/01/2026.
 */
 
 // Datos de la instalación
@@ -46,7 +46,7 @@ require("DBConecto.inc");
 class Utils 
     {static public $dbase;
      static public $max_fotos = 10; // Cantidad máxima de fotos por artículo.
-     static public $max_articulos = 8; // Cantidad máxima de artículos por página.
+     static public $max_articulos = 16; // Cantidad máxima de artículos por página.
      static public $moneda = array("ARS" => "ARS Pesos", "USD" => "USD Dólares", "EUR" => "Euros"); // Monedas. Si se modifica este array hay que cambiar la estructura de articulo.moneda en la base de datos.
 
 
@@ -280,7 +280,110 @@ class Utils
                      }
                }
 
-         }    
+         }
+         
+         
+     static private function fecha_valida($fecha_hora)
+         {list($fecha, $hora)=explode(' ',$fecha_hora); ## separo la fecha de la hora.
+
+
+         if(strlen(trim($fecha))>10) ## La fecha y la hora no estaban separadas por espacio
+            {return false;
+            }
+
+         if(!preg_match('#([0-9]{2})/([0-9]{2})/([0-9]{4})#', $fecha, $array_fecha)) ## controlo si la fecha tiene un formato válido
+            {return false;
+            }
+
+         list($fecha, $dia, $mes, $anio)=$array_fecha;  ## separo día, mes y anio en variables identificables
+
+         if($mes<1 or $mes>12) ## valido el mes
+            {return false;
+            }
+
+      ## Valido los días de Febrero
+
+         if(self::anio_bisiesto($anio))
+            {$febrero=29;
+            }
+         else
+            {$febrero=28;
+            }
+
+         if (($mes==2) and (($dia<1) or ($dia>$febrero)))
+            {return false;
+            }
+
+      ## Valido los meses de 30 días
+
+         if ((($mes==4) or ($mes==6) or ($mes==9) or ($mes==11)) and (($dia<1) or ($dia>30)))
+            {return false;
+            }
+
+      ## Valido los meses de 31 días
+
+         if ((($mes==1) or ($mes==3) or ($mes==5) or ($mes==7) or ($mes==8) or ($mes==10) or ($mes==12)) and (($dia<1) or ($dia>31)))
+            {return false;
+            }
+
+      ## Me fijo si hay hora y la valido
+         if (strlen(trim($hora))>0)
+            {if(!preg_match('#([0-9]{2}):([0-9]{2}):([0-9]{2})#', $hora, $array_hora))  // veo si la hora tiene un formato válido
+                  { return false;
+                  }
+
+            }
+         list($hora, $hor, $min, $seg)=$array_hora;  // separo horas, minutos y segundos en variables identificables
+
+         if($hor<0 or $hor>23)  // valido la hora
+            { return false;
+            }
+
+         if($min<0 or $min>59)  // valido los minutos
+            { return false;
+            }
+
+         if($seg<0 or $seg>59)  // valido los segundos
+            {return false;
+            }
+
+         return true;
+         }
+
+     static private function anio_bisiesto($anio)
+            {
+            if ($anio % 4 != 0)
+               {return false;
+               }
+            else
+               {if ($anio % 100 == 0)
+                     {if ($anio % 400 == 0)
+                        {return true;
+                        }
+                     else
+                           {return false;
+                           }
+                     }
+               else
+                     {return true;
+                     }
+               }
+            }
+      
+
+      static public function fecha_format ($fecha)
+         {## fecha_format (fecha en formato ISO Y-m-d H:i:s)
+          ## pasa la fecha de formato ISO al español dd/mm/yyyy hh:mm:ss
+         
+         $fecha=substr($fecha,8,2).'/'.substr($fecha,5,2).'/'.substr($fecha,0,4).substr($fecha,10);
+         if (self::fecha_valida($fecha))
+            {return $fecha;
+            }
+         else
+            {return "";
+            }
+         }
+
     }
 
 
