@@ -3,7 +3,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 23/06/2025.
+    Ultima modificación: 25/01/2026.
 */
 
 label {
@@ -89,6 +89,12 @@ p {
     cursor: pointer;
     background: url(../images/eliminar.png) no-repeat left;
     margin: 0;
+}
+
+.no_disponible {
+    color: red;
+    font-weight: bold;
+    font-size: 1.3em;
 }
 
 .foto {
@@ -186,6 +192,12 @@ p {
     .select_foto img {
         width: 10%;
         min-width: 90px;
+    }
+
+    .no_disponible {
+        color: red;
+        font-weight: bold;
+        font-size: 1.4em;
     }
 
 }
