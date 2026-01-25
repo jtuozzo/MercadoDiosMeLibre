@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de los artículos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 21/07/2025.
+    Ultima modificación: 25/01/2026.
 */
 
 #[AllowDynamicProperties]
@@ -470,7 +470,6 @@ Class Compra extends Articulo
     public $email = "";
     public $whatsapp = "";
     public $comentarios = "";
-    public $activo = "";
     public $apellidos_err = "";
     public $nombres_err = "";
     public $email_err = "";
@@ -483,6 +482,7 @@ Class Compra extends Articulo
     public $st_comentarios = "";
     public $repetida = false;
     public $salio_email = true;
+    public $confirmado = "";
 
     private $comprador_user_id = "";
     private $obligatorios = array('apellidos', 'nombres', 'email', 'whatsapp');
@@ -500,7 +500,7 @@ Class Compra extends Articulo
                 $this->email = $_SESSION['DML_EMAIL'];
                 $this->apellidos = $_SESSION['DML_APELLIDOS'];
                 $this->nombres = $_SESSION['DML_NOMBRES'];
-                $this->activo = "S";
+                $this->confirmado = "S";
                 $this->comprador_user_id = $_SESSION['DML_USER_ID'];
                }
            
@@ -687,16 +687,14 @@ Class Ventas extends Compra
                    JOIN articulo art ON art.articulo_id=ac.articulo_id
                    LEFT JOIN articulo_foto af ON af.articulo_id=art.articulo_id AND af.principal='S'
                    WHERE art.user_id='$user_id'
-                   AND ac.activo='S'
                    ORDER BY $el_orden $sentido";
           }
 
       public function getCompradores($articulo_id)
           {
-           $query = "SELECT ac.apellidos, ac.nombres, ac.email, ac.whatsapp, ac.comentarios, ac.insert_datetime
+           $query = "SELECT ac.apellidos, ac.nombres, ac.email, ac.whatsapp, ac.comentarios, ac.confirmado, ac.insert_datetime
                      FROM articulo_compra ac
-                     WHERE ac.articulo_id='$articulo_id'
-                     AND ac.activo='S'";
+                     WHERE ac.articulo_id='$articulo_id'";
 
            return Utils::execute($query,__FILE__,__LINE__);
           }

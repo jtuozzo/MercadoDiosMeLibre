@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista del listado de artículos vendidos.
     Fecha de creación: 02/06/2025.
-    Ultima modificación: 03/06/2025.
+    Ultima modificación: 25/01/2026.
 */
 
 $css_local = "ventas_list.css";
@@ -13,8 +13,8 @@ require_once('head.inc');
 echo "
 <script type='text/javascript' src='./js/ventas_list.js'></script>
 <div class='encabezado'>
-    <h2 class='encabezado_h2'>Mis Ventas</h2>
-    <h2>Comprador/es</h2>
+    <h2 class='encabezado_h2'>Mis posibles Ventas</h2>
+    <h2>Quieren comprarlo</h2>
 </div>
 <div id='list_ventas'>";
 

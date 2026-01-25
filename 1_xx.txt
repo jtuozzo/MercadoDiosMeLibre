@@ -20,6 +20,7 @@
 - Si no está logueado el link de acceso al artículo funciona solo si está en venta, si no, dice artículo fuera de la venta.
 - Muestra las intenciones de compra sin confirmar.
 - Se pueden eliminar las solicitudes de compra.
+- Cambio la compra "Activo" x "Confirmado".
 
 
 TO DO
