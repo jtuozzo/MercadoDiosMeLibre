@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Listado de artículos.
     Fecha de creación: 27/05/2025.
-    Ultima modificación: 17/06/2025.
+    Ultima modificación: 27/01/2026.
 */
 
 session_start();
@@ -74,24 +74,35 @@ else
          $$_aux_var="DESC";
         }
 
+$buscar_box = "<div class='buscar'> <input type='text' id='articulo' placeholder='Buscar' autocomplete='off'>
+               <input type='hidden' id='token' value='$token' />
+<div id='resultados' class='autocomplete-result d-none'></div>
+</div>
+";
+
+$cabecera="<div class='cabecera'>";
+
 if(!isset($_SESSION['DML_TOKEN']) or $_SESSION['DML_TOKEN']!=$token)
-     {$cabecera="<div class='cabecera'>
-                         <h2>Artículos de {$usuario->nombres}</h2>";
+     {$cabecera.="<h2>Artículos de {$usuario->nombres}</h2>
+                  $buscar_box";
 
       if($usuario->siguiendo($token))
                {$cabecera.="<input type='button' class='boton seguir' value='Dejar de seguir' onClick=\"window.location='no_seguir.php?id=$token'\"/>";
                }
       else
-               {$cabecera.="<input type='button' class='boton seguir' value='Seguir publicaciones' onClick=\"window.location='seguir.php?id=$token'\"/>";
+               {$cabecera.="<div><input type='button' class='boton seguir' value='Seguir publicaciones' onClick=\"window.location='seguir.php?id=$token'\"/></div>";
 
                }
                          
-      $cabecera.="</div>";
+      
      }
 else 
      {$link=$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."?id=".$_SESSION['DML_TOKEN'];
-      $cabecera="<div class='link' onClick=copyClipp('{$link}')><img src='./images/copy.png' />  Copiar link del listado</div>";
+      $cabecera.="<div class='link' onClick=copyClipp('{$link}')><img src='./images/copy.png' />  Copiar link del listado</div>
+      $buscar_box";
      }
+
+$cabecera.="</div>";
 
 require("articulo_list.inc");
 ?>

@@ -21,6 +21,7 @@
 - Muestra las intenciones de compra sin confirmar.
 - Se pueden eliminar las solicitudes de compra.
 - Cambio la compra "Activo" x "Confirmado".
+- Se agrega el buscador de artículos.
 
 
 TO DO
