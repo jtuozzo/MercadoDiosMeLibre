@@ -48,7 +48,7 @@ echo       "<form enctype='multipart/form-data' action='{$_SERVER['PHP_SELF']}' 
 <div class='botonera'>
             <div></div>
             <input class='boton' type='submit' name='comprar' id='comprar' value='Quiero comprarlo' />
-            <input type='button' class='boton' value='Cerrar' onClick='cierroArticulo()' />
+            <input type='button' class='boton' value='Cerrar' id='salir' onClick='cierroArticulo()' />
          </div> 
 
    </form>

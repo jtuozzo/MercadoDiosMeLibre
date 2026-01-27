@@ -8,6 +8,12 @@
 
 window.onload = function () {
     setAlto('articulo');
+
+    if (window.opener) {
+        $('#salir').val('Cerrar');
+    } else {
+        $('#salir').val('Inicio');
+    }
 }
 
 window.addEventListener('beforeunload', function (event) {

@@ -22,7 +22,7 @@ switch ($articulo->vista)
         $encabezado = "<h1>Modificar Articulo</h1>
                 <div class='link' onClick=copyClipp('{$link}')><img src='./images/copy.png' />  Copiar link del artículo</div>";
 
-        $cerrar="<input type='button' class='boton' value='Cerrar' onClick='cierroArticulo()' />";
+        $cerrar="<input type='button' class='boton' value='Cerrar' id='salir' onClick='cierroArticulo()' />";
         $guardar="<input class='boton' type='submit' name='modificar' id='crear' value='Guardar' />";
         break;
     }
