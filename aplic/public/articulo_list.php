@@ -34,8 +34,13 @@ $usuario = new User();
 if(strlen($id)>0)
      {$token = $id;
      }
-else
+elseif(isset($_SESSION['DML_TOKEN']))
      {$token = $_SESSION['DML_TOKEN'];
+     }
+else
+     {// No hay token
+      header("Location: index.php");
+      exit;
      }
 
 if(!$usuario->tokenValido($token))
