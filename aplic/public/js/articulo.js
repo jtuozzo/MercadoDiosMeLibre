@@ -2,7 +2,7 @@
     Autor: Julio Tuozzo
     Función: Javascript del artículo.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 05/06/2025.
+    Ultima modificación: 26/01/2026.
 */
 
 
@@ -65,7 +65,15 @@ function delHayFoto(i) {
 
 }
 
-function setFotoPpal(articulo_foto_id, key)
-        {$('#fotoPpal').attr('src', 'getFoto.php?id=' + articulo_foto_id + '&key=' + key); 
-        }
+function setFotoPpal(articulo_foto_id, key) {
+    $('#fotoPpal').attr('src', 'getFoto.php?id=' + articulo_foto_id + '&key=' + key);
+}
 
+function cierroArticulo() {
+    if (window.opener) {
+        window.close();
+    } else {
+
+        window.location = 'index.php';
+    }
+}

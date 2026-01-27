@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista de un artículo, desde el punto de vista del comprador.
     Fecha de creación: 29/05/2025.
-    Ultima modificación: 29/05/2025.
+    Ultima modificación: 26/01/2026.
 */
 
 $css_local = "articulo.css";
@@ -48,7 +48,7 @@ echo       "<form enctype='multipart/form-data' action='{$_SERVER['PHP_SELF']}' 
 <div class='botonera'>
             <div></div>
             <input class='boton' type='submit' name='comprar' id='comprar' value='Quiero comprarlo' />
-            <input type='button' class='boton' value='Cerrar' onClick='window.close()' />
+            <input type='button' class='boton' value='Cerrar' onClick='cierroArticulo()' />
          </div> 
 
    </form>
