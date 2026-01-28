@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Busca los artículos.
     Fecha de creación: 27/01/2026.
-    Ultima modificación: 27/01/2026.
+    Ultima modificación: 28/01/2026.
 */
 session_start();
 
@@ -47,7 +47,7 @@ while (!$result->EOF)
              $importe = "$moneda $importe";
             }
         else
-            {$importe = "<span class='vendido'>VENDIDO</span>";
+            {$importe = "<span class='vendido_label'>VENDIDO</span>";
             }
     
 
