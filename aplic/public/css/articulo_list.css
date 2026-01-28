@@ -27,14 +27,14 @@ h2 {
 
 .vendido {
     opacity: 75%;
+    color: #e00000;
+    font-weight: bold;
 }
 
 .vendido h2 {
     margin: 0;
     padding: 0;
     font-size: 1.6em;
-    font-weight: bold;
-    color: #e00000;
     text-align: center;
     opacity: 100%;
 }

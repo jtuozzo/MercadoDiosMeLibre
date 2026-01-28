@@ -17,13 +17,13 @@ foreach($_POST as $clave => $valor)
 // Coloco el filtro si el usuario no está buscando sus artículos
 
 if(empty($_SESSION['DML_TOKEN']) or $_SESSION['DML_TOKEN']!=$token)
-    {$filtro = " AND oculto IS NULL AND vendido IS NULL ";
+    {$filtro = " AND oculto IS NULL";
     }
 else
     {$filtro = "";
     }
 
-$query = "SELECT articulo_id, titulo, moneda, precio, token
+$query = "SELECT articulo_id, titulo, moneda, precio, token, art.vendido
         FROM articulo art
         JOIN user usr ON art.user_id = usr.user_id AND usr.token = '$token'
         WHERE titulo LIKE '%$search%' 
@@ -42,12 +42,19 @@ while (!$result->EOF)
         {$$key = $value;
         }
 
-      $precio = number_format($precio,2,',','.');
+      if(empty($vendido))
+            {$importe = number_format($precio,2,',','.');
+             $importe = "$moneda $importe";
+            }
+        else
+            {$importe = "<span class='vendido'>VENDIDO</span>";
+            }
+    
 
       echo "<div class='autocomplete-item' 
             data-articulo_id='$articulo_id'
             data-token='$token'
-            data-titulo='$titulo'> $titulo  - $moneda $precio 
+            data-titulo='$titulo'> $titulo  - $importe
         </div>  ";
       $result->MoveNext();
     }
