@@ -1,0 +1,78 @@
+<?php
+/*
+    Nombre: articulo_list_vista.php
+    Autor: Julio Tuozzo.
+    Función: Vista del listado de artículos.
+    Fecha de creación: 27/05/2025.
+    Ultima modificación: 28/01/2026.
+*/
+
+use App\Util\Utils;
+
+$css_local = "articulo_list.css";
+
+require(__DIR__ . '/../layouts/header.php');
+echo "
+<script type='text/javascript' src='./js/articulo_list.js'></script>
+
+$cabecera
+<div id='list_articulos'>";
+
+if($result->recordCount()==0)
+    {echo "<script type='text/javascript'>sin_articulos()</script>
+          <div class='sin'>
+                    <img src='./images/estanteria.png' />
+                    <h1>Sin artículos a la venta</h1>
+          </div>";
+    }
+
+while(!$result->EOF)
+    {foreach($result->fields as $clave=>$valor)
+            {$$clave=$valor; 
+            }
+     
+     $onClick="onCLick=\"window.open('articuloGet.php?id=$articulo_id&key=$token')\"";
+
+     
+    if($vendido=="S")
+            {$label_vendido="<h2 class='vendido'>VENDIDO</h2>";
+             $class_vendido="vendido";
+             if(!isset($_SESSION['DML_TOKEN']) or $_SESSION['DML_TOKEN']!==$token)
+                {$onClick="";
+                }
+             else
+                {$class_vendido.=" propietario ";
+                }
+             
+            }
+      else
+            {$label_vendido="";
+             $class_vendido="en_venta";
+            }
+
+     if($oculto=="S")
+            {$class_vendido="vendido  propietario ";
+             $oculto="<p class='oculto'>OCULTO</p>";
+            }
+    else
+            {$oculto="";
+            }
+
+      $precio=number_format($precio,2,",",".");
+      echo "<div class='un_articulo $class_vendido' $onClick>
+                 $label_vendido
+                <img src='getFoto.php?id=$articulo_foto_id&key=$token' alt='$titulo'>
+                $oculto
+
+            <div class='titulo'>$titulo</div>
+            <div class='precio'>$moneda $precio</div>
+
+            </div>";
+
+     $result->moveNext();
+    }
+
+echo "</div>";
+echo Utils::paginador($pagina,$q_registros,$el_orden,$sentido,$id);
+require(__DIR__ . '/../layouts/footer.php');
+?>

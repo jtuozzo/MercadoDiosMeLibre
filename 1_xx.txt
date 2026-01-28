@@ -23,6 +23,8 @@
 - Cambio la compra "Activo" x "Confirmado".
 - Se agrega el buscador de artículos.
 
+- 1.10
+* Estructura PSR4.
 
 TO DO
 

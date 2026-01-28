@@ -1,6 +1,30 @@
+# Dependencies
+/vendor/
+composer.lock
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+/logs/*.txt
+
+# Temporary files
+/tmp/*
+
+# Public
+/public/php_error.log
+
+# Config 
+/config/database.php
+
+# OS
+.DS_Store
+Thumbs.db
 .htaccess
-/aplic/logs
-/aplic/tmp
-/aplic/public/vendor
-/aplic/public/php_error.log
-/aplic/include/config_data.inc
+
+# Claude
+.claude/
