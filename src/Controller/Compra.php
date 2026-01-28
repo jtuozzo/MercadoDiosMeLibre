@@ -75,9 +75,9 @@ Class Compra extends Articulo
                              '{$this->confirmado}',
                              NOW(),
                              NOW()
-                            )";
-                   $query =str_replace("''", "NULL", $query);
-                   $result = Utils::execute($query, __FILE__, __LINE__);
+                            )"; 
+                   $query =str_replace("''", "NULL", $query);  
+                   $result = Utils::execute($query, __FILE__, __LINE__); 
 
                    $this->articulo_compra_id = mysqli_insert_id(Utils::$dbase->db->_connectionID);
 
@@ -85,7 +85,7 @@ Class Compra extends Articulo
                          {if(!$this->envioMailConfirmacion())
                               {// No pudo enviar el mail con el aviso, invalida la compra
                                $query = "UPDATE articulo_compra
-                                         SET email = 'INVALID_{{$this->email}}'
+                                         SET email = 'NO_SALIO_EL_MAIL_({$this->email})'
                                          WHERE articulo_compra_id='{$this->articulo_compra_id}'";
                                $result = Utils::execute($query, __FILE__, __LINE__);
 

@@ -43,7 +43,7 @@ if(!$compra->getArticulo($compra->articulo_id))
 
 if(!isset($_POST['compro']))    
     {$mensaje = "";
-     require ("articulo_comprar_vista.php");
+     require (__DIR__ . "/../resources/views/articulo/articulo_comprar_vista.php");
      exit;
     }
 
@@ -85,5 +85,5 @@ else
      
     }
 
-require ("articulo_comprar_vista.php");
+require (__DIR__ . "/../resources/views/articulo/articulo_comprar_vista.php");
 ?>

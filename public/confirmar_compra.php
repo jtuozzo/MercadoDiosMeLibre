@@ -4,13 +4,8 @@
     Autor: Julio Tuozzo.
     Función: Controlador de la confirmación de una compra.
     Fecha de creación: 01/06/2025.
-    Ultima modificación: 01/06/2025.
+    Ultima modificación: 28/01/2026.
 */
-
-
-
-
-
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -59,7 +54,7 @@ else // Si no se enviaron los parámetros va al index
      {header("Location: index.php");
       exit();
      }
-require("head.php");
+require(__DIR__ . "/../resources/views/layouts/header.php");
      echo $mensaje;
-require("foot.php");
+require(__DIR__ . "/../resources/views/layouts/footer.php");
 ?>
