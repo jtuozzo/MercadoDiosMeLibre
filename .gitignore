@@ -13,7 +13,7 @@ composer.lock
 /public/logs/*
 
 # Temporary files
-/tmp/*
+/public/tmp/*
 
 # Public
 /public/php_error.log
