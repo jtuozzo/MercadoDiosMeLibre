@@ -36,7 +36,7 @@ define('TMP', '../tmp/');
 
 */
 
-require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../../config/dataconf.php';
 
 // Seteos varios
 date_default_timezone_set('America/Argentina/Buenos_Aires');

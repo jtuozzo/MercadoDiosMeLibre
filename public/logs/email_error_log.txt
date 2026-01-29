@@ -1,0 +1,122 @@
+Fecha: 05/06/2025 19:38:38
+From: <no_responda@mercadodiosmelibre.com.ar> Mercado Dios Me Libre
+To: <jtuozzo@hotmail.com> 
+Subject: Nueva clave
+Mensaje:
+
+				 Generaste una clave de acceso. 
+                  Tu clave es: nEutXRQYxz 
+                  Ingresá al siguiente link https://192.168.100.7/desa/MercadoDiosMeLibre/aplic/public/cambiar_clave.php?id=jtuozzo@hotmail.com y cambiá esta clave. 
+                  Recordá que la clave es sensible a mayúsculas y minúsculas.     Este mensaje fue enviado desde una casilla sin atención, no responda al remitente.   
+
+Mensaje de error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting SMTP server error: Failed to connect to server Additional SMTP info: php_network_getaddresses: getaddrinfo for mail.mercadodiosmelibre.com.arf failed: Host desconocido. 
+==================================================================================================
+
+Fecha: 28/01/2026 16:21:36
+From: <no_responda@mercadodiosmelibre.com.ar> Mercado Dios Me Libre
+To: <jtuozzo@p-hd.com.ar>
+Subject: Confirmá la compra
+Mensaje:
+
+				 Has solicitado comprar: Raqueta de tenis. 
+
+                         Para confirmar la compra, hacé click en el siguiente link: http://127.0.0.1/desa/MercadoDiosMeLibre/public/confirmar_compra.php?id=16&key=41&email=jtuozzo@p-hd.com.ar 
+                         En el futuro si querés saltear este paso de verificación, podés crear tu usuario aquí: http://127.0.0.1/desa/MercadoDiosMeLibre/public/usuario.php
+
+                         Muchas gracias!     Este mensaje fue enviado desde una casilla sin atención, no responda al remitente.   
+
+Mensaje de error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+==================================================================================================
+
+Fecha: 28/01/2026 16:25:34
+From: <no_responda@mercadodiosmelibre.com.ar> Mercado Dios Me Libre
+To: <jtuozzo@p-hd.com.ar>
+Subject: Confirmá la compra
+Mensaje:
+
+				 Has solicitado comprar: Raqueta de tenis. 
+
+                         Para confirmar la compra, hacé click en el siguiente link: http://127.0.0.1/desa/MercadoDiosMeLibre/public/confirmar_compra.php?id=17&key=41&email=jtuozzo@p-hd.com.ar 
+                         En el futuro si querés saltear este paso de verificación, podés crear tu usuario aquí: http://127.0.0.1/desa/MercadoDiosMeLibre/public/usuario.php
+
+                         Muchas gracias!     Este mensaje fue enviado desde una casilla sin atención, no responda al remitente.   
+
+Mensaje de error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+==================================================================================================
+
+Fecha: 28/01/2026 16:30:08
+From: <no_responda@mercadodiosmelibre.com.ar> Mercado Dios Me Libre
+To: <jtuozzo@p-hd.com.ar>
+Subject: Confirmá la compra
+Mensaje:
+
+				 Has solicitado comprar: Raqueta de tenis. 
+
+                         Para confirmar la compra, hacé click en el siguiente link: http://127.0.0.1/desa/MercadoDiosMeLibre/public/confirmar_compra.php?id=18&key=41&email=jtuozzo@p-hd.com.ar 
+                         En el futuro si querés saltear este paso de verificación, podés crear tu usuario aquí: http://127.0.0.1/desa/MercadoDiosMeLibre/public/usuario.php
+
+                         Muchas gracias!     Este mensaje fue enviado desde una casilla sin atención, no responda al remitente.   
+
+Mensaje de error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+==================================================================================================
+
+Fecha: 28/01/2026 16:33:50
+From: <no_responda@mercadodiosmelibre.com.ar> Mercado Dios Me Libre
+To: <jtuozzo@p-hd.com.ar>
+Subject: Confirmá la compra
+Mensaje:
+
+				 Has solicitado comprar: Raqueta de tenis. 
+
+                         Para confirmar la compra, hacé click en el siguiente link: http://127.0.0.1/desa/MercadoDiosMeLibre/public/confirmar_compra.php?id=19&key=41&email=jtuozzo@p-hd.com.ar 
+                         En el futuro si querés saltear este paso de verificación, podés crear tu usuario aquí: http://127.0.0.1/desa/MercadoDiosMeLibre/public/usuario.php
+
+                         Muchas gracias!     Este mensaje fue enviado desde una casilla sin atención, no responda al remitente.   
+
+Mensaje de error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+==================================================================================================
+
+Fecha: 28/01/2026 16:39:13
+From: <no_responda@mercadodiosmelibre.com.ar> Mercado Dios Me Libre
+To: <jtuozzo@p-hd.com.ar>
+Subject: Confirmá la compra
+Mensaje:
+
+				 Has solicitado comprar: Raqueta de tenis. 
+
+                         Para confirmar la compra, hacé click en el siguiente link: http://127.0.0.1/desa/MercadoDiosMeLibre/public/confirmar_compra.php?id=22&key=41&email=jtuozzo@p-hd.com.ar 
+                         En el futuro si querés saltear este paso de verificación, podés crear tu usuario aquí: http://127.0.0.1/desa/MercadoDiosMeLibre/public/usuario.php
+
+                         Muchas gracias!     Este mensaje fue enviado desde una casilla sin atención, no responda al remitente.   
+
+Mensaje de error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+==================================================================================================
+
+Fecha: 28/01/2026 16:40:03
+From: <no_responda@mercadodiosmelibre.com.ar> Mercado Dios Me Libre
+To: <jtuozzo@hotmail.com>
+Subject: Nueva clave
+Mensaje:
+
+				 Generaste una clave de acceso. 
+                  Tu clave es: x3dP2Qt4sm 
+                  Ingresá al siguiente link http://127.0.0.1/desa/MercadoDiosMeLibre/public/cambiar_clave.php?id=jtuozzo@hotmail.com y cambiá esta clave. 
+                  Recordá que la clave es sensible a mayúsculas y minúsculas.     Este mensaje fue enviado desde una casilla sin atención, no responda al remitente.   
+
+Mensaje de error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+==================================================================================================
+
+Fecha: 28/01/2026 16:40:46
+From: <no_responda@mercadodiosmelibre.com.ar> Mercado Dios Me Libre
+To: <jtuozzo@hotmail.com>
+Subject: Nueva clave
+Mensaje:
+
+				 Generaste una clave de acceso. 
+                  Tu clave es: ZR627JFPXN 
+                  Ingresá al siguiente link http://127.0.0.1/desa/MercadoDiosMeLibre/public/cambiar_clave.php?id=jtuozzo@hotmail.com y cambiá esta clave. 
+                  Recordá que la clave es sensible a mayúsculas y minúsculas.     Este mensaje fue enviado desde una casilla sin atención, no responda al remitente.   
+
+Mensaje de error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+==================================================================================================
+

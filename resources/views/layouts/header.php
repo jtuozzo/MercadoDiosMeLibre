@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Header de las páginas.
     Fecha de creación: 17/05/2025.
-    Ultima modificación: 13/06/2025.
+    Ultima modificación: 29/01/2026.
 */
 
 $saludo="";
@@ -47,8 +47,8 @@ echo "
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap' rel='stylesheet'>
     <link rel='stylesheet' href='./css/main.css'>
-    <link rel='stylesheet' href='./sweetalert/sweetalert2.min.css' type='text/css' charset='utf-8' />
-    <script type='text/javascript' src='./sweetalert/sweetalert2.all.min.js'></script>
+    <link rel='stylesheet' href='./css/sweetalert2.min.css' type='text/css' charset='utf-8' />
+    <script type='text/javascript' src='./js/sweetalert2.all.min.js'></script>
     {$css_local}
     <script type='text/javascript' src='./js/jquery-3.7.1.min.js'></script>
     <script type='text/javascript' src='./js/jquery.blockUI.js'></script>

@@ -19,7 +19,7 @@ composer.lock
 /public/php_error.log
 
 # Config 
-/config/database.php
+/config/dataconf.php
 
 # OS
 .DS_Store

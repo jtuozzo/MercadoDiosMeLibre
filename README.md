@@ -6,15 +6,17 @@ Sistema de marketplace personal siguiendo estándares PSR-4.
 
 ```
 /
-├── config/                      # Configuración de la aplicación
-│   └── database.php            # Configuración de base de datos y constantes
+├── config/                     # Configuración de la aplicación
+│   └── dataconf.php            # Configuración de base de datos y constantes
 │
 ├── public/                      # Document root (único directorio accesible vía web)
 │   ├── index.php               # Página principal
 │   ├── *.php                   # Controladores públicos
 │   ├── css/                    # Estilos
 │   ├── js/                     # JavaScript
-│   └── images/                 # Imágenes públicas
+│   ├── images/                 # Imágenes públicas
+│   ├── logs/                   # Archivos de log
+│   └── tmp/                    # Archivos temporales
 │
 ├── resources/views/             # Plantillas/Vistas
 │   ├── layouts/                # Layouts compartidos
@@ -28,15 +30,13 @@ Sistema de marketplace personal siguiendo estándares PSR-4.
 │   └── Util/                   # Utilidades
 │
 ├── lib/adodb/                  # ADOdb (biblioteca externa)
-├── logs/                       # Archivos de log
-├── tmp/                        # Archivos temporales
 └── vendor/                     # Dependencias de Composer
 ```
 
 ## 🚀 Instalación
 
 1. **Instalar dependencias**: `composer install`
-2. **Configurar base de datos**: Editar `config/database.php`
+2. **Configurar base de datos**: Editar `config/dataconf.php`
 3. **Configurar servidor**: Document root debe apuntar a `/public/`
 4. **Permisos**: `chmod -R 755 logs/ tmp/`
 
