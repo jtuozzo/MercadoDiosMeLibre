@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos estáticos de uso global.
     Fecha de creación: 19/05/2025.
-    Ultima modificación: 28/01/2026.
+    Ultima modificación: 29/01/2026.
 */
 
 namespace App\Util;
@@ -12,7 +12,7 @@ namespace App\Util;
 use App\Database\DBConecto;
 use App\Mail\Mail;
 
-// Datos de la instalación
+// Datos de la instalación del archivo config/dataconf.php, que no sube al repositorio git.
 
 /* Conexión con las bases de datos
 
