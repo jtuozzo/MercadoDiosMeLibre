@@ -1,7 +1,0 @@
-
-25/01/2026 19:52:03 Error programa: C:\desa\MercadoDiosMeLibre\aplic\public\compra_delete.php, línea 20
- mensaje: No tiene acceso para eliminar una compra          
-============================================================================================================
-25/01/2026 19:54:08 Error programa: C:\desa\MercadoDiosMeLibre\aplic\public\compra_delete.php, línea 35
-mensaje: El articulo_compra_id está vacío          
-============================================================================================================
