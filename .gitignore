@@ -10,7 +10,7 @@ composer.lock
 *~
 
 # Logs
-/logs/*.txt
+/public/logs/*
 
 # Temporary files
 /tmp/*
