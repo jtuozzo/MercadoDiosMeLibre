@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Ver / Editar un artículo.
     Fecha de creación: 28/05/2025.
-    Ultima modificación: 25/01/2026.
+    Ultima modificación: 30/01/2026.
 */
 
 session_start();
@@ -16,6 +16,7 @@ use App\Controller\Articulo;
 use App\Controller\Compra;
 
 $articulo = new Articulo;
+$mensaje="";
 
 // Inicializo GETS y POSTS y verifico el acceso al artículo
 
