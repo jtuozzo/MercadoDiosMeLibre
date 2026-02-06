@@ -15,6 +15,9 @@ use App\Util\Utils;
 use App\Controller\User;
 use App\Controller\Articulo;
 
+$usuario = new User;
+$usuario->setPermisos();
+
 // Acá accede con la sesión del usuario o con el link de invitado
 
 if((!isset($_SESSION['DML_NIVEL']) or $_SESSION['DML_NIVEL'] < 2) and (!isset($_GET['id'])))
@@ -31,7 +34,6 @@ foreach($_GET as $clave => $valor)
      }
 
 $articulo = new Articulo();
-$usuario = new User();
 
 if(strlen($id)>0)
      {$token = $id;

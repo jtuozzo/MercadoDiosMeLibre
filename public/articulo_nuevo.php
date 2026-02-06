@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Creación de artículo.
     Fecha de creación: 25/05/2025.
-    Ultima modificación: 31/05/2025.
+    Ultima modificación: 06/02/2025.
 */
 
 session_start();
@@ -13,6 +13,11 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Util\Utils;
 use App\Controller\Articulo;
+use App\Controller\User;
+
+$usuario = new User;
+$usuario->setPermisos();
+
 
 if(!isset($_SESSION['DML_NIVEL']) or $_SESSION['DML_NIVEL'] < 2)
      {// No tiene permisos para crear artículos

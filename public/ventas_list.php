@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Listado de artículos que tienen oferta de compra.
     Fecha de creación: 02/06/2025.
-    Ultima modificación: 02/06/2025.
+    Ultima modificación: 06/02/2026.
 */
 
 session_start();
@@ -13,6 +13,11 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Util\Utils;
 use App\Controller\Ventas;
+use App\Controller\User;
+
+$usuario = new User;
+$usuario->setPermisos();
+
 
 // Acá accede con la sesión del usuario
 

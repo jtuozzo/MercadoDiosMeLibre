@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Controlador de modificación de datos de usuario.
     Fecha de creación: 13/06/2025.
-    Ultima modificación: 13/06/2025.
+    Ultima modificación: 06/02/2026.
 */
 
 session_start();
@@ -15,6 +15,7 @@ use App\Util\Utils;
 use App\Controller\User;
 
 $user = new User();
+$user->setPermisos();
 
 if(!$user->getUser($_SESSION['DML_EMAIL'],$_SESSION['DML_CLAVE']))
      {header("Location: login.php");

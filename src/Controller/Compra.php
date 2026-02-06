@@ -206,7 +206,10 @@ Class Compra extends Articulo
 
               $result = Utils::execute($query,__FILE__,__LINE__);
               
-              if($result->fields['confirmado']=="S")
+              if(!$result->recordCount()==1)
+                   {return false;
+                   }
+              elseif($result->fields['confirmado']=="S")
                      {return true;
                      }
             

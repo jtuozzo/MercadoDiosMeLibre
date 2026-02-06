@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de manejo de usuarios.
     Fecha de creación: 23/05/2025.
-    Ultima modificación: 28/01/2026.
+    Ultima modificación: 06/02/2026.
 */
 
 namespace App\Controller;
@@ -532,6 +532,28 @@ class User
 
              $result = Utils::execute($query, __FILE__, __LINE__);
              return true;
+            }
+
+      public function setPermisos()
+            {// Setea los permisos del usuario en la sesión
+            // Veo si el usuario está guardado en el dispositivo
+
+            if(!isset($_SESSION['DML_NIVEL']) and isset($_COOKIE['DML_EMAIL']) and isset($_COOKIE['DML_CLAVE']))
+               {$hay_usuario=$this->getUser($_COOKIE['DML_EMAIL'], $_COOKIE['DML_CLAVE'], true);
+               
+               if($hay_usuario)
+                  {// Prorrogo por 30 días la cookie
+                     setcookie('DML_EMAIL', $_COOKIE['DML_EMAIL'], time()+60*60*24*30);
+                     setcookie('DML_CLAVE', $_COOKIE['DML_CLAVE'], time()+60*60*24*30);
+                  }
+               else
+                  {// Los datos de la cookie no son válidos, la borro
+                     unset($_COOKIE['DML_EMAIL']);
+                     unset($_COOKIE['DML_CLAVE']);
+                     setcookie('DML_EMAIL', '', time()-3600);
+                     setcookie('DML_CLAVE', '', time()-3600);
+                  }
+               }
             }
     }
 ?>
