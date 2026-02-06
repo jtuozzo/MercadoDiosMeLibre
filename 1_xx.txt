@@ -26,6 +26,9 @@
 - 1.10
 * Estructura PSR4.
 
+- 1.10.01
+* Corrijo el método confirmarCompra para que no envíe más de una vez el mail.
+
 TO DO
 
 Mejorar el link de compra: Que frene cuando hace muchos clicks.

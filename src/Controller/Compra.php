@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de las compras.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 28/01/2026.
+    Ultima modificación: 06/02/2026.
 */
 
 namespace App\Controller;
@@ -196,12 +196,26 @@ Class Compra extends Articulo
           }
 
       public function confirmarCompra($id, $key, $email)
-          {$query = "UPDATE articulo_compra
-                     SET confirmado='S',
-                     update_datetime = NOW()
+          {// Veo que no le haya dado click antes al link de confirmación
+
+           $query = "SELECT confirmado
+                     FROM articulo_compra
                      WHERE articulo_compra_id='$id'
                      AND articulo_id='$key'
                      AND email='$email'";
+
+              $result = Utils::execute($query,__FILE__,__LINE__);
+              
+              if($result->fields['confirmado']=="S")
+                     {return true;
+                     }
+            
+            $query = "UPDATE articulo_compra
+                      SET confirmado='S',
+                      update_datetime = NOW()
+                      WHERE articulo_compra_id='$id'
+                      AND articulo_id='$key'
+                      AND email='$email'";
 
            $result= Utils::execute($query,__FILE__,__LINE__);
 
