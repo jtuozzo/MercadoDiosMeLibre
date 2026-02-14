@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista de un artículo.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 26/01/2026.
+    Ultima modificación: 14/02/2026.
 */
 
 use App\Util\Utils;
@@ -75,7 +75,7 @@ echo "          </select>
         
         <div class='linea_2'>
             <label for='descripcion'> Descripción: </label>
-            <textarea name='descripcion' id='descripcion' rows='5'  {$articulo->st_descripcion} required='required'>{$articulo->descripcion}</textarea> {$articulo->descripcion_err}
+            <textarea name='descripcion' id='descripcion' rows='5'  {$articulo->st_descripcion} required='required' placeholder='Ingresar solo texto. \nAbstenerse de emojis y otras expresiones artísticas.'>{$articulo->descripcion}</textarea> {$articulo->descripcion_err}
         </div>";
 
 require("articulo_foto_vista.php");

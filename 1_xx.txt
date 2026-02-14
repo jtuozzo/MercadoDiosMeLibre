@@ -31,5 +31,6 @@
 
 TO DO
 
+Ver que puedan incorporar emojis en el texto de la descripción.
 Mejorar el link de compra: Que frene cuando hace muchos clicks.
 En la tabla "user" el campo "expira_clave" está seteada / harcodeada en 360 días.
