@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de manejo de usuarios.
     Fecha de creación: 23/05/2025.
-    Ultima modificación: 06/02/2026.
+    Ultima modificación: 17/07/2026.
 */
 
 namespace App\Controller;
@@ -33,8 +33,13 @@ class User
      public $email = "";
      public $vista = "";
 
+     public function __construct()
+      {$this->email = strtolower($this->email);
+      }
+
      public function getUser($email, $clave, $login = false)
-        {$query = "SELECT user_id, apellidos, nombres, email, nivel, clave, token
+        {$email = strtolower($email);
+         $query = "SELECT user_id, apellidos, nombres, email, nivel, clave, token
               FROM user
               WHERE email='$email'
               AND clave='$clave'
@@ -74,7 +79,7 @@ class User
 
      public function nuevaClave($email)
         {// Genera una nueva clave y la envía al usuario
-
+         $email = strtolower($email);
          // Verifico que el e-mail exista y se haya confirmado
          $query = "SELECT user_id
                    FROM user
@@ -400,6 +405,7 @@ class User
 
       public function confirmarUsuario($email)
             {// Confirma el usuario
+             $email = strtolower($email);
              $query = "UPDATE user
                        SET token=SHA2(CONCAT(email, NOW()), 256),
                        update_datetime=NOW(),

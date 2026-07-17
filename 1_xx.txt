@@ -28,6 +28,7 @@
 
 - 1.10.01
 * Corrijo el método confirmarCompra para que no envíe más de una vez el mail.
+* El e-mail del usuario lo paso siempre a minúsculas.
 
 TO DO
 
