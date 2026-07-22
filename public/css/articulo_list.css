@@ -3,7 +3,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 27/05/2025.
-    Ultima modificación: 28/01/2026.
+    Ultima modificación: 22/07/2026.
 */
 
 h2 {
@@ -118,6 +118,17 @@ h2 {
     margin-left: 0.4em;
     font-size: 0.9em;
     padding: 5px 8px;
+}
+
+.excel {
+    margin: 0.2em 0.4em;
+    font-size: 0.9em;
+    padding: 5px 8px;
+    background-color: #1d6f42;
+}
+
+.excel:hover {
+    color: #17593a;
 }
 
 .oculto {

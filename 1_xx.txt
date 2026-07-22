@@ -29,6 +29,7 @@
 - 1.10.01
 * Corrijo el método confirmarCompra para que no envíe más de una vez el mail.
 * El e-mail del usuario lo paso siempre a minúsculas.
+* Se puede exportar a Excel el listado de artículos.
 
 TO DO
 

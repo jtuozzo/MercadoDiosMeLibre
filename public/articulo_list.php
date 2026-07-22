@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Listado de artículos.
     Fecha de creación: 27/05/2025.
-    Ultima modificación: 28/01/2026.
+    Ultima modificación: 22/07/2026.
 */
 
 session_start();
@@ -114,6 +114,10 @@ else
      {$link=$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."?id=".$_SESSION['DML_TOKEN'];
       $cabecera.="<div class='link' onClick=copyClipp('{$link}')><img src='./images/copy.png' />  Copiar link del listado</div>
       $buscar_box";
+     }
+
+if($q_registros>0)
+     {$cabecera.="<div><input type='button' class='boton excel' value='Exportar a Excel' onClick=\"window.location='articulo_export.php?id=$token'\"/></div>";
      }
 
 $cabecera.="</div>";

@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Definición de los atributos y métodos de los artículos.
     Fecha de creación: 26/05/2025.
-    Ultima modificación: 28/01/2026.
+    Ultima modificación: 22/07/2026.
 */
 
 namespace App\Controller;
@@ -381,6 +381,22 @@ class Articulo
           return "SELECT DISTINCT ar.articulo_id, ar.titulo, ar.descripcion, ar.moneda, ar.precio, ar.vendido, ar.vendido_el, af.articulo_foto_id, ar.oculto, ar.orden
                   FROM articulo ar
                   LEFT JOIN articulo_foto af ON af.articulo_id=ar.articulo_id AND af.principal='S' 
+                  WHERE user_id='$user_id'
+                  $excluyo_ocultos
+                  ORDER BY $el_orden $sentido";
+         }
+
+    public function queryArticulosExport($user_id, $el_orden="orden", $sentido="ASC")
+         {// Consulta para exportar el listado completo de artículos (sin paginar ni fotos)
+          if(isset($_SESSION['DML_USER_ID']) and $user_id==$_SESSION['DML_USER_ID'])
+               {$excluyo_ocultos="";
+               }
+          else
+               {$excluyo_ocultos="AND oculto IS NULL";
+               }
+
+          return "SELECT ar.titulo, ar.descripcion, ar.moneda, ar.precio, ar.vendido, ar.vendido_el, ar.oculto, ar.orden
+                  FROM articulo ar
                   WHERE user_id='$user_id'
                   $excluyo_ocultos
                   ORDER BY $el_orden $sentido";
