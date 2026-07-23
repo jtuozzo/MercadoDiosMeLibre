@@ -2,7 +2,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos general
     Fecha de creación: 17/05/2025.
-    Ultima modificación: 13/06/2025.
+    Ultima modificación: 23/07/2026.
 */
 
 * {
@@ -167,12 +167,12 @@ header {
 
 .paginado {
     text-align: center;
-    margin-top: 1.5em;
-    margin-bottom: 2em;
-    font-size: 1.4em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.2em;
 }
 
 .paginado img {
@@ -250,6 +250,10 @@ header {
     #footer {
         flex-wrap: nowrap;
         font-size: 0.8em;
+    }
+
+    .paginado {
+        font-size: 1.4em;
     }
 
     .paginado img {

@@ -17,6 +17,7 @@ echo "
 
 $cabecera
 <div id='paginador'>".Utils::paginador($pagina,$q_registros,$el_orden,$sentido,$id)."</div>
+
 <div id='list_articulos'>";
 
 if($result->recordCount()==0)
