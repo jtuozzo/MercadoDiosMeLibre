@@ -46,7 +46,7 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 class Utils
     {static public $dbase;
      static public $max_fotos = 10; // Cantidad máxima de fotos por artículo.
-     static public $max_articulos = 16; // Cantidad máxima de artículos por página.
+     static public $max_articulos = 15; // Cantidad máxima de artículos por página.
      static public $moneda = array("ARS" => "ARS Pesos", "USD" => "USD Dólares", "EUR" => "Euros"); // Monedas. Si se modifica este array hay que cambiar la estructura de articulo.moneda en la base de datos.
 
 

@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Ver / Editar un artículo.
     Fecha de creación: 28/05/2025.
-    Ultima modificación: 30/01/2026.
+    Ultima modificación: 23/07/2026.
 */
 
 session_start();
@@ -13,7 +13,11 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Util\Utils;
 use App\Controller\Articulo;
+use App\Controller\User;
 use App\Controller\Compra;
+
+$usuario = new User;
+$usuario->setPermisos();
 
 $articulo = new Articulo;
 $mensaje="";
