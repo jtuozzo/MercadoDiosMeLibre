@@ -4,7 +4,7 @@
     Autor: Julio Tuozzo.
     Función: Vista del listado de artículos.
     Fecha de creación: 27/05/2025.
-    Ultima modificación: 28/01/2026.
+    Ultima modificación: 23/07/2026.
 */
 
 use App\Util\Utils;
@@ -16,6 +16,7 @@ echo "
 <script type='text/javascript' src='./js/articulo_list.js'></script>
 
 $cabecera
+<div id='paginador'>".Utils::paginador($pagina,$q_registros,$el_orden,$sentido,$id)."</div>
 <div id='list_articulos'>";
 
 if($result->recordCount()==0)

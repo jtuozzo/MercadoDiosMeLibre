@@ -3,7 +3,7 @@
     Autor: Julio Tuozzo
     Función: Hoja de estilos.
     Fecha de creación: 27/05/2025.
-    Ultima modificación: 22/07/2026.
+    Ultima modificación: 23/07/2026.
 */
 
 h2 {
@@ -23,6 +23,12 @@ h2 {
 
 #articulo {
     width: 180px;
+}
+
+#paginador {
+    padding: 0;
+    margin: 0;
+    display: none;
 }
 
 .vendido {
@@ -183,10 +189,14 @@ h2 {
         font-size: 16px;
     }
 
+#paginador {
+    display: block;
+}
+
+
     #articulo {
         width: 320px;
     }
-
 
     .un_articulo {
         width: 20%;
